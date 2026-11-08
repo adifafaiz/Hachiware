@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Sayang! 🎀 | Special Chiikawa & Tosca Celebration</title>
+  
+  <!-- Google Fonts: Quicksand for rounded cute aesthetic & Fredoka for bubbly headers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Scenery (Tosca Landscape inspired by reference) -->
+  <div class="bg-wrapper">
+    <!-- Sky gradient layer -->
+    <div class="bg-sky"></div>
+    
+    <!-- Sun/Moon Glow behind center -->
+    <div class="bg-glow"></div>
+
+    <!-- Floating Clouds -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+
+    <!-- Flying Birds (matching reference image) -->
+    <svg class="birds-group bird-left" viewBox="0 0 120 60" fill="none">
+      <path d="M5 25 Q 18 10, 32 24 Q 46 10, 58 25 Q 46 19, 5 25 Z" fill="#0f4c47" opacity="0.75"/>
+    </svg>
+    <svg class="birds-group bird-right" viewBox="0 0 160 80" fill="none">
+      <path d="M10 35 Q 28 15, 48 34 Q 68 15, 85 35 Q 68 28, 48 42 Q 28 28, 10 35 Z" fill="#0f4c47" opacity="0.85"/>
+      <path d="M70 20 Q 82 8, 96 19 Q 110 8, 122 20 Q 110 16, 96 25 Q 82 16, 70 20 Z" fill="#0f4c47" opacity="0.65"/>
+    </svg>
+
+    <!-- Mountain Layers (Tosca gradient hills) -->
+    <div class="mountain-layer mountain-far"></div>
+    <div class="mountain-layer mountain-mid"></div>
+    <div class="mountain-layer mountain-near"></div>
+
+    <!-- Pine Trees Silhouettes on sides (matching reference image) -->
+    <div class="pine-trees pine-left"></div>
+    <div class="pine-trees pine-right"></div>
+
+    <!-- Ambient Sparkles Canvas -->
+    <canvas id="sparklesCanvas"></canvas>
+  </div>
+
+  <!-- Floating Top Widgets (Music & Cute Clock Card) -->
+  <aside class="floating-top-widgets" aria-label="Widget Musik dan Jam Cantik">
+    <!-- Music Controller -->
+    <div class="music-pill" id="musicBtn" title="Putar Musik Box Ulang Tahun 🎶">
+      <span class="music-icon">🎵</span>
+      <span class="music-label">Musik: <b id="musicStatus">OFF</b></span>
+      <div class="music-wave" id="musicWave">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Cute Clock Card Widget (Adapts to Selected Theme) -->
+    <div class="cute-clock-card" id="cuteClockWidget" title="Jam Cantik Realtime ✨ (Klik untuk pesan cinta!)">
+      <div class="clock-card-top">
+        <span class="clock-date-icon" id="clockDateIcon">📅</span>
+        <span class="clock-day-date" id="clockDayDate">8 November 2026</span>
+      </div>
+
+      <div class="clock-card-main">
+        <div class="clock-time-display">
+          <span class="clock-digits" id="clockDigits">
+            <span class="clock-hour-val" id="clockHourVal">--</span><span class="clock-colon-blink">:</span><span class="clock-min-val" id="clockMinVal">--</span>
+          </span>
+        </div>
+        <div class="clock-sec-badge" id="clockSecBadge">
+          <span class="clock-seconds" id="clockSeconds">--</span>
+          <span class="clock-timezone" id="clockTimezone">WIB</span>
+        </div>
+      </div>
+
+      <div class="clock-card-footer">
+        <span class="clock-heart-pulse" id="clockHeartPulse">💕</span>
+        <span class="clock-greeting" id="clockGreeting">Waktu Cantik Evita 🌸</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main App Wrapper -->
+  <main class="app-container">
+
+    <!-- =================================================================
+         VIEW 1: LOGIN CARD (PIN 1728 + PHOTO STROBO + CHIIKAWA)
+         ================================================================= -->
+    <section class="card-screen active" id="loginScreen">
+      
+      <!-- Peeking Chiikawa Characters around Card -->
+      <div class="mascot-peeking peeking-chiikawa" title="Chiikawa menyemangatimu! ( ˶•̀ᴗ•́˶ )">
+        <svg viewBox="0 0 120 110" class="chiikawa-svg">
+          <!-- Ears -->
+          <ellipse cx="28" cy="30" rx="14" ry="16" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+          <ellipse cx="28" cy="30" rx="7" ry="9" fill="#fbcfe8"/>
+          <ellipse cx="92" cy="30" rx="14" ry="16" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+          <ellipse cx="92" cy="30" rx="7" ry="9" fill="#fbcfe8"/>
+          <!-- Body/Head -->
+          <path d="M 20 65 C 16 35, 104 35, 100 65 C 102 98, 18 98, 20 65 Z" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+          <!-- Cheeks -->
+          <ellipse cx="32" cy="68" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+          <ellipse cx="88" cy="68" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+          <!-- Eyes -->
+          <ellipse cx="44" cy="58" rx="6" ry="8" fill="#1e293b"/>
+          <circle cx="42" cy="55" r="2.5" fill="#ffffff"/>
+          <circle cx="46" cy="61" r="1.2" fill="#ffffff"/>
+          <ellipse cx="76" cy="58" rx="6" ry="8" fill="#1e293b"/>
+          <circle cx="74" cy="55" r="2.5" fill="#ffffff"/>
+          <circle cx="78" cy="61" r="1.2" fill="#ffffff"/>
+          <!-- Eyebrows -->
+          <path d="M 40 47 Q 44 44 48 47" stroke="#334155" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M 72 47 Q 76 44 80 47" stroke="#334155" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Nose & Cute 3-Mouth -->
+          <circle cx="60" cy="62" r="1.5" fill="#1e293b"/>
+          <path d="M 54 66 Q 57 69 60 66 Q 63 69 66 66" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <!-- Paws holding card edge -->
+          <ellipse cx="34" cy="98" rx="8" ry="6" fill="#ffffff" stroke="#334155" stroke-width="2.5"/>
+          <ellipse cx="86" cy="98" rx="8" ry="6" fill="#ffffff" stroke="#334155" stroke-width="2.5"/>
+        </svg>
+        <span class="bubble-speech">Semangat! 💕</span>
+      </div>
+
+      <div class="mascot-peeking peeking-hachiware" title="Hachiware: Ganbatte! ( •͈ᴗ•͈ )">
+        <svg viewBox="0 0 120 110" class="chiikawa-svg">
+          <!-- Ears -->
+          <polygon points="18,36 36,12 48,36" fill="#38bdf8" stroke="#334155" stroke-width="3" stroke-linejoin="round"/>
+          <polygon points="26,33 36,19 42,33" fill="#fbcfe8"/>
+          <polygon points="72,36 84,12 102,36" fill="#38bdf8" stroke="#334155" stroke-width="3" stroke-linejoin="round"/>
+          <polygon points="78,33 84,19 94,33" fill="#fbcfe8"/>
+          <!-- Head/Body -->
+          <path d="M 20 65 C 16 35, 104 35, 100 65 C 102 98, 18 98, 20 65 Z" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+          <!-- Hachiware Blue Bangs (Inverted V shape) -->
+          <path d="M 21 54 C 20 38, 50 36, 60 48 C 70 36, 100 38, 99 54 C 95 44, 76 42, 60 52 C 44 42, 25 44, 21 54 Z" fill="#38bdf8" stroke="#334155" stroke-width="2.5"/>
+          <!-- Cheeks -->
+          <ellipse cx="32" cy="70" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+          <ellipse cx="88" cy="70" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+          <!-- Eyes -->
+          <ellipse cx="43" cy="62" rx="6" ry="8" fill="#1e293b"/>
+          <circle cx="41" cy="59" r="2.5" fill="#ffffff"/>
+          <ellipse cx="77" cy="62" rx="6" ry="8" fill="#1e293b"/>
+          <circle cx="75" cy="59" r="2.5" fill="#ffffff"/>
+          <!-- Nose & Mouth -->
+          <circle cx="60" cy="65" r="1.5" fill="#1e293b"/>
+          <path d="M 54 69 Q 57 73 60 70 Q 63 73 66 69" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <!-- Paws -->
+          <ellipse cx="38" cy="98" rx="8" ry="6" fill="#ffffff" stroke="#334155" stroke-width="2.5"/>
+          <ellipse cx="82" cy="98" rx="8" ry="6" fill="#ffffff" stroke="#334155" stroke-width="2.5"/>
+        </svg>
+      </div>
+
+      <!-- FROSTED GLASS LOGIN CARD -->
+      <div class="glass-card login-card-inner">
+        
+        <!-- PHOTO STROBO MARQUEE (Right to Left Banner above LOGIN) -->
+        <div class="strobo-header-container">
+          <div class="strobo-badge">
+            <span class="strobo-sparkle">✨</span>
+            <span class="strobo-title">Koleksi Cantik Tuan Putri</span>
+            <span class="strobo-sparkle">✨</span>
+          </div>
+          
+          <div class="strobo-marquee-wrapper" id="stroboMarquee" title="Foto-foto cantikmu 💕 (Arahkan mouse untuk jeda)">
+            <div class="strobo-track" id="stroboTrack">
+              <div class="strobo-item"><img src="assets/4.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/6.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/8.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/35.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/45.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/67.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/76.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/332.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/765.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item highlight-item"><img src="assets/bg-custom.png" alt="Ulang Tahun" loading="lazy"></div>
+
+              <!-- Duplicate for seamless loop -->
+              <div class="strobo-item"><img src="assets/4.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/6.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/8.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/35.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/45.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/67.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/76.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/332.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item"><img src="assets/765.jpeg" alt="Foto Pacar" loading="lazy"></div>
+              <div class="strobo-item highlight-item"><img src="assets/bg-custom.png" alt="Ulang Tahun" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLACK "LOGIN" TITLE -->
+        <div class="login-title-section">
+          <h1 class="login-title">LOGIN</h1>
+          <p class="login-subtitle">Masukkan PIN Rahasia Spesial Kamu 🌸</p>
+        </div>
+
+        <!-- PIN INDICATOR DOTS -->
+        <div class="pin-display-wrapper" id="pinDisplayContainer">
+          <div class="pin-dots" id="pinDots">
+            <div class="pin-dot" data-index="0"></div>
+            <div class="pin-dot" data-index="1"></div>
+            <div class="pin-dot" data-index="2"></div>
+            <div class="pin-dot" data-index="3"></div>
+          </div>
+          <div class="pin-status-msg" id="pinStatusMsg"></div>
+        </div>
+
+        <!-- NUMERIC KEYPAD -->
+        <div class="keypad-container">
+          <div class="keypad-grid">
+            <button class="key-btn" data-key="1"><span>1</span></button>
+            <button class="key-btn" data-key="2"><span>2</span></button>
+            <button class="key-btn" data-key="3"><span>3</span></button>
+            
+            <button class="key-btn" data-key="4"><span>4</span></button>
+            <button class="key-btn" data-key="5"><span>5</span></button>
+            <button class="key-btn" data-key="6"><span>6</span></button>
+            
+            <button class="key-btn" data-key="7"><span>7</span></button>
+            <button class="key-btn" data-key="8"><span>8</span></button>
+            <button class="key-btn" data-key="9"><span>9</span></button>
+            
+            <button class="key-btn special-key clear-key" data-key="clear" title="Hapus Semua"><span>C</span></button>
+            <button class="key-btn" data-key="0"><span>0</span></button>
+            <button class="key-btn special-key back-key" data-key="backspace" title="Hapus Satu Digit"><span>⌫</span></button>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="login-submit-btn" id="loginSubmitBtn">
+          <span>Buka Hadiah Rahasia ✨</span>
+        </button>
+
+        <!-- Help / Hint Link -->
+        <div class="login-footer">
+          <button type="button" class="hint-trigger" id="hintTriggerBtn">
+            💡 Butuh Petunjuk PIN? Klik di sini
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Usagi Mascot Bouncing at Bottom -->
+      <div class="mascot-usagi" title="Usagi: YAAAAHAAA!! 🐰💨">
+        <svg viewBox="0 0 110 130" class="chiikawa-svg usagi-svg">
+          <ellipse cx="38" cy="28" rx="9" ry="26" fill="#fef08a" stroke="#334155" stroke-width="2.8"/>
+          <ellipse cx="38" cy="28" rx="4" ry="17" fill="#fbcfe8"/>
+          <ellipse cx="72" cy="28" rx="9" ry="26" fill="#fef08a" stroke="#334155" stroke-width="2.8"/>
+          <ellipse cx="72" cy="28" rx="4" ry="17" fill="#fbcfe8"/>
+          <path d="M 22 80 C 18 50, 92 50, 88 80 C 90 110, 20 110, 22 80 Z" fill="#fef08a" stroke="#334155" stroke-width="2.8"/>
+          <ellipse cx="32" cy="84" rx="7" ry="5" fill="#fca5a5" opacity="0.8"/>
+          <ellipse cx="78" cy="84" rx="7" ry="5" fill="#fca5a5" opacity="0.8"/>
+          <path d="M 36 74 L 44 78 L 36 82" stroke="#334155" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 74 74 L 66 78 L 74 82" stroke="#334155" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="55" cy="82" rx="4" ry="5" fill="#f43f5e"/>
+          <ellipse cx="20" cy="82" rx="6" ry="6" fill="#fef08a" stroke="#334155" stroke-width="2.5"/>
+          <ellipse cx="90" cy="74" rx="6" ry="6" fill="#fef08a" stroke="#334155" stroke-width="2.5"/>
+        </svg>
+      </div>
+
+    </section>
+
+    <!-- =================================================================
+         VIEW 1.5: THEME PICKER (Between Login & Dashboard)
+         ================================================================= -->
+    <section class="card-screen" id="themePickerScreen">
+      <div class="glass-card theme-picker-card">
+        
+        <!-- Header -->
+        <div class="theme-picker-header">
+          <div class="theme-header-mascot">
+            <svg viewBox="0 0 120 110" class="chiikawa-mini-svg">
+              <ellipse cx="28" cy="30" rx="14" ry="16" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+              <ellipse cx="28" cy="30" rx="7" ry="9" fill="#fbcfe8"/>
+              <ellipse cx="92" cy="30" rx="14" ry="16" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+              <ellipse cx="92" cy="30" rx="7" ry="9" fill="#fbcfe8"/>
+              <path d="M 20 65 C 16 35, 104 35, 100 65 C 102 98, 18 98, 20 65 Z" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+              <ellipse cx="32" cy="68" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+              <ellipse cx="88" cy="68" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+              <ellipse cx="44" cy="58" rx="6" ry="8" fill="#1e293b"/>
+              <circle cx="42" cy="55" r="2.5" fill="#ffffff"/>
+              <ellipse cx="76" cy="58" rx="6" ry="8" fill="#1e293b"/>
+              <circle cx="74" cy="55" r="2.5" fill="#ffffff"/>
+              <path d="M 54 66 Q 57 69 60 66 Q 63 69 66 66" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h1 class="theme-picker-title">Pilih Tema Favoritmu! 🎨</h1>
+          <p class="theme-picker-subtitle">Sentuh warna yang kamu suka untuk masuk ke pesta ulang tahunmu, sayang~ 💕</p>
+        </div>
+
+        <!-- Theme Options Grid -->
+        <div class="theme-options-grid">
+          
+          <!-- Theme 1: Tosca (Default) -->
+          <div class="theme-option-card" data-theme="tosca">
+            <div class="theme-preview tosca-preview">
+              <div class="preview-circle c1"></div>
+              <div class="preview-circle c2"></div>
+              <div class="preview-circle c3"></div>
+              <div class="preview-accent"></div>
+            </div>
+            <div class="theme-option-info">
+              <h3 class="theme-name">🌊 Tosca Aesthetic</h3>
+              <p class="theme-desc">Warna tosca kesukaanmu yang sejuk dan cantik~</p>
+              <div class="theme-color-dots">
+                <span class="color-dot" style="background: #14b8a6;"></span>
+                <span class="color-dot" style="background: #0f766e;"></span>
+                <span class="color-dot" style="background: #5eead4;"></span>
+                <span class="color-dot" style="background: #ccfbf1;"></span>
+              </div>
+            </div>
+            <div class="theme-select-check">✓</div>
+          </div>
+
+          <!-- Theme 2: Pink -->
+          <div class="theme-option-card" data-theme="pink">
+            <div class="theme-preview pink-preview">
+              <div class="preview-circle c1"></div>
+              <div class="preview-circle c2"></div>
+              <div class="preview-circle c3"></div>
+              <div class="preview-accent"></div>
+            </div>
+            <div class="theme-option-info">
+              <h3 class="theme-name">🌸 Pink Princess</h3>
+              <p class="theme-desc">Warna pink yang manis dan feminin kayak kamu~</p>
+              <div class="theme-color-dots">
+                <span class="color-dot" style="background: #ec4899;"></span>
+                <span class="color-dot" style="background: #be185d;"></span>
+                <span class="color-dot" style="background: #f9a8d4;"></span>
+                <span class="color-dot" style="background: #fce7f3;"></span>
+              </div>
+            </div>
+            <div class="theme-select-check">✓</div>
+          </div>
+
+          <!-- Theme 3: Seventeen -->
+          <div class="theme-option-card" data-theme="seventeen">
+            <div class="theme-preview svt-preview">
+              <div class="preview-circle c1"></div>
+              <div class="preview-circle c2"></div>
+              <div class="preview-circle c3"></div>
+              <div class="preview-accent"></div>
+            </div>
+            <div class="theme-option-info">
+              <h3 class="theme-name">💎 SEVENTEEN Carat</h3>
+              <p class="theme-desc">Rose Quartz & Serenity ala SVT yang kece abis!</p>
+              <div class="theme-color-dots">
+                <span class="color-dot" style="background: #f4a6c0;"></span>
+                <span class="color-dot" style="background: #89b4d6;"></span>
+                <span class="color-dot" style="background: #c9a6e3;"></span>
+                <span class="color-dot" style="background: #fdf2f8;"></span>
+              </div>
+            </div>
+            <div class="theme-select-check">✓</div>
+          </div>
+
+        </div>
+
+        <!-- Confirm Button -->
+        <button class="theme-confirm-btn" id="themeConfirmBtn" disabled>
+          <span>✨ Lanjutkan ke Pilihan Lagu! 🎵</span>
+        </button>
+        <p class="theme-hint-text">Pilih salah satu tema dulu ya sayang~ 🎀</p>
+
+      </div>
+    </section>
+
+    <!-- =================================================================
+         VIEW 1.6: MUSIC PICKER (Between Theme Picker & Dashboard)
+         ================================================================= -->
+    <section class="card-screen" id="musicPickerScreen">
+      <div class="glass-card music-picker-card">
+        
+        <!-- Header -->
+        <div class="music-picker-header">
+          <div class="music-header-mascot">
+            <span class="music-mascot-emoji">🎧</span>
+          </div>
+          <h1 class="music-picker-title">Pilih Lagu Pengiring 🎶</h1>
+          <p class="music-picker-subtitle">Pilih melodi favoritmu untuk menemani setiap sudut istana ulang tahun ini, sayang~ 💕</p>
+        </div>
+
+        <!-- Music Options List (Urutan sesuai request) -->
+        <div class="music-options-list">
+          <!-- 1. Birtday Evitaaa (Default) -->
+          <div class="music-option-card selected" data-music="bday-evita">
+            <div class="music-option-icon-box">
+              <span class="music-opt-icon">🎂</span>
+              <span class="music-note-float">🎶</span>
+            </div>
+            <div class="music-option-info">
+              <div class="music-title-row">
+                <h3 class="music-option-title">Birtday Evitaaa</h3>
+                <span class="music-default-badge">⭐ Default</span>
+              </div>
+            </div>
+            <div class="music-select-check">✓</div>
+          </div>
+
+          <!-- 2. Chikawaa -->
+          <div class="music-option-card" data-music="chiikawa">
+            <div class="music-option-icon-box">
+              <span class="music-opt-icon">🌸</span>
+              <span class="music-note-float">🎵</span>
+            </div>
+            <div class="music-option-info">
+              <h3 class="music-option-title">Chikawaa</h3>
+            </div>
+            <div class="music-select-check">✓</div>
+          </div>
+
+          <!-- 3. 5SOS -->
+          <div class="music-option-card" data-music="5sos">
+            <div class="music-option-icon-box">
+              <span class="music-opt-icon">🎸</span>
+              <span class="music-note-float">⚡</span>
+            </div>
+            <div class="music-option-info">
+              <h3 class="music-option-title">5SOS</h3>
+            </div>
+            <div class="music-select-check">✓</div>
+          </div>
+
+          <!-- 4. One Directions -->
+          <div class="music-option-card" data-music="1d">
+            <div class="music-option-icon-box">
+              <span class="music-opt-icon">✨</span>
+              <span class="music-note-float">💫</span>
+            </div>
+            <div class="music-option-info">
+              <h3 class="music-option-title">One Directions</h3>
+            </div>
+            <div class="music-select-check">✓</div>
+          </div>
+
+          <!-- 5. One Directions Lofi -->
+          <div class="music-option-card" data-music="1d-lofi">
+            <div class="music-option-icon-box">
+              <span class="music-opt-icon">🌙</span>
+              <span class="music-note-float">🎧</span>
+            </div>
+            <div class="music-option-info">
+              <h3 class="music-option-title">One Directions Lofi</h3>
+            </div>
+            <div class="music-select-check">✓</div>
+          </div>
+        </div>
+
+        <!-- Confirm Button -->
+        <button class="music-confirm-btn ready" id="musicConfirmBtn">
+          <span>✨ Masuk ke Istana Ulang Tahun! 🏰💖</span>
+        </button>
+        <p class="music-hint-text">Lagu otomatis berputar & bisa diubah kapan saja lewat tombol musik di atas 🎶</p>
+
+      </div>
+    </section>
+
+    <!-- =================================================================
+         VIEW 2: MAIN DASHBOARD UTAMA (INTERACTIVE BIRTHDAY APP)
+         ================================================================= -->
+    <section class="card-screen surprise-screen" id="surpriseScreen">
+      <div class="glass-card dashboard-card">
+        
+        <!-- DASHBOARD TOP HEADER BAR -->
+        <header class="dash-top-bar">
+          <div class="dash-user-badge">
+            <div class="user-avatar-mini">
+              <img src="assets/bg-custom.png" alt="Avatar Princess">
+              <span class="user-status-dot" title="Princess Online 🌸"></span>
+            </div>
+            <div class="user-text-info">
+              <span class="greeting-tiny">Selamat Datang,</span>
+              <strong class="princess-name" id="princessName" contenteditable="true" title="Klik untuk mengubah nama / panggilan kesayangan 💕">Tuan Putri Tercinta 👑</strong>
+            </div>
+          </div>
+
+          <div class="dash-actions">
+            <button class="theme-switch-btn" id="themeSwitchBtn" title="Ganti Warna Tema">
+              🎨 Tema
+            </button>
+            <button class="music-switch-btn" id="musicSwitchBtn" title="Ganti Lagu Pengiring">
+              🎵 Lagu
+            </button>
+            <div class="auto-save-pill" id="autoSaveIndicator" title="Semua perubahan tersimpan otomatis!">
+              <span class="save-icon">💾</span>
+              <span class="save-text" id="saveText">Auto-save Aktif</span>
+            </div>
+            <button class="confetti-retrigger-btn" id="confettiBtn" title="Hujani Confetti!">
+              🎉 Rayakan!
+            </button>
+            <button class="lock-back-btn" id="lockBackBtn" title="Kunci Kembali">
+              <span>🔒 Kunci</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- DASHBOARD NAVIGATION TABS (Pills) -->
+        <nav class="dash-tabs-nav">
+          <button class="dash-tab-btn active" data-tab="tab-celebration">
+            <span class="tab-icon">🎂</span>
+            <span class="tab-label">Pesta & Kue</span>
+          </button>
+          <button class="dash-tab-btn" data-tab="tab-letter">
+            <span class="tab-icon">💌</span>
+            <span class="tab-label">Surat Cinta</span>
+          </button>
+          <button class="dash-tab-btn" data-tab="tab-gallery">
+            <span class="tab-icon">📸</span>
+            <span class="tab-label">Galeri Memori</span>
+          </button>
+          <button class="dash-tab-btn" data-tab="tab-games">
+            <span class="tab-icon">🎮</span>
+            <span class="tab-label">Menu Games</span>
+          </button>
+          <button class="dash-tab-btn" data-tab="tab-others">
+            <span class="tab-icon">✨</span>
+            <span class="tab-label">Menu Lainnya</span>
+          </button>
+        </nav>
+
+        <!-- ==========================================
+             TAB 1: CELEBRATION & INTERACTIVE CAKE
+             ========================================== -->
+        <div class="dash-tab-content active" id="tab-celebration">
+          
+          <!-- Birthday Hero Banner -->
+          <div class="hero-bday-section">
+            <div class="photo-frame-crown">
+              <span class="crown-icon">👑</span>
+              <div class="bday-main-photo-wrap">
+                <img src="assets/bg-custom.png" alt="Happy Birthday Sayang" class="bday-hero-img">
+              </div>
+              <div class="sparkle-tag">✨ Birthday Princess ✨</div>
+            </div>
+            
+            <h1 class="bday-title" id="bdayTitle" contenteditable="true" title="Klik untuk mengedit ucapan utama 🌸">Happy Birthday, Sayang! 🎂🎉</h1>
+            <p class="bday-subtitle" id="bdaySubtitle" contenteditable="true" title="Klik untuk mengedit pesan cinta 💖">Selamat bertambah usia, bidadari paling lucu dan menggemaskan di hatiku! 💖</p>
+          </div>
+
+          <!-- Timeline Button -->
+          <div class="timeline-btn-wrapper">
+            <button class="timeline-open-btn" id="timelineOpenBtn">
+              <span class="tl-btn-icon">📋</span>
+              <span class="tl-btn-text">Timeline Hari Ulang Tahun</span>
+              <span class="tl-btn-badge" id="tlProgressBadge">0/6</span>
+            </button>
+          </div>
+
+          <!-- Wheels Special Menu Accordion (Surat Raja Jadul) -->
+          <div class="wheels-menu-section" id="wheelsMenuSection">
+            <!-- Collapsed Card: Satu Card Panjang Tulisannya Menu Wheels Pilihan Kita -->
+            <button class="wheels-menu-banner-btn" id="wheelsMenuToggleBtn" aria-expanded="false" title="Klik untuk membuka surat titah raja jadul 📜">
+              <div class="menu-banner-left">
+                <div class="menu-banner-icon-wrap">
+                  <span class="menu-banner-icon">📜</span>
+                  <span class="menu-banner-sparkle">✨</span>
+                </div>
+                <div class="menu-banner-text">
+                  <div class="menu-banner-tag">🍽️ PILIHAN SPESIAL KITA DI WHEELS</div>
+                  <h3 class="menu-banner-title">Menu Wheels Yang Kita Pilih 👑</h3>
+                  <p class="menu-banner-sub">Klik untuk membuka gulungan surat titah raja jadul~ 💌</p>
+                </div>
+              </div>
+              <div class="menu-banner-right">
+                <span class="menu-toggle-pill" id="menuTogglePill">
+                  <span class="toggle-text">Buka Titah</span>
+                  <span class="toggle-arrow">▼</span>
+                </span>
+              </div>
+            </button>
+
+            <!-- Expanded Dropdown: Surat Raja Jadul (Royal Parchment Scroll) -->
+            <div class="wheels-royal-scroll" id="wheelsRoyalScroll">
+              <!-- Scroll Top Rod Decor -->
+              <div class="scroll-rod rod-top">
+                <span class="rod-finial finial-left">⚜️</span>
+                <span class="rod-beam"></span>
+                <span class="rod-title">TITAH SANTAPAN KERAJAAN WHEELS</span>
+                <span class="rod-beam"></span>
+                <span class="rod-finial finial-right">⚜️</span>
+              </div>
+
+              <!-- Parchment Body -->
+              <div class="parchment-body">
+                <!-- Royal Corner Ornaments -->
+                <span class="parchment-corner corner-tl">❧</span>
+                <span class="parchment-corner corner-tr">❧</span>
+                <span class="parchment-corner corner-bl">❧</span>
+                <span class="parchment-corner corner-br">❧</span>
+
+                <!-- Royal Header Inside Parchment -->
+                <div class="royal-decree-header">
+                  <div class="royal-crown-badge">👑</div>
+                  <h2 class="decree-title">SURAT TITAH RESMI SANTAPAN</h2>
+                  <p class="decree-subtitle">~ Menu Pilihan Spesial di Wheels Coffee Roasters ~</p>
+                  <div class="decree-ornament-line">✦ ════════ ⚜️ ════════ ✦</div>
+                  <p class="decree-proclamation">
+                    "Diumumkan kepada seluruh alam semesta, bahwa pada hari bertambahnya usia <b>Tuan Putri tercinta</b>, telah dipilihkan dua santapan istimewa terfavorit untuk dinikmati berdua dengan penuh cinta, kehangatan, dan kebahagiaan!"
+                  </p>
+                </div>
+
+                <!-- Food Items List (Left Photo, Right Name/Details) -->
+                <div class="royal-menu-list">
+                  
+                  <!-- Menu 1: W.D.B (Menu Utama) -->
+                  <div class="royal-food-card food-wdb">
+                    <div class="food-photo-col">
+                      <div class="food-photo-frame">
+                        <img src="assets/menu-wdb.jpg" alt="Menu Utama: W.D.B (Wheels Double Beef)" class="food-img" loading="lazy">
+                        <span class="food-badge-ribbon ribbon-main">👑 MENU UTAMA</span>
+                      </div>
+                    </div>
+                    <div class="food-info-col">
+                      <div class="food-tagline">🍲 Wheels Signature Rice Bowl</div>
+                      <h3 class="food-title">W.D.B</h3>
+                      <div class="food-aka">(Wheels Double Beef)</div>
+                      <p class="food-desc">
+                        Semangkuk nasi hangat dengan limpahan irisan daging sapi empuk nan gurih juicy, disiram saus creamy gurih rahasia Wheels bertabur biji wijen harum, plus poached egg lembut yang lumer sempurna saat diaduk. Menu utama favorit kita berdua yang juara lezatnya! 🤤💖
+                      </p>
+                      <div class="food-meta-pills">
+                        <span class="food-pill star-pill">⭐⭐⭐⭐⭐ 1000/10 Favorit!</span>
+                        <span class="food-pill love-pill">🥩 Daging Melimpah & Gurih</span>
+                        <span class="food-pill egg-pill">🍳 Telur Lumer Lembut</span>
+                      </div>
+                      <div class="food-romantic-note">
+                        ✨ <i>"Paling nikmat disantap sepiring berdua sambil tatap-tatapan~ 💕"</i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Menu 2: Slice Cake (Dessert Manis) -->
+                  <div class="royal-food-card food-cake">
+                    <div class="food-photo-col">
+                      <div class="food-photo-frame">
+                        <img src="assets/menu-slice-cake.jpg" alt="Dessert: Slice Cake Wheels" class="food-img" loading="lazy">
+                        <span class="food-badge-ribbon ribbon-dessert">🍰 DESSERT MANIS</span>
+                      </div>
+                    </div>
+                    <div class="food-info-col">
+                      <div class="food-tagline">🍰 Wheels Specialty Dessert</div>
+                      <h3 class="food-title">Slice Cake</h3>
+                      <div class="food-aka">(Kue Potong Istimewa Wheels)</div>
+                      <p class="food-desc">
+                        Sepotong kue lembut berlayer krim istimewa dengan aroma wangi yang menggoda dan taburan crumble gurih renyah di atasnya. Cita rasa manisnya pas banget, semanis senyuman Tuan Putri hari ini! Penutup yang sempurna untuk hari spesial kita~ 🎂✨
+                      </p>
+                      <div class="food-meta-pills">
+                        <span class="food-pill star-pill">⭐⭐⭐⭐⭐ Juara Manisnya!</span>
+                        <span class="food-pill love-pill">🍓 Lembut & Lumer di Lidah</span>
+                        <span class="food-pill crumble-pill">✨ Crumble Renyah Gurih</span>
+                      </div>
+                      <div class="food-romantic-note">
+                        🌸 <i>"Kue manis penutup hari spesial untuk gadis paling manis sedunia~ 💖"</i>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Decree Footer with Wax Seal -->
+                <div class="royal-decree-footer">
+                  <div class="royal-wax-seal">
+                    <div class="seal-inner">
+                      <span class="seal-crown">👑</span>
+                      <span class="seal-text">WHEELS</span>
+                      <span class="seal-sub">SEAL OF LOVE</span>
+                    </div>
+                  </div>
+                  <div class="royal-sign-box">
+                    <span class="sign-label">Disahkan dengan Penuh Cinta:</span>
+                    <strong class="sign-name">Pangeran yang Selalu Menyayangimu 💕</strong>
+                    <span class="sign-date">📍 Wheels Coffee Roasters • Special Birthday Celebration</span>
+                  </div>
+                </div>
+
+                <!-- Bottom Fold Button -->
+                <div class="scroll-bottom-action">
+                  <button class="scroll-fold-btn" id="scrollFoldBtn" title="Gulung kembali surat titah kerajaan">
+                    <span>📜 Gulung Kembali Titah Raja ▲</span>
+                  </button>
+                </div>
+
+              </div>
+
+              <!-- Scroll Bottom Rod Decor -->
+              <div class="scroll-rod rod-bottom">
+                <span class="rod-finial finial-left">⚜️</span>
+                <span class="rod-beam"></span>
+                <span class="rod-finial finial-right">⚜️</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Birthday Cake -->
+          <div class="cake-container">
+            <div class="cake-box" id="cakeBox" title="Klik untuk Tiup Lilin!">
+              <div class="candles-row">
+                <div class="candle"><div class="flame lit"></div></div>
+                <div class="candle"><div class="flame lit"></div></div>
+                <div class="candle"><div class="flame lit"></div></div>
+              </div>
+              <div class="cake-tier tier-top">
+                <div class="cream-drips"></div>
+                <div class="strawberry">🍓</div>
+              </div>
+              <div class="cake-tier tier-bottom">
+                <div class="cake-decoration">🎀 Chiikawa Loves You 🎀</div>
+              </div>
+              <div class="cake-plate"></div>
+            </div>
+            <button class="blow-candle-btn" id="blowCandleBtn">
+              <span>🕯️ Tiup Lilin & Buat Harapan ✨</span>
+            </button>
+            <div class="wish-result" id="wishResult"></div>
+          </div>
+
+          <!-- Bintang Doa & Harapan Ulang Tahun (Disatukan di bawah Kue) -->
+          <div class="wishes-section" id="wishesSection">
+            <div class="section-title">
+              <span class="title-star">⭐</span>
+              <h3>Bintang Harapan Ulang Tahun</h3>
+              <span class="title-star">⭐</span>
+            </div>
+            <p class="wishes-lead">Tuliskan doa atau impianmu di bawah ini, lalu terbangkan ke langit bintang tosca! 🌌</p>
+
+            <div class="wish-input-box">
+              <textarea id="wishTextarea" placeholder="Tuliskan harapan terbesarmu di hari ulang tahun ini ya sayang... 🌸" rows="3"></textarea>
+              <button class="send-wish-btn" id="sendWishBtn">
+                <span>✨ Terbangkan Bintang Doa ✨</span>
+              </button>
+            </div>
+
+            <!-- List of Wishes -->
+            <div class="wishes-board">
+              <h4 class="board-heading">Bintang-bintang Doa yang Terkumpul:</h4>
+              <div class="wishes-list" id="wishesList">
+                <div class="wish-card-item">
+                  <span class="wish-item-star">🌟</span>
+                  <div class="wish-item-text">"Semoga selalu sehat, bahagia terus, dan hubungan kita makin erat sampai masa depan!"</div>
+                  <span class="wish-item-author">— Dari Hatiku</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chiikawa Interactive Greeting Card -->
+          <div class="chiikawa-affirmation-card">
+            <div class="affirmation-mascot">
+              <svg viewBox="0 0 120 110" class="chiikawa-mini-svg">
+                <ellipse cx="28" cy="30" rx="14" ry="16" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+                <ellipse cx="28" cy="30" rx="7" ry="9" fill="#fbcfe8"/>
+                <ellipse cx="92" cy="30" rx="14" ry="16" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+                <ellipse cx="92" cy="30" rx="7" ry="9" fill="#fbcfe8"/>
+                <path d="M 20 65 C 16 35, 104 35, 100 65 C 102 98, 18 98, 20 65 Z" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+                <ellipse cx="32" cy="68" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+                <ellipse cx="88" cy="68" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+                <ellipse cx="44" cy="58" rx="6" ry="8" fill="#1e293b"/>
+                <circle cx="42" cy="55" r="2.5" fill="#ffffff"/>
+                <ellipse cx="76" cy="58" rx="6" ry="8" fill="#1e293b"/>
+                <circle cx="74" cy="55" r="2.5" fill="#ffffff"/>
+                <path d="M 54 66 Q 57 69 60 66 Q 63 69 66 66" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="affirmation-content">
+              <div class="affirmation-bubble" id="affirmationText">
+                "Pesan Hari Ini: Pacar kamu ini beruntung banget punya kamu di dunia ini! Tetaplah jadi gadis paling manis yaa~ 💖"
+              </div>
+              <button class="roll-affirmation-btn" id="rollAffirmationBtn">
+                🎲 Ambil Pesan Chiikawa Lainnya
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==========================================
+             TAB 2: LOVE LETTER (INTERACTIVE ENVELOPE)
+             ========================================== -->
+        <div class="dash-tab-content" id="tab-letter">
+          
+          <div class="envelope-outer-wrap">
+            <div class="envelope-card" id="envelopeCard">
+              <div class="envelope-flap" id="envelopeFlap"></div>
+              <div class="wax-seal" id="waxSealBtn" title="Klik untuk membuka surat! 💌">
+                <span>( ˶•̀ᴗ•́˶ )</span>
+                <small>Buka</small>
+              </div>
+              <div class="envelope-hint-txt">Ketuk segel Chiikawa untuk membuka surat 🎀</div>
+            </div>
+
+            <!-- Letter Inside (Revealed upon clicking seal) -->
+            <div class="love-letter-parchment" id="loveLetterBody">
+              <div class="parchment-stamp">🌸 SPESIAL ULANG TAHUN 🌸</div>
+              <div class="letter-edit-notice">✏️ Surat cinta ini bisa langsung diketik / diedit & otomatis tersimpan!</div>
+              <h2 class="letter-title" id="letterTitle" contenteditable="true" title="Klik untuk mengedit judul surat">Untuk Gadis Favoritku Sepanjang Masa 💕</h2>
+              
+              <div class="letter-paragraphs" id="letterContent" contenteditable="true" title="Klik untuk menulis atau mengedit isi surat cinta">
+                <p>
+                  Halo kesayanganku tercinta, selamat ulang tahun yaa! 🎉✨
+                </p>
+                <p>
+                  Hari ini adalah hari yang luar biasa indah karena hari ini manusia paling gemas, paling baik, dan paling aku sayang lahir ke dunia. Terima kasih sudah selalu hadir memberi warna di setiap hariku, mendengarkan celotehanku, dan menjadi teman hidup terbaik yang pernah kumiliki.
+                </p>
+                <p>
+                  Kamu itu persis kayak Chiikawa: kecil, imut, menggemaskan, tapi punya hati yang hangat dan selalu bikin orang di sekitarmu merasa nyaman. Website dengan tema tosca kesukaanmu dan foto-foto masa kecilmu ini aku persembahkan tulus dari hati yang terdalam.
+                </p>
+                <p>
+                  Di usiamu yang baru ini, aku berdoa semoga semua mimpimu dimudahkan, hari-harimu selalu dikelilingi tawa dan hal-hal baik, sehat selalu, dan yang paling penting... semoga kita bisa terus bergandengan tangan merayakan setiap ulang tahunmu tahun demi tahun ke depan.
+                </p>
+                <p class="letter-romantic-end">
+                  I love you more than words can ever say. Happy birthday, my princess! 👑💖
+                </p>
+              </div>
+
+              <div class="letter-signature-row">
+                <div class="sig-date" id="letterSigDate" contenteditable="true" title="Klik untuk edit tanggal">Hari Spesialmu, 2026</div>
+                <div class="sig-name" id="letterSigName" contenteditable="true" title="Klik untuk edit pengirim">Dari Pacar yang Selalu Menyayangimu 🐾</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==========================================
+             TAB 3: PHOTO MEMORIES GALLERY
+             ========================================== -->
+        <div class="dash-tab-content" id="tab-gallery">
+          <div class="memories-section">
+            <div class="gallery-header-row">
+              <button class="add-memory-btn" id="addMemoryCard" title="Tambah foto kenangan baru!">
+                <span class="add-btn-icon">📸</span>
+                <span class="add-btn-text">Tambah Kenangan</span>
+              </button>
+              <div class="gallery-header-center">
+                <div class="section-title">
+                  <span class="title-star">⭐</span>
+                  <h3>Galeri Perjalanan Cantikmu</h3>
+                  <span class="title-star">⭐</span>
+                </div>
+                <p class="gallery-lead">Klik foto mana saja untuk melihat dalam ukuran besar &amp; berikan reaksi cinta! 💕</p>
+              </div>
+            </div>
+            <input type="file" id="memoryFileInput" accept="image/*" multiple style="display: none;">
+
+            <div class="memory-grid">
+              <div class="polaroid-card">
+                <div class="polaroid-img-wrap"><img src="assets/4.jpeg" alt="Memori"></div>
+                <span class="polaroid-caption">Senyum termanis 🌸</span>
+                <button class="heart-react-btn" title="Kirim Hati!">❤️ <span class="heart-count">99+</span></button>
+              </div>
+              <div class="polaroid-card">
+                <div class="polaroid-img-wrap"><img src="assets/6.jpeg" alt="Memori"></div>
+                <span class="polaroid-caption">Lucu banget! 🐾</span>
+                <button class="heart-react-btn" title="Kirim Hati!">❤️ <span class="heart-count">120+</span></button>
+              </div>
+              <div class="polaroid-card">
+                <div class="polaroid-img-wrap"><img src="assets/8.jpeg" alt="Memori"></div>
+                <span class="polaroid-caption">Ceria selalu ✨</span>
+                <button class="heart-react-btn" title="Kirim Hati!">❤️ <span class="heart-count">88+</span></button>
+              </div>
+              <div class="polaroid-card">
+                <div class="polaroid-img-wrap"><img src="assets/35.jpeg" alt="Memori"></div>
+                <span class="polaroid-caption">Momen indah 💖</span>
+                <button class="heart-react-btn" title="Kirim Hati!">❤️ <span class="heart-count">150+</span></button>
+              </div>
+              <div class="polaroid-card">
+                <div class="polaroid-img-wrap"><img src="assets/45.jpeg" alt="Memori"></div>
+                <span class="polaroid-caption">My Favorite Girl 🌷</span>
+                <button class="heart-react-btn" title="Kirim Hati!">❤️ <span class="heart-count">200+</span></button>
+              </div>
+              <div class="polaroid-card">
+                <div class="polaroid-img-wrap"><img src="assets/67.jpeg" alt="Memori"></div>
+                <span class="polaroid-caption">Gemes tiada tara 🥰</span>
+                <button class="heart-react-btn" title="Kirim Hati!">❤️ <span class="heart-count">95+</span></button>
+              </div>
+              <div class="polaroid-card">
+                <div class="polaroid-img-wrap"><img src="assets/76.jpeg" alt="Memori"></div>
+                <span class="polaroid-caption">Cantik sepanjang masa 🎀</span>
+                <button class="heart-react-btn" title="Kirim Hati!">❤️ <span class="heart-count">180+</span></button>
+              </div>
+              <div class="polaroid-card">
+                <div class="polaroid-img-wrap"><img src="assets/332.jpeg" alt="Memori"></div>
+                <span class="polaroid-caption">Imut dari kecil! 🍼</span>
+                <button class="heart-react-btn" title="Kirim Hati!">❤️ <span class="heart-count">332+</span></button>
+              </div>
+              <div class="polaroid-card">
+                <div class="polaroid-img-wrap"><img src="assets/765.jpeg" alt="Memori"></div>
+                <span class="polaroid-caption">Princess tercinta 👑</span>
+                <button class="heart-react-btn" title="Kirim Hati!">❤️ <span class="heart-count">520+</span></button>
+              </div>
+              <div class="polaroid-card highlight-polaroid">
+                <div class="polaroid-img-wrap"><img src="assets/bg-custom.png" alt="Ulang Tahun"></div>
+                <span class="polaroid-caption">Kacamata & Topi Keren 🕶️</span>
+                <button class="heart-react-btn" title="Kirim Hati!">❤️ <span class="heart-count">1000+</span></button>
+              </div>
+              <!-- User-uploaded photos will be rendered here -->
+
+              <div id="userPhotosContainer"></div>
+
+
+
+</div>
+          </div>
+        </div>
+
+        <!-- Caption input modal for uploaded photo -->
+            <div class="memory-caption-modal" id="memoryCaptionModal">
+              <div class="memory-caption-box">
+                <h4>📝 Tulis Caption Kenangan</h4>
+                <p class="caption-modal-hint">Kasih caption yang lucu buat foto ini ya sayang~</p>
+                <input type="text" id="memoryCaptionInput" placeholder="Contoh: Momen terindah kita 💕" maxlength="50">
+                <div class="caption-modal-actions">
+                  <button class="caption-cancel-btn" id="captionCancelBtn">Batal</button>
+                  <button class="caption-save-btn" id="captionSaveBtn">✨ Simpan Kenangan</button>
+                </div>
+              </div>
+            </div>
+
+        <!-- ==========================================
+             TAB 4: ARCADE GAMES (FLAPPY BIRTHDAY, CATCH, MEMORY)
+             ========================================== -->
+        <div class="dash-tab-content" id="tab-games">
+          <div class="games-section">
+            <div class="section-title">
+              <span class="title-star">🎮</span>
+              <h3>Chiikawa Birthday Arcade</h3>
+              <span class="title-star">🎮</span>
+            </div>
+            <p class="games-lead">Pilih game seru buat merayakan ulang tahunmu princess! Berapa skor tertinggimu? 🏆</p>
+
+            <!-- Game Selection Cards -->
+            <div class="game-selector-grid" id="gameSelectorGrid">
+              
+              <!-- Game Card 1: Flappy Birthday -->
+              <div class="game-select-card" data-game="flappy">
+                <div class="game-badge-tag">FAVORIT 🌟</div>
+                <div class="game-card-icon">🐣🎂</div>
+                <h4 class="game-card-title">Flappy Birthday</h4>
+                <p class="game-card-desc">Bantu Chiikawa terbang melewati lilin-lilin kue ulang tahun tosca tanpa menabrak!</p>
+                <button class="play-game-btn">Mainkan Game 🚀</button>
+              </div>
+
+              <!-- Game Card 2: Catch The Gifts -->
+              <div class="game-select-card" data-game="catch">
+                <div class="game-badge-tag">SERU 🍓</div>
+                <div class="game-card-icon">🧺🎁</div>
+                <h4 class="game-card-title">Tangkap Kado Ultah</h4>
+                <p class="game-card-desc">Gerakkan Chiikawa ke kiri dan kanan untuk menangkap stroberi, kado, dan kue!</p>
+                <button class="play-game-btn">Mainkan Game 🚀</button>
+              </div>
+
+              <!-- Game Card 3: Memory Match -->
+              <div class="game-select-card" data-game="memory">
+                <div class="game-badge-tag">ASAH OTAK 💡</div>
+                <div class="game-card-icon">🃏✨</div>
+                <h4 class="game-card-title">Tebak Kartu Pasangan</h4>
+                <p class="game-card-desc">Cocokkan pasangan gambar Chiikawa, kue, dan hati sebelum waktu habis!</p>
+                <button class="play-game-btn">Mainkan Game 🚀</button>
+              </div>
+
+              <!-- Game Card 4: Chiikawa Snake -->
+              <div class="game-select-card" data-game="snake">
+                <div class="game-badge-tag">KLASIK 🐍</div>
+                <div class="game-card-icon">🐍🍰</div>
+                <h4 class="game-card-title">Ular Manis Chiikawa</h4>
+                <p class="game-card-desc">Makan kue, stroberi, dan cupcake ulang tahun sebanyak-banyaknya tanpa menabrak!</p>
+                <button class="play-game-btn">Mainkan Game 🚀</button>
+              </div>
+
+              <!-- Game Card 5: Whack A Mole Usagi -->
+              <div class="game-select-card" data-game="whack">
+                <div class="game-badge-tag">REFLEKS 🔨</div>
+                <div class="game-card-icon">🔨🐰</div>
+                <h4 class="game-card-title">Pukul Usagi Ceria</h4>
+                <p class="game-card-desc">Ketuk Usagi yang muncul dari semak tosca secepat kilat dalam 30 detik!</p>
+                <button class="play-game-btn">Mainkan Game 🚀</button>
+              </div>
+
+              <!-- Game Card 6: Balloon Pop -->
+              <div class="game-select-card" data-game="pop">
+                <div class="game-badge-tag">SERU 🎈</div>
+                <div class="game-card-icon">🎈✨</div>
+                <h4 class="game-card-title">Pecahkan Balon Cinta</h4>
+                <p class="game-card-desc">Letuskan balon-balon ulang tahun tosca & emas yang terbang sebelum waktu habis!</p>
+                <button class="play-game-btn">Mainkan Game 🚀</button>
+              </div>
+
+              <!-- Game Card 7: Tic-Tac-Toe (XOX) -->
+              <div class="game-select-card" data-game="xox">
+                <div class="game-badge-tag">ROMANTIS 💕</div>
+                <div class="game-card-icon">❌⭕</div>
+                <h4 class="game-card-title">Tic-Tac-Toe Cinta (XOX)</h4>
+                <p class="game-card-desc">Main game XOX lawan Chiikawa AI yang pintar atau main berdua sama pacar!</p>
+                <button class="play-game-btn">Mainkan Game 🚀</button>
+              </div>
+
+            </div>
+
+            <!-- Active Game Arena (shown when a game is chosen) -->
+            <div class="game-arena-wrapper" id="gameArenaWrapper" style="display: none;">
+              <div class="game-arena-header">
+                <button class="back-to-games-btn" id="backToGamesBtn">
+                  <span>⬅️ Pilih Game Lain</span>
+                </button>
+                <div class="game-arena-title" id="gameArenaTitle">Flappy Birthday</div>
+                <div class="game-arena-score-badge">
+                  <span>Skor: <b id="currentScoreDisplay">0</b></span>
+                  <span class="high-score-tag">Rekor: <b id="highScoreDisplay">0</b></span>
+                </div>
+              </div>
+
+              <!-- Canvas / Game Container -->
+              <div class="game-canvas-container" id="gameCanvasContainer">
+                <canvas id="flappyCanvas" width="360" height="460"></canvas>
+                <canvas id="catchCanvas" width="360" height="460" style="display: none;"></canvas>
+                <canvas id="snakeCanvas" width="360" height="460" style="display: none;"></canvas>
+                <canvas id="popCanvas" width="360" height="460" style="display: none;"></canvas>
+                
+                <!-- Memory Cards Board -->
+                <div id="memoryGameContainer" class="memory-board" style="display: none;"></div>
+                
+                <!-- Whack A Mole Board -->
+                <div id="whackGameContainer" class="whack-board" style="display: none;"></div>
+                
+                <!-- Tic-Tac-Toe (XOX) Container -->
+                <div id="xoxGameContainer" class="xox-container" style="display: none;">
+                  <div class="xox-mode-select">
+                    <button class="xox-mode-btn active" id="xoxModeAi">🤖 Lawan AI Chiikawa</button>
+                    <button class="xox-mode-btn" id="xoxMode2P">👩‍❤️‍👨 Main Berdua</button>
+                  </div>
+                  <div class="xox-turn-indicator" id="xoxTurnText">Giliran: 💖 Tuan Putri (X)</div>
+                  <div class="xox-board" id="xoxBoard">
+                    <div class="xox-cell" data-cell="0"></div>
+                    <div class="xox-cell" data-cell="1"></div>
+                    <div class="xox-cell" data-cell="2"></div>
+                    <div class="xox-cell" data-cell="3"></div>
+                    <div class="xox-cell" data-cell="4"></div>
+                    <div class="xox-cell" data-cell="5"></div>
+                    <div class="xox-cell" data-cell="6"></div>
+                    <div class="xox-cell" data-cell="7"></div>
+                    <div class="xox-cell" data-cell="8"></div>
+                  </div>
+                  <div class="xox-score-tracker">
+                    <span>💖 Putri: <b id="xoxScoreX">0</b></span>
+                    <span>🤝 Seri: <b id="xoxScoreDraw">0</b></span>
+                    <span>🌸 Lawan: <b id="xoxScoreO">0</b></span>
+                  </div>
+                  <button class="xox-reset-btn" id="xoxResetBtn">Ronde Baru 🔄</button>
+                </div>
+
+                <!-- Game Over Overlay -->
+                <div class="game-over-overlay" id="gameOverOverlay">
+                  <div class="game-over-box">
+                    <div class="game-over-emoji" id="gameOverEmoji">🎉</div>
+                    <h3 id="gameOverTitle">Permainan Selesai!</h3>
+                    <p id="gameOverMsg">Keren banget sayang!</p>
+                    <div class="final-score-box">
+                      <span>Skor Akhir: <b id="finalScoreVal">0</b></span>
+                    </div>
+                    <button class="restart-game-btn" id="restartGameBtn">Main Lagi 🔄</button>
+                  </div>
+                </div>
+
+                <!-- Flappy Start Instructions Overlay -->
+                <div class="game-start-overlay" id="gameStartOverlay">
+                  <div class="start-instruction-box">
+                    <div class="instruction-icon">👆</div>
+                    <h3 id="startOverlayTitle">Klik Layar / Tekan Spasi</h3>
+                    <p id="startOverlayDesc">Kepakkan sayap Chiikawa dan lewati lilin kue ulang tahun!</p>
+                    <button class="start-btn-primary" id="startActiveGameBtn">Mulai Sekarang! 🚀</button>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Mobile On-Screen Controls for Catch Game -->
+              <div class="game-mobile-controls" id="catchMobileControls" style="display: none;">
+                <button class="ctrl-btn" id="btnMoveLeft">⬅️ Geser Kiri</button>
+                <button class="ctrl-btn" id="btnMoveRight">Geser Kanan ➡️</button>
+              </div>
+
+              <!-- D-Pad for Snake Game -->
+              <div class="snake-dpad-container" id="snakeMobileControls" style="display: none;">
+                <div class="dpad-row">
+                  <button class="dpad-btn" id="dpadUp">⬆️</button>
+                </div>
+                <div class="dpad-row">
+                  <button class="dpad-btn" id="dpadLeft">⬅️</button>
+                  <button class="dpad-btn" id="dpadDown">⬇️</button>
+                  <button class="dpad-btn" id="dpadRight">➡️</button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ==========================================
+             TAB 7: MENU LAINNYA (PERIOD TRACKER, JIRA TASK TIMELINE, NOTES)
+             ========================================== -->
+        <div class="dash-tab-content" id="tab-others">
+          <div class="others-container">
+            
+            <!-- Header Section -->
+            <div class="others-header">
+              <div class="section-title">
+                <span class="title-star">✨</span>
+                <h3>Ruang Serbaguna Tuan Putri</h3>
+                <span class="title-star">✨</span>
+              </div>
+              <p class="others-lead">
+                Semua yang Tuan Putri butuhkan ada di sini! Pantau siklus bulanan, kelola timeline tugas ala Jira, dan tulis catatan penting~ 💕
+              </p>
+              
+              <!-- Sub-Menu Navigation Tabs -->
+              <div class="others-submenu-nav" id="othersSubmenuNav">
+                <button type="button" class="others-subtab-btn active" data-subtab="subtab-period">
+                  <div class="subtab-icon-wrap">🌸</div>
+                  <div class="subtab-text">
+                    <span class="subtab-title">Perhitungan Mens</span>
+                    <span class="subtab-desc">Prediksi & Tips Siklus</span>
+                  </div>
+                </button>
+                <button type="button" class="others-subtab-btn" data-subtab="subtab-jira">
+                  <div class="subtab-icon-wrap">📊</div>
+                  <div class="subtab-text">
+                    <span class="subtab-title">Timeline Tugas</span>
+                    <span class="subtab-desc">Mode Mini Jira 💼</span>
+                  </div>
+                </button>
+                <button type="button" class="others-subtab-btn" data-subtab="subtab-notes">
+                  <div class="subtab-icon-wrap">📝</div>
+                  <div class="subtab-text">
+                    <span class="subtab-title">Notes Cantik</span>
+                    <span class="subtab-desc">Papan Catatan Bebas</span>
+                  </div>
+                </button>
+                <button type="button" class="others-subtab-btn" data-subtab="subtab-savings">
+                  <div class="subtab-icon-wrap">🐷</div>
+                  <div class="subtab-text">
+                    <span class="subtab-title">Target Nabung</span>
+                    <span class="subtab-desc">Celengan Impian 💰</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- ==================== SUB-SECTION 1: PERIOD TRACKER ==================== -->
+            <div class="others-subcontent active" id="subtab-period">
+              <div class="others-card-box" id="sectionPeriod">
+              <div class="card-box-header">
+                <div class="box-icon-bubble bubble-pink">🌸</div>
+                <div class="box-header-text">
+                  <h4 class="box-title">Pelacak & Perkiraan Siklus Mens</h4>
+                  <span class="box-subtitle">Kalkulator prediksi menstruasi & tips perhatian manis dari ayang 💕</span>
+                </div>
+              </div>
+
+              <!-- Hereditary 3-Month Cycle Note Badge -->
+              <div class="period-hereditary-badge">
+                <div class="hereditary-icon">👑🌸</div>
+                <div class="hereditary-info">
+                  <strong>Siklus Spesial Tuan Putri (3 Bulan Sekali)</strong>
+                  <p>Bawaan alami & sehat dari Ibu tercinta 💕 Kalkulator ini disetel khusus untuk menghitung siklus 3 bulanan (~90 hari) kesayangan ayang!</p>
+                </div>
+              </div>
+
+              <!-- Quick Cycle Presets -->
+              <div class="period-preset-wrapper">
+                <span class="preset-label">Pilihan Cepat Siklus:</span>
+                <div class="preset-chips">
+                  <button type="button" class="preset-chip active" id="preset3MonthsBtn" data-days="90">
+                    ✨ 3 Bulan Sekali (90 Hari - Bawaan Ibu)
+                  </button>
+                  <button type="button" class="preset-chip" id="presetCustomBtn">
+                    ✏️ Atur Hari Sendiri
+                  </button>
+                </div>
+              </div>
+
+              <!-- Period Calculation Form -->
+              <div class="period-setup-grid">
+                <div class="period-input-group">
+                  <label for="periodLastDate">🗓️ Hari Pertama Mens Terakhir:</label>
+                  <input type="date" id="periodLastDate" class="period-input">
+                </div>
+                <div class="period-input-group">
+                  <label for="periodCycleLen">🔄 Rata-rata Siklus Mens:</label>
+                  <div class="input-with-badge">
+                    <input type="number" id="periodCycleLen" class="period-input" min="20" max="150" value="90">
+                    <span class="input-suffix" id="cycleSuffixText">Hari (3 Bulan: 90 Hari)</span>
+                  </div>
+                </div>
+                <div class="period-input-group">
+                  <label for="periodDuration">⏳ Durasi Mens:</label>
+                  <div class="input-with-badge">
+                    <input type="number" id="periodDuration" class="period-input" min="3" max="14" value="6">
+                    <span class="input-suffix">Hari (Normal: 5-7)</span>
+                  </div>
+                </div>
+                <div class="period-btn-group">
+                  <button type="button" class="period-calc-btn" id="savePeriodBtn">
+                    <span>✨ Hitung & Simpan Siklus ✨</span>
+                  </button>
+                  <button type="button" class="period-sync-note-btn" id="syncPeriodToNotesBtn" title="Simpan hasil perhitungan ke papan Notes Cantik">
+                    <span>📝 Catat ke Notes Cantik 💕</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Big Prediction Display Card -->
+              <div class="period-status-banner" id="periodStatusBanner">
+                <div class="status-badge-circle" id="periodStatusIcon">🌸</div>
+                <div class="status-banner-info">
+                  <span class="status-super-tag" id="periodCycleDayText">Hari ke-0 Siklus</span>
+                  <h3 class="status-highlight-date" id="periodNextDateText">Masukkan tanggal mens terakhir dulu ya sayang~</h3>
+                  <p class="status-countdown-text" id="periodCountdownText">Perkiraan tanggal mens berikutnya akan muncul di sini 💖</p>
+                </div>
+              </div>
+
+              <!-- Phase Details & Care Tips Grid -->
+              <div class="period-details-grid">
+                <div class="phase-card">
+                  <div class="phase-header">
+                    <span class="phase-icon">🩸</span>
+                    <strong>Perkiraan Mens Berikutnya</strong>
+                  </div>
+                  <div class="phase-val" id="valNextPeriod">-</div>
+                  <small class="phase-desc">Rentang perkiraan waktu menstruasi</small>
+                </div>
+
+                <div class="phase-card">
+                  <div class="phase-header">
+                    <span class="phase-icon">🥚</span>
+                    <strong>Perkiraan Masa Subur (Ovulasi)</strong>
+                  </div>
+                  <div class="phase-val" id="valOvulation">-</div>
+                  <small class="phase-desc">Jendela ovulasi & hormon estrogen aktif</small>
+                </div>
+
+                <div class="phase-card">
+                  <div class="phase-header">
+                    <span class="phase-icon">🌙</span>
+                    <strong>Fase Saat Ini</strong>
+                  </div>
+                  <div class="phase-val" id="valCurrentPhase">-</div>
+                  <small class="phase-desc" id="valPhaseDesc">Kondisi tubuh & hormon saat ini</small>
+                </div>
+              </div>
+
+              <!-- Forecast 3 Upcoming Periods -->
+              <div class="period-forecast-box">
+                <div class="forecast-header">
+                  <span class="forecast-icon">📅</span>
+                  <div>
+                    <strong>Perkiraan 3 Jadwal Mens Mendatang</strong>
+                    <small>Siklus 3 bulan sekali Tuan Putri sepanjang tahun</small>
+                  </div>
+                </div>
+                <div class="forecast-cards-grid" id="forecastCardsGrid">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+
+              <!-- Mood & Symptom Quick Logger with Auto-Note & Solusi -->
+              <div class="period-symptom-logger">
+                <div class="symptom-logger-top">
+                  <div class="symptom-title">💭 Catat Kondisi & Perasaan Hari Ini:</div>
+                  <span class="symptom-subtitle-hint">Ketuk salah satu kondisi untuk otomatis mencatat tanggal, jam, melihat solusi praktis, dan menyimpannya ke Notes Cantik 🎀</span>
+                </div>
+
+                <div class="symptom-chips" id="symptomChips">
+                  <button type="button" class="symptom-chip" data-symptom="cramp">🩹 Perut Kram</button>
+                  <button type="button" class="symptom-chip" data-symptom="sweet">🍫 Butuh Coklat/Manis</button>
+                  <button type="button" class="symptom-chip" data-symptom="hug">🧸 Manja / Butuh Dipeluk</button>
+                  <button type="button" class="symptom-chip" data-symptom="tired">😴 Cepat Ngantuk/Lelah</button>
+                  <button type="button" class="symptom-chip" data-symptom="happy">🥰 Lagi Semangat & Happy</button>
+                  <button type="button" class="symptom-chip" data-symptom="bloated">🎈 Perut Kembung</button>
+                </div>
+
+                <div class="symptom-status-msg" id="symptomStatusMsg"></div>
+
+                <!-- Interactive Solution & Auto-Note Result Box -->
+                <div class="symptom-solution-box" id="symptomSolutionBox" style="display: none;">
+                  <div class="solution-header">
+                    <div class="solution-badge-icon" id="solutionBadgeIcon">🩹</div>
+                    <div class="solution-title-wrap">
+                      <strong id="solutionTitleText">Kondisi: Perut Kram</strong>
+                      <span class="solution-timestamp" id="solutionTimestampText">Minggu, 08 Nov 2026 • 10:55 WIB</span>
+                    </div>
+                  </div>
+
+                  <div class="solution-body">
+                    <div class="solution-label-row">
+                      <span class="sol-tag">💡 Solusi Praktis dari Ayang:</span>
+                    </div>
+                    <ul class="solution-advice-list" id="solutionAdviceList">
+                      <!-- Populated via JS -->
+                    </ul>
+                    <div class="solution-sweet-quote" id="solutionSweetQuote">
+                      <!-- Populated via JS -->
+                    </div>
+                  </div>
+
+                  <div class="solution-footer-notice">
+                    <span class="notice-check">✅</span>
+                    <span>Tercatat & otomatis dibuatkan <b>Sticky Note Baru</b> di Papan Notes Cantik! 💕</span>
+                  </div>
+                </div>
+
+                <!-- Recent History of Logged Conditions -->
+                <div class="symptom-history-wrap" id="symptomHistoryWrap" style="display: none;">
+                  <div class="history-label">📋 Riwayat Kondisi yang Baru Dicatat:</div>
+                  <div class="history-chips-row" id="symptomHistoryList"></div>
+                </div>
+              </div>
+
+              <!-- Sweet Boyfriend Note Box -->
+              <div class="period-care-box">
+                <div class="care-box-avatar">
+                  <span class="care-emoji">🧸</span>
+                </div>
+                <div class="care-box-text">
+                  <strong>Pesan Manis dari Pacarmu:</strong>
+                  <p id="periodCareMessage">
+                    "Kapanpun perut kamu kram atau lagi gak nyaman pas mens, langsung kabarin aku ya sayang! Jangan dipaksain capek-capek, istirahat yang banyak, aku siap sedia beliin makanan kesukaanmu dan nemenin kamu~ 💕"
+                  </p>
+                </div>
+              </div>
+
+              </div>
+            </div>
+
+            <!-- ==================== SUB-SECTION 2: TIMELINE TUGAS ALA JIRA ==================== -->
+            <div class="others-subcontent" id="subtab-jira">
+              <div class="others-card-box" id="sectionJira">
+              <div class="card-box-header">
+                <div class="box-icon-bubble bubble-blue">📊</div>
+                <div class="box-header-text">
+                  <div class="jira-header-top">
+                    <h4 class="box-title">Timeline Tugas & Deadline (Mini Jira Tuan Putri)</h4>
+                    <span class="jira-badge-tag">Jira Mode 💼</span>
+                  </div>
+                  <span class="box-subtitle">Pantau progres pengerjaan tugas, jadwal deadline, dan status pengerjaan secara visual!</span>
+                </div>
+              </div>
+
+              <!-- Deadline Reminder Alert (Dynamic) -->
+              <div class="jira-alert-banner" id="jiraAlertBanner" style="display: none;">
+                <span class="alert-icon">⚠️</span>
+                <div class="alert-info">
+                  <strong>Pengingat Deadline Penting!</strong>
+                  <span id="jiraAlertText">Ada tugas yang mendekati deadline! Semangat ya sayang~</span>
+                </div>
+              </div>
+
+              <!-- Add Task Form -->
+              <div class="jira-add-form-wrap">
+                <div class="jira-form-header">
+                  <span class="form-title-txt">➕ Tambah Tugas / Assignment Baru</span>
+                </div>
+                <form id="jiraTaskForm" class="jira-task-form">
+                  <div class="jira-form-row">
+                    <div class="form-field flex-2">
+                      <label for="taskTitle">📝 Nama Tugas / Project:</label>
+                      <input type="text" id="taskTitle" class="jira-input" placeholder="Contoh: Laporan Praktikum, Skripsi Bab 2, Tugas Desain..." required>
+                    </div>
+                    <div class="form-field flex-1">
+                      <label for="taskCategory">🏷️ Kategori:</label>
+                      <select id="taskCategory" class="jira-input">
+                        <option value="Kuliah 🎓">Kuliah 🎓</option>
+                        <option value="Kerja 💼">Kerja 💼</option>
+                        <option value="Pribadi 🎀">Pribadi 🎀</option>
+                        <option value="Tugas Akhir 📚">Tugas Akhir 📚</option>
+                        <option value="Lainnya ✨">Lainnya ✨</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="jira-form-row">
+                    <div class="form-field">
+                      <label for="taskStartDate">🚀 Mulai Pengerjaan:</label>
+                      <input type="date" id="taskStartDate" class="jira-input" required>
+                    </div>
+                    <div class="form-field">
+                      <label for="taskDueDate">⏰ Deadline Pengumpulan:</label>
+                      <input type="date" id="taskDueDate" class="jira-input" required>
+                    </div>
+                    <div class="form-field">
+                      <label for="taskPriority">🔥 Prioritas:</label>
+                      <select id="taskPriority" class="jira-input">
+                        <option value="high">🔴 Tinggi (Urgent)</option>
+                        <option value="medium" selected>🟡 Sedang</option>
+                        <option value="low">🟢 Santai</option>
+                      </select>
+                    </div>
+                    <div class="form-field">
+                      <label for="taskStatus">📌 Status Awal:</label>
+                      <select id="taskStatus" class="jira-input">
+                        <option value="todo" selected>To Do (Belum Mulai)</option>
+                        <option value="in_progress">In Progress (Sedang Dikerjakan)</option>
+                        <option value="done">Done (Selesai)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="jira-form-actions">
+                    <button type="submit" class="jira-submit-btn">
+                      <span>🚀 Masukkan ke Timeline Jira</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- View Switcher Tabs (Timeline View vs Kanban Board) -->
+              <div class="jira-view-switcher">
+                <div class="switcher-pills">
+                  <button type="button" class="jira-switch-btn active" data-view="timeline" id="btnViewTimeline">
+                    <span>📅 Timeline Bar (Gantt)</span>
+                  </button>
+                  <button type="button" class="jira-switch-btn" data-view="kanban" id="btnViewKanban">
+                    <span>📋 Kanban Board (To Do / Done)</span>
+                  </button>
+                </div>
+                <div class="jira-task-counter" id="jiraTaskCounter">
+                  Total: 0 Tugas
+                </div>
+              </div>
+
+              <!-- VIEW A: TIMELINE BAR / GANTT VIEW -->
+              <div class="jira-view-content active" id="jiraTimelineView">
+                <div class="timeline-task-list" id="jiraTimelineList">
+                  <!-- Rendered dynamically via JS -->
+                </div>
+              </div>
+
+              <!-- VIEW B: KANBAN BOARD VIEW -->
+              <div class="jira-view-content" id="jiraKanbanView" style="display: none;">
+                <div class="kanban-board-grid">
+                  
+                  <!-- Column 1: To Do -->
+                  <div class="kanban-col col-todo">
+                    <div class="kanban-col-header">
+                      <span class="col-dot dot-gray"></span>
+                      <strong>TO DO</strong>
+                      <span class="col-count" id="countTodo">0</span>
+                    </div>
+                    <div class="kanban-cards-container" id="kanbanListTodo"></div>
+                  </div>
+
+                  <!-- Column 2: In Progress -->
+                  <div class="kanban-col col-progress">
+                    <div class="kanban-col-header">
+                      <span class="col-dot dot-blue"></span>
+                      <strong>IN PROGRESS</strong>
+                      <span class="col-count" id="countProgress">0</span>
+                    </div>
+                    <div class="kanban-cards-container" id="kanbanListProgress"></div>
+                  </div>
+
+                  <!-- Column 3: Done -->
+                  <div class="kanban-col col-done">
+                    <div class="kanban-col-header">
+                      <span class="col-dot dot-green"></span>
+                      <strong>DONE</strong>
+                      <span class="col-count" id="countDone">0</span>
+                    </div>
+                    <div class="kanban-cards-container" id="kanbanListDone"></div>
+                  </div>
+
+                </div>
+              </div>
+
+              </div>
+            </div>
+
+            <!-- ==================== SUB-SECTION 3: NOTES CANTIK ==================== -->
+            <div class="others-subcontent" id="subtab-notes">
+              <div class="others-card-box" id="sectionNotes">
+              <div class="card-box-header">
+                <div class="box-icon-bubble bubble-yellow">📝</div>
+                <div class="box-header-text">
+                  <h4 class="box-title">Papan Catatan Cantik Tuan Putri (Sticky Notes)</h4>
+                  <span class="box-subtitle">Tulis catatan bebas, ide-ide seru, memo harian, atau apapun yang pengen kamu ingat! 🎀</span>
+                </div>
+                <button type="button" class="notes-period-shortcut-btn" id="notesPeriodShortcutBtn" title="Buka dan sinkronkan hasil Perhitungan Mens">
+                  <span>🌸 Buka Perhitungan Mens</span>
+                </button>
+              </div>
+
+              <!-- Add Note Form -->
+              <div class="notes-composer-box">
+                <input type="text" id="noteTitleInput" class="note-composer-title" placeholder="Judul catatan (misal: Rencana Liburan, Resep Enak, Hal Lucu)...">
+                <textarea id="noteContentInput" class="note-composer-body" rows="3" placeholder="Tulis catatan lengkapmu di sini ya sayang..."></textarea>
+                
+                <div class="note-composer-toolbar">
+                  <div class="color-picker-wrap">
+                    <span class="color-picker-label">Warna Kertas:</span>
+                    <div class="color-radios" id="noteColorRadios">
+                      <label class="color-chip-radio" title="Pink Strawberry">
+                        <input type="radio" name="noteColor" value="pink" checked>
+                        <span class="chip-circle chip-pink"></span>
+                      </label>
+                      <label class="color-chip-radio" title="Tosca Segar">
+                        <input type="radio" name="noteColor" value="tosca">
+                        <span class="chip-circle chip-tosca"></span>
+                      </label>
+                      <label class="color-chip-radio" title="Kuning Mentega">
+                        <input type="radio" name="noteColor" value="yellow">
+                        <span class="chip-circle chip-yellow"></span>
+                      </label>
+                      <label class="color-chip-radio" title="Ungu Lavender">
+                        <input type="radio" name="noteColor" value="purple">
+                        <span class="chip-circle chip-purple"></span>
+                      </label>
+                      <label class="color-chip-radio" title="Biru Awan">
+                        <input type="radio" name="noteColor" value="blue">
+                        <span class="chip-circle chip-blue"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <button type="button" class="add-note-btn" id="addNoteBtn">
+                    <span>📌 Tempel Catatan Baru</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Notes Grid Wall -->
+              <div class="notes-grid-wall" id="notesGridWall">
+                <!-- Notes rendered dynamically via JS -->
+              </div>
+
+              </div>
+            </div>
+
+            <!-- ==================== SUB-SECTION 4: CELENGAN IMPIAN & TARGET NABUNG ==================== -->
+            <div class="others-subcontent" id="subtab-savings">
+              <div class="others-card-box" id="sectionSavings">
+                <!-- Header -->
+                <div class="card-box-header">
+                  <div class="box-icon-bubble bubble-gold">🐷</div>
+                  <div class="box-header-text">
+                    <div class="savings-header-top">
+                      <h4 class="box-title">Celengan Impian & Target Nabung Cantik</h4>
+                      <span class="savings-badge-tag">Wishlist & Kalkulator 💰</span>
+                    </div>
+                    <span class="box-subtitle">Targetkan barang impianmu, hitung perkiraan waktu terbelinya, dan isi celenganmu sampai 100%! 🛍️✨</span>
+                  </div>
+                  <button type="button" class="savings-add-item-btn" id="savingsAddItemBtn">
+                    <span>✨ + Target Barang Baru</span>
+                  </button>
+                </div>
+
+                <!-- Form Tambah/Edit Target (Collapsible) -->
+                <div class="savings-form-card" id="savingsFormCard" style="display: none;">
+                  <div class="savings-form-header">
+                    <h5 id="savingsFormTitle">✨ Tambah Target Barang Impian</h5>
+                    <button type="button" class="savings-form-close-btn" id="savingsFormCloseBtn" title="Tutup">✕</button>
+                  </div>
+                  <form id="savingsGoalForm" class="savings-form-grid">
+                    <input type="hidden" id="savingsGoalId" value="">
+                    
+                    <div class="form-group-savings">
+                      <label for="savingsItemName">Nama Barang / Keinginan Impian <span class="req">*</span></label>
+                      <input type="text" id="savingsItemName" placeholder="Contoh: iPad Air Pink / Sepatu Impian / Liburan" required>
+                    </div>
+
+                    <div class="form-group-savings">
+                      <label for="savingsItemPrice">Harga Barang (Target Rp) <span class="req">*</span></label>
+                      <input type="number" id="savingsItemPrice" placeholder="Contoh: 3500000" min="1000" step="1000" required>
+                    </div>
+
+                    <div class="form-group-savings">
+                      <label for="savingsInitialAmount">Tabungan yang Sudah Terkumpul (Rp)</label>
+                      <input type="number" id="savingsInitialAmount" placeholder="Contoh: 500000 (boleh kosong)" min="0" step="1000" value="0">
+                    </div>
+
+                    <div class="form-group-savings">
+                      <label>Rencana / Kemampuan Menabung <span class="req">*</span></label>
+                      <div class="savings-plan-row">
+                        <select id="savingsPlanType">
+                          <option value="daily">Per Hari (Harian)</option>
+                          <option value="monthly">Per Bulan (Bulanan)</option>
+                        </select>
+                        <input type="number" id="savingsPlanAmount" placeholder="Nominal Rp (misal: 25000)" min="1000" step="1000" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group-savings full-width">
+                      <label>Foto / Gambar Barang Impian</label>
+                      <div class="savings-photo-picker-row">
+                        <div class="savings-photo-preview" id="savingsPhotoPreview">
+                          <span class="photo-placeholder-icon" id="photoPreviewEmoji">🛍️</span>
+                          <img id="photoPreviewImg" src="" alt="Preview" style="display: none;">
+                        </div>
+                        <div class="savings-photo-inputs">
+                          <input type="file" id="savingsPhotoFileInput" accept="image/*" style="display: none;">
+                          <button type="button" class="savings-upload-btn" id="savingsUploadPhotoBtn">
+                            📁 Unggah Foto Barang
+                          </button>
+                          <span class="savings-or-divider">atau pilih emoji imut:</span>
+                          <div class="savings-emoji-presets" id="savingsEmojiPresets">
+                            <span class="emoji-opt selected" data-emoji="🛍️">🛍️</span>
+                            <span class="emoji-opt" data-emoji="📱">📱</span>
+                            <span class="emoji-opt" data-emoji="💻">💻</span>
+                            <span class="emoji-opt" data-emoji="👜">👜</span>
+                            <span class="emoji-opt" data-emoji="👠">👠</span>
+                            <span class="emoji-opt" data-emoji="💄">💄</span>
+                            <span class="emoji-opt" data-emoji="✈️">✈️</span>
+                            <span class="emoji-opt" data-emoji="🧸">🧸</span>
+                            <span class="emoji-opt" data-emoji="💍">💍</span>
+                            <span class="emoji-opt" data-emoji="🍰">🍰</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-savings-actions">
+                      <button type="submit" class="savings-submit-btn" id="savingsSubmitBtn">
+                        💾 Simpan Target Barang Impian
+                      </button>
+                      <button type="button" class="savings-cancel-btn" id="savingsCancelBtn">
+                        Batal
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Wishlist Items Tabs (Multi-target selector) -->
+                <div class="savings-items-tabs-wrap">
+                  <span class="tabs-label">Daftar Barang Impian:</span>
+                  <div class="savings-items-tabs" id="savingsItemsTabs">
+                    <!-- Generated via JS -->
+                  </div>
+                </div>
+
+                <!-- Active Target Showcase (Featured Goal Card) -->
+                <div class="savings-showcase-card" id="savingsShowcaseCard">
+                  <!-- Top Row: Photo + Item Info + Badge -->
+                  <div class="showcase-header">
+                    <div class="showcase-photo-wrap" id="showcasePhotoWrap">
+                      <img id="showcasePhotoImg" src="" alt="Barang Impian" style="display: none;">
+                      <span id="showcasePhotoEmoji" class="showcase-emoji-big">🛍️</span>
+                    </div>
+
+                    <div class="showcase-info">
+                      <div class="showcase-title-row">
+                        <h3 class="showcase-title" id="showcaseTitle">Tas Impian Evita</h3>
+                        <span class="showcase-status-badge" id="showcaseStatusBadge">Sedang Menabung 🏃‍♀️</span>
+                      </div>
+                      <div class="showcase-price-row">
+                        <span class="price-label">Target Harga:</span>
+                        <strong class="price-val" id="showcaseTargetPrice">Rp 3.500.000</strong>
+                      </div>
+                      <div class="showcase-plan-row">
+                        <span class="plan-icon">📅</span>
+                        <span class="plan-text" id="showcasePlanText">Rencana: Nabung Rp 25.000 / hari</span>
+                      </div>
+                    </div>
+
+                    <div class="showcase-actions">
+                      <button type="button" class="btn-goal-edit" id="showcaseEditBtn" title="Edit Target">✏️ Edit</button>
+                      <button type="button" class="btn-goal-del" id="showcaseDeleteBtn" title="Hapus Target">🗑️</button>
+                    </div>
+                  </div>
+
+                  <!-- Big Visual Progress Bar -->
+                  <div class="showcase-progress-section">
+                    <div class="progress-labels-row">
+                      <div class="progress-left">
+                        <span class="lbl-saved">Terkumpul:</span>
+                        <strong class="val-saved" id="showcaseSavedAmount">Rp 500.000</strong>
+                      </div>
+                      <div class="progress-center">
+                        <span class="val-percent" id="showcasePercent">14.3%</span>
+                      </div>
+                      <div class="progress-right">
+                        <span class="lbl-remain">Sisa Kurang:</span>
+                        <strong class="val-remain" id="showcaseRemainingAmount">Rp 3.000.000</strong>
+                      </div>
+                    </div>
+
+                    <div class="savings-progress-bar-track">
+                      <div class="savings-progress-fill" id="showcaseProgressFill" style="width: 14.3%;">
+                        <span class="fill-shine"></span>
+                        <span class="fill-piggy">🐷</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Smart Time Estimator Banner (Perhitungan Berapa Hari Lagi Terbelinya) -->
+                  <div class="savings-forecast-banner" id="savingsForecastBanner">
+                    <div class="forecast-icon">⏳</div>
+                    <div class="forecast-content">
+                      <div class="forecast-headline">
+                        <span class="forecast-days-bold" id="forecastDaysBold">Tinggal 120 Hari Lagi!</span>
+                        <span class="forecast-approx" id="forecastApproxText">(~4.0 Bulan)</span>
+                      </div>
+                      <p class="forecast-desc" id="forecastDescText">
+                        Dengan menabung rutin <b>Rp 25.000 / hari</b>, barang impian ini diperkirakan siap kamu beli pada:
+                        <span class="forecast-date-highlight" id="forecastTargetDate">Minggu, 8 Maret 2027</span> ✨
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Two Columns: (1) Isi Tabungan Baru & (2) Bantuan Simulasi Target -->
+                  <div class="savings-dual-actions-grid">
+                    
+                    <!-- COLUMN 1: QUICK DEPOSIT (Isi Tabungan Sekarang) -->
+                    <div class="savings-action-box deposit-box">
+                      <div class="action-box-header">
+                        <span class="box-mini-icon">🪙</span>
+                        <div>
+                          <h5>Isi Celengan Sekarang</h5>
+                          <span class="box-mini-sub">Setiap uang diisi, sisa waktu langsung berkurang otomatis!</span>
+                        </div>
+                      </div>
+
+                      <div class="quick-amount-presets" id="depositQuickPresets">
+                        <button type="button" class="preset-btn" data-val="10000">+10rb</button>
+                        <button type="button" class="preset-btn" data-val="20000">+20rb</button>
+                        <button type="button" class="preset-btn" data-val="50000">+50rb</button>
+                        <button type="button" class="preset-btn" data-val="100000">+100rb</button>
+                        <button type="button" class="preset-btn" data-val="200000">+200rb</button>
+                      </div>
+
+                      <div class="deposit-input-row">
+                        <div class="deposit-input-wrap">
+                          <span class="input-rp-prefix">Rp</span>
+                          <input type="number" id="depositAmountInput" placeholder="Masukkan jumlah..." min="1000" step="1000">
+                        </div>
+                        <button type="button" class="deposit-submit-btn" id="depositSubmitBtn">
+                          🐷 Masukkan!
+                        </button>
+                      </div>
+
+                      <div class="deposit-note-row">
+                        <input type="text" id="depositNoteInput" placeholder="Catatan singkat (opsional, misal: sisa jajan / hadiah ayang)">
+                      </div>
+                    </div>
+
+                    <!-- COLUMN 2: BANTUAN SIMULASI TARGET (What-If Calculator) -->
+                    <div class="savings-action-box simulation-box">
+                      <div class="action-box-header">
+                        <span class="box-mini-icon">🎯</span>
+                        <div>
+                          <h5>Bantuan Target Cepat</h5>
+                          <span class="box-mini-sub">Cek berapa hari lagi terbeli jika kamu menabung segini:</span>
+                        </div>
+                      </div>
+
+                      <div class="sim-calc-inputs">
+                        <div class="sim-slider-row">
+                          <span class="sim-label">Kalau nabung:</span>
+                          <div class="sim-val-display" id="simValDisplay">Rp 50.000 / hari</div>
+                        </div>
+                        <input type="range" class="sim-range-slider" id="simRangeSlider" min="5000" max="250000" step="5000" value="50000">
+                        
+                        <div class="sim-quick-chips" id="simQuickChips">
+                          <span class="sim-chip" data-amt="15000">Rp 15rb</span>
+                          <span class="sim-chip" data-amt="30000">Rp 30rb</span>
+                          <span class="sim-chip selected" data-amt="50000">Rp 50rb</span>
+                          <span class="sim-chip" data-amt="100000">Rp 100rb</span>
+                        </div>
+                      </div>
+
+                      <div class="sim-result-card" id="simResultCard">
+                        <div class="sim-res-top">
+                          <span class="sim-res-badge">⚡ Hasil Hitungan:</span>
+                          <strong class="sim-days-res" id="simDaysResult">60 Hari Lagi</strong>
+                          <span class="sim-approx-res" id="simApproxResult">(~2.0 Bulan)</span>
+                        </div>
+                        <div class="sim-date-res" id="simDateResult">
+                          📅 Perkiraan terbeli: <b>7 Januari 2027</b>
+                        </div>
+                      </div>
+
+                      <!-- Smart Tips from Ayang -->
+                      <div class="sim-smart-recommendation" id="simSmartRec">
+                        <span class="bulb-icon">💡</span>
+                        <span class="rec-text" id="simRecText">
+                          Mau kebeli dalam <b>30 hari (1 bulan)</b>? Cukup sisihkan <b>Rp 100.000 / hari</b>!
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Riwayat Pengisian Tabungan (Deposit History Accordion) -->
+                  <div class="savings-history-wrapper">
+                    <button type="button" class="savings-history-toggle-btn" id="savingsHistoryToggleBtn">
+                      <span>📜 Riwayat Celengan (<span id="savingsHistoryCount">0</span> kali nabung)</span>
+                      <span class="toggle-arrow" id="historyToggleArrow">▼</span>
+                    </button>
+                    <div class="savings-history-list" id="savingsHistoryList" style="display: none;">
+                      <!-- Populated via JS -->
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Empty State (jika belum ada barang sama sekali) -->
+                <div class="savings-empty-state" id="savingsEmptyState" style="display: none;">
+                  <div class="empty-icon-pig">🐷💰</div>
+                  <h4>Belum Ada Target Barang Impian</h4>
+                  <p>Yuk mulai buat target barang pertama yang pengen kamu beli! Klik tombol di bawah ini yaa~ 💕</p>
+                  <button type="button" class="btn-create-first-goal" id="createFirstGoalBtn">
+                    ✨ Buat Target Barang Impian Sekarang
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <footer class="chiikawa-footer-party">
+          <div class="footer-mascot">
+            <svg viewBox="0 0 120 110" class="chiikawa-mini-svg">
+              <ellipse cx="28" cy="30" rx="14" ry="16" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+              <ellipse cx="28" cy="30" rx="7" ry="9" fill="#fbcfe8"/>
+              <ellipse cx="92" cy="30" rx="14" ry="16" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+              <ellipse cx="92" cy="30" rx="7" ry="9" fill="#fbcfe8"/>
+              <path d="M 20 65 C 16 35, 104 35, 100 65 C 102 98, 18 98, 20 65 Z" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+              <ellipse cx="32" cy="68" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+              <ellipse cx="88" cy="68" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+              <ellipse cx="44" cy="58" rx="6" ry="8" fill="#1e293b"/>
+              <circle cx="42" cy="55" r="2.5" fill="#ffffff"/>
+              <ellipse cx="76" cy="58" rx="6" ry="8" fill="#1e293b"/>
+              <circle cx="74" cy="55" r="2.5" fill="#ffffff"/>
+              <path d="M 54 66 Q 57 69 60 66 Q 63 69 66 66" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            </svg>
+            <span>Chiikawa</span>
+          </div>
+          <div class="footer-heart">💖 Love You Always & Forever 💖</div>
+          <div class="footer-mascot">
+            <svg viewBox="0 0 120 110" class="chiikawa-mini-svg">
+              <polygon points="18,36 36,12 48,36" fill="#38bdf8" stroke="#334155" stroke-width="3" stroke-linejoin="round"/>
+              <polygon points="72,36 84,12 102,36" fill="#38bdf8" stroke="#334155" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M 20 65 C 16 35, 104 35, 100 65 C 102 98, 18 98, 20 65 Z" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+              <path d="M 21 54 C 20 38, 50 36, 60 48 C 70 36, 100 38, 99 54 C 95 44, 76 42, 60 52 C 44 42, 25 44, 21 54 Z" fill="#38bdf8" stroke="#334155" stroke-width="2.5"/>
+              <ellipse cx="32" cy="70" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+              <ellipse cx="88" cy="70" rx="8" ry="5" fill="#fca5a5" opacity="0.8"/>
+              <ellipse cx="43" cy="62" rx="6" ry="8" fill="#1e293b"/>
+              <circle cx="41" cy="59" r="2.5" fill="#ffffff"/>
+              <ellipse cx="77" cy="62" rx="6" ry="8" fill="#1e293b"/>
+              <circle cx="75" cy="59" r="2.5" fill="#ffffff"/>
+              <path d="M 54 69 Q 57 73 60 70 Q 63 73 66 69" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            </svg>
+            <span>Hachiware</span>
+          </div>
+        </footer>
+
+      </div>
+    </section>
+
+  
+  </main>
+
+  <!-- ==================== HINT & CONFIG MODAL ==================== -->
+  <div class="modal-overlay" id="hintModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeHintModalBtn">✕</button>
+      <div class="modal-icon">💡</div>
+      <h3 class="modal-title">Petunjuk PIN Spesial</h3>
+      <div class="modal-body">
+        <p>PIN rahasia kamu sudah diset ke angka spesial: 💕</p>
+        <div class="default-pin-box">
+          <span>PIN Rahasia:</span>
+          <code id="currentPinCode">1728</code>
+        </div>
+        <p class="pin-tip">
+          (Ketik 1728 pada keypad atau keyboard untuk membuka istana ulang tahun!)
+        </p>
+        <div class="custom-pin-control">
+          <input type="text" id="customPinInput" maxlength="6" placeholder="Ubah PIN jika mau (4 digit)">
+          <button id="setCustomPinBtn">Simpan PIN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo Lightbox Modal -->
+  <div class="modal-overlay" id="photoModal">
+    <div class="modal-card photo-modal-card">
+      <button class="modal-close-btn" id="closePhotoModalBtn">✕</button>
+      <div class="lightbox-img-wrap">
+        <img id="lightboxImg" src="" alt="Foto Pacar">
+      </div>
+      <p class="lightbox-caption" id="lightboxCaption">Bidadari tercantik di dunia! 💖✨</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+<!-- ==================== TIMELINE CHECKLIST MODAL ==================== -->
+  <div class="modal-overlay timeline-modal" id="timelineModal">
+    <div class="modal-card timeline-modal-card">
+      <button class="modal-close-btn" id="closeTimelineBtn">✕</button>
+      
+      <div class="tl-modal-header">
+        <div class="tl-header-icon">🎂</div>
+        <h3 class="tl-modal-title">Timeline Ulang Tahun</h3>
+        <p class="tl-modal-name">Evita Ayu Nuranissa</p>
+        <div class="tl-progress-bar">
+          <div class="tl-progress-fill" id="tlProgressFill"></div>
+        </div>
+        <span class="tl-progress-text" id="tlProgressText">0 dari 6 selesai</span>
+      </div>
+
+      <div class="tl-checklist" id="tlChecklist">
+        
+        <label class="tl-item" data-tl="1">
+          <input type="checkbox" class="tl-checkbox" data-index="0">
+          <div class="tl-item-marker">
+            <span class="tl-marker-dot"></span>
+            <span class="tl-marker-line"></span>
+          </div>
+          <div class="tl-item-content">
+            <span class="tl-item-emoji">📍</span>
+            <div class="tl-item-text">
+              <strong>Sampai di Tempat Wheels!</strong>
+              <small>Yeay akhirnya sampai juga~ 🎡</small>
+            </div>
+          </div>
+          <span class="tl-check-icon">✓</span>
+        </label>
+
+        <label class="tl-item" data-tl="2">
+          <input type="checkbox" class="tl-checkbox" data-index="1">
+          <div class="tl-item-marker">
+            <span class="tl-marker-dot"></span>
+            <span class="tl-marker-line"></span>
+          </div>
+          <div class="tl-item-content">
+            <span class="tl-item-emoji">🎁</span>
+            <div class="tl-item-text">
+              <strong>Hadiah dari Bububbb</strong>
+              <small>Sisanya udah dikasihin ke Bubub~ 💝</small>
+            </div>
+          </div>
+          <span class="tl-check-icon">✓</span>
+        </label>
+
+        <label class="tl-item" data-tl="3">
+          <input type="checkbox" class="tl-checkbox" data-index="2">
+          <div class="tl-item-marker">
+            <span class="tl-marker-dot"></span>
+            <span class="tl-marker-line"></span>
+          </div>
+          <div class="tl-item-content">
+            <span class="tl-item-emoji">📸</span>
+            <div class="tl-item-text">
+              <strong>Foto Makan di Wheels & Hadiah Ultah</strong>
+              <small>Taruh di Galeri Memori yaa! 🍽️🎂</small>
+            </div>
+          </div>
+          <span class="tl-check-icon">✓</span>
+        </label>
+
+        <label class="tl-item" data-tl="4">
+          <input type="checkbox" class="tl-checkbox" data-index="3">
+          <div class="tl-item-marker">
+            <span class="tl-marker-dot"></span>
+            <span class="tl-marker-line"></span>
+          </div>
+          <div class="tl-item-content">
+            <span class="tl-item-emoji">🧸</span>
+            <div class="tl-item-text">
+              <strong>Hunting Mainan!</strong>
+              <small>Cari mainan yang paling lucu~ 🎪</small>
+            </div>
+          </div>
+          <span class="tl-check-icon">✓</span>
+        </label>
+
+        <label class="tl-item" data-tl="5">
+          <input type="checkbox" class="tl-checkbox" data-index="4">
+          <div class="tl-item-marker">
+            <span class="tl-marker-dot"></span>
+            <span class="tl-marker-line"></span>
+          </div>
+          <div class="tl-item-content">
+            <span class="tl-item-emoji">🚗</span>
+            <div class="tl-item-text">
+              <strong>Otw Pulang~</strong>
+              <small>Capek tapi happy banget! 🌙</small>
+            </div>
+          </div>
+          <span class="tl-check-icon">✓</span>
+        </label>
+
+        <label class="tl-item" data-tl="6">
+          <input type="checkbox" class="tl-checkbox" data-index="5">
+          <div class="tl-item-marker">
+            <span class="tl-marker-dot"></span>
+          </div>
+          <div class="tl-item-content">
+            <span class="tl-item-emoji">🧸📷</span>
+            <div class="tl-item-text">
+              <strong>Foto Mainannya!</strong>
+              <small>Pamer hasil hunting hari ini~ ✨</small>
+            </div>
+          </div>
+          <span class="tl-check-icon">✓</span>
+        </label>
+
+      </div>
+
+      <div class="tl-modal-footer">
+        <p class="tl-footer-hint" id="tlFooterHint">Centang semua untuk unlock surprise! 🎉</p>
+        <button class="tl-rating-trigger-btn" id="tlRatingTriggerBtn" style="display: none;">
+          ⭐ Berikan Rating Hari Ini 💕
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== RATING POPUP MODAL ==================== -->
+  <div class="modal-overlay rating-modal" id="ratingModal">
+    <div class="modal-card rating-modal-card">
+      <div class="rating-header">
+        <div class="rating-header-emoji" id="ratingHeaderEmoji">🎉</div>
+        <h3 class="rating-title">Gimana Rasanya Hari Ini?</h3>
+        <p class="rating-subtitle" id="ratingSubtitle">Semua timeline udah selesai! Sekarang kasih rating ya sayang~ 💕</p>
+      </div>
+
+      <div class="rating-stars-row" id="ratingStarsRow">
+        <button class="rating-star" data-rating="1" title="1 Bintang">
+          <span class="star-emoji">⭐</span>
+          <span class="star-label">1</span>
+        </button>
+        <button class="rating-star" data-rating="2" title="2 Bintang">
+          <span class="star-emoji">⭐</span>
+          <span class="star-label">2</span>
+        </button>
+        <button class="rating-star" data-rating="3" title="3 Bintang">
+          <span class="star-emoji">⭐</span>
+          <span class="star-label">3</span>
+        </button>
+        <button class="rating-star" data-rating="4" title="4 Bintang">
+          <span class="star-emoji">⭐</span>
+          <span class="star-label">4</span>
+        </button>
+        <button class="rating-star" data-rating="5" title="5 Bintang">
+          <span class="star-emoji">⭐</span>
+          <span class="star-label">5</span>
+        </button>
+      </div>
+
+      <div class="rating-response" id="ratingResponse" style="display: none;">
+        <div class="rating-response-emoji" id="ratingResEmoji">🥰</div>
+        <p class="rating-response-text" id="ratingResText"></p>
+      </div>
+
+      <button class="rating-close-btn" id="ratingCloseBtn">Tutup 🎀</button>
+    </div>
+  </div>
+
+</body>
+</html>
