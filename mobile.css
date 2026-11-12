@@ -1,8 +1,8 @@
 /* ==========================================================================
-   MOBILE & APP OPTIMIZATION STYLESHEET
-   Special Chiikawa & Tosca Celebration Web-App
-   Dirancang khusus untuk smartphone & WebView aplikasi HP (320px - 768px)
-   Semua fitur lengkap tetap berfungsi 100%, tampilan rapi, bersih & intuitif.
+   MOBILE & APP OPTIMIZATION STYLESHEET (V2 - CLEAN & POLISHED)
+   Hachiware Birthday Web-App - Pixel-Perfect Mobile Phone Display
+   Dioptimalkan untuk smartphone (320px - 650px) agar rapi, proporsional,
+   tanpa tumpang tindih, dan nyaman digunakan sebagai aplikasi HP.
    ========================================================================== */
 
 /* ==========================================================================
@@ -25,6 +25,15 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Cegah zoom otomatis Safari saat fokus ke input */
+@media (max-width: 650px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
 /* Hindari horizontal scrolling pada container utama */
 .bg-wrapper,
 .app-container,
@@ -40,73 +49,78 @@ body {
 @media (max-width: 650px) {
 
   /* ------------------------------------------------------------------------
-     A. BACKGROUND SCENERY OPTIMIZATION
+     A. BACKGROUND SCENERY
      ------------------------------------------------------------------------ */
   .bg-glow {
-    width: 280px;
-    height: 280px;
-    top: 5%;
-    filter: blur(30px);
-    opacity: 0.75;
+    width: 260px;
+    height: 260px;
+    top: 4%;
+    filter: blur(28px);
+    opacity: 0.7;
   }
 
   .cloud-1 {
-    width: 140px;
-    height: 40px;
+    width: 130px;
+    height: 38px;
   }
 
   .cloud-2,
   .cloud-3 {
-    display: none; /* Hemat render GPU HP */
+    display: none;
   }
 
   .birds-group {
-    display: none; /* Hindari distracting di layar kecil */
+    display: none;
   }
 
   .pine-trees {
-    width: 70px;
-    height: 40vh;
-    opacity: 0.35;
+    width: 60px;
+    height: 35vh;
+    opacity: 0.3;
   }
 
-  .mountain-far { height: 32vh; }
-  .mountain-mid { height: 24vh; }
-  .mountain-near { height: 16vh; }
+  .mountain-far { height: 28vh; }
+  .mountain-mid { height: 22vh; }
+  .mountain-near { height: 15vh; }
 
   /* ------------------------------------------------------------------------
      B. FLOATING TOP WIDGETS (Music Pill & Clock Card)
-     Diubah jadi status-bar mengambang yang compact agar tidak menutupi isi layar
+     Dibuat in-flow di paling atas layar sebagai top app-bar yang seimbang,
+     sehingga TIDAK PERNAH menutupi tombol, kartu, atau konten di bawahnya!
      ------------------------------------------------------------------------ */
   .floating-top-widgets {
-    position: fixed;
-    top: max(8px, env(safe-area-inset-top));
-    right: 8px;
-    left: 8px;
-    z-index: 100;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 8px;
-    pointer-events: none;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    z-index: 50 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+    padding: max(10px, env(safe-area-inset-top)) 12px 6px 12px !important;
+    pointer-events: auto !important;
+    box-sizing: border-box !important;
+    gap: 8px !important;
   }
 
-  .floating-top-widgets > * {
-    pointer-events: auto;
-  }
-
-  /* Music Pill: Mini Pill */
+  /* Music Pill di Kiri */
   .music-pill {
-    padding: 5px 10px;
-    font-size: 0.74rem;
-    gap: 5px;
-    border-radius: 30px;
-    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    flex-shrink: 0;
+    padding: 6px 12px !important;
+    font-size: 0.74rem !important;
+    gap: 6px !important;
+    border-radius: 24px !important;
+    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.16) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+    flex-shrink: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
 
   .music-icon {
@@ -119,222 +133,262 @@ body {
   }
 
   .music-wave {
-    height: 10px;
+    height: 12px;
     gap: 2px;
   }
 
   .music-wave span {
-    width: 2px;
-    height: 3px;
+    width: 2.5px;
+    height: 4px;
   }
 
-  /* Cute Clock Card: Compact Badge */
+  /* Cute Clock Card di Kanan (Lengkap: Tanggal, Waktu, Detik, Greeting!) */
   .cute-clock-card {
-    width: auto;
-    max-width: 160px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.18);
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    cursor: pointer;
-    flex-shrink: 0;
+    width: auto !important;
+    min-width: 155px !important;
+    max-width: 185px !important;
+    padding: 6px 10px !important;
+    border-radius: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.16) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
   }
 
   .cute-clock-card::before {
-    display: none;
+    height: 2.5px !important;
+    border-radius: 16px 16px 0 0 !important;
   }
 
-  .clock-card-top,
-  .clock-card-footer {
-    display: none !important; /* Disembunyikan dari pill kecil, bisa dilihat saat di-tap */
+  .clock-card-top {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding-bottom: 2px;
+  }
+
+  .clock-date-icon {
+    font-size: 0.75rem;
+  }
+
+  .clock-day-date {
+    font-size: 0.65rem !important;
+    letter-spacing: 0;
   }
 
   .clock-card-main {
-    display: flex;
+    display: flex !important;
     align-items: center;
-    gap: 5px;
-    padding: 0;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 1px 0;
   }
 
   .clock-digits {
-    font-size: 1rem;
+    font-size: 1.2rem !important;
     font-weight: 800;
   }
 
   .clock-sec-badge {
-    padding: 1px 4px;
-    min-width: 22px;
-    border-radius: 6px;
-    box-shadow: none;
+    padding: 2px 5px !important;
+    min-width: 26px !important;
+    border-radius: 6px !important;
   }
 
   .clock-seconds {
-    font-size: 0.65rem;
+    font-size: 0.72rem !important;
     font-weight: 800;
   }
 
   .clock-timezone {
-    display: none;
+    display: none !important;
+  }
+
+  .clock-card-footer {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding-top: 2px;
+  }
+
+  .clock-heart-pulse {
+    font-size: 0.68rem;
+  }
+
+  .clock-greeting {
+    font-size: 0.64rem !important;
   }
 
   .clock-bubble-toast {
-    top: calc(52px + env(safe-area-inset-top));
-    right: 10px;
-    left: 10px;
-    max-width: none;
-    font-size: 0.78rem;
-    padding: 10px 14px;
-    border-radius: 14px;
+    top: 90px !important;
+    right: 12px !important;
+    left: 12px !important;
+    max-width: none !important;
+    font-size: 0.8rem !important;
+    padding: 10px 14px !important;
+    border-radius: 14px !important;
+    z-index: 150 !important;
   }
 
   /* ------------------------------------------------------------------------
      C. APP CONTAINER & CARD SCREENS
      ------------------------------------------------------------------------ */
   .app-container {
-    padding: calc(48px + env(safe-area-inset-top)) 8px calc(20px + env(safe-area-inset-bottom)) 8px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    padding: 8px 10px calc(24px + env(safe-area-inset-bottom)) 10px !important;
+    min-height: auto !important;
+    width: 100% !important;
+    max-width: 460px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    box-sizing: border-box !important;
   }
 
   .card-screen {
-    max-width: 100%;
-    width: 100%;
-    margin: 0 auto;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    position: relative !important;
   }
 
   .glass-card {
-    padding: 18px 14px 22px 14px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(13, 148, 136, 0.16);
+    padding: 18px 14px 22px 14px !important;
+    border-radius: 24px !important;
+    box-shadow: 0 12px 30px rgba(13, 148, 136, 0.16) !important;
   }
 
   /* ------------------------------------------------------------------------
      D. VIEW 1: LOGIN CARD & KEYPAD
      ------------------------------------------------------------------------ */
+  #loginScreen {
+    margin-top: 36px !important; /* Ruang untuk maskot peeking di atas kartu */
+  }
+
   .peeking-chiikawa {
-    top: -30px;
-    left: 10px;
-    width: 60px;
+    top: -34px !important;
+    left: 12px !important;
+    width: 62px !important;
   }
 
   .peeking-hachiware {
-    top: -28px;
-    right: 10px;
-    width: 60px;
+    top: -32px !important;
+    right: 12px !important;
+    width: 62px !important;
   }
 
   .mascot-usagi {
-    right: 2px;
-    bottom: -15px;
-    width: 58px;
+    right: 4px !important;
+    bottom: -15px !important;
+    width: 58px !important;
   }
 
   .bubble-speech {
-    font-size: 0.62rem;
-    padding: 2px 6px;
-    left: 45px;
-    top: -10px;
+    font-size: 0.62rem !important;
+    padding: 2px 6px !important;
+    left: 45px !important;
+    top: -10px !important;
   }
 
   .strobo-header-container {
-    margin-bottom: 12px;
+    margin-bottom: 12px !important;
   }
 
   .strobo-badge {
-    margin-bottom: 6px;
+    margin-bottom: 6px !important;
   }
 
   .strobo-title {
-    font-size: 0.72rem;
-    padding: 2px 10px;
+    font-size: 0.72rem !important;
+    padding: 2px 10px !important;
   }
 
   .strobo-marquee-wrapper {
-    padding: 6px 3px;
-    border-radius: 14px;
+    padding: 6px 3px !important;
+    border-radius: 14px !important;
   }
 
   .strobo-item {
-    width: 54px;
-    height: 54px;
-    border-radius: 12px;
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 12px !important;
   }
 
   .strobo-track {
-    gap: 8px;
+    gap: 8px !important;
   }
 
   .login-title-section {
-    margin-bottom: 14px;
+    margin-bottom: 12px !important;
   }
 
   .login-title {
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    margin-bottom: 2px;
+    font-size: 1.4rem !important;
+    letter-spacing: 2.5px !important;
+    margin-bottom: 2px !important;
   }
 
   .login-subtitle {
-    font-size: 0.78rem;
+    font-size: 0.78rem !important;
   }
 
   .pin-display-wrapper {
-    margin-bottom: 14px;
+    margin-bottom: 14px !important;
   }
 
   .pin-dots {
-    gap: 12px;
-    padding: 4px;
+    gap: 12px !important;
+    padding: 4px !important;
   }
 
   .pin-dot {
-    width: 16px;
-    height: 16px;
+    width: 16px !important;
+    height: 16px !important;
   }
 
   .pin-status-msg {
-    font-size: 0.75rem;
-    min-height: 18px;
+    font-size: 0.75rem !important;
+    min-height: 18px !important;
   }
 
   .keypad-container {
-    max-width: 290px;
-    margin: 0 auto 14px auto;
+    max-width: 290px !important;
+    margin: 0 auto 14px auto !important;
   }
 
   .keypad-grid {
-    gap: 8px;
+    gap: 8px !important;
   }
 
   .key-btn {
-    height: 48px;
-    font-size: 1.2rem;
-    border-radius: 16px;
+    height: 48px !important;
+    font-size: 1.25rem !important;
+    border-radius: 16px !important;
   }
 
   .key-btn.special-key {
-    font-size: 1.05rem;
+    font-size: 1.1rem !important;
   }
 
   .login-submit-btn {
-    max-width: 290px;
-    padding: 12px 16px;
-    font-size: 0.92rem;
-    border-radius: 16px;
-    margin-bottom: 10px;
+    max-width: 290px !important;
+    padding: 12px 16px !important;
+    font-size: 0.92rem !important;
+    border-radius: 16px !important;
+    margin-bottom: 10px !important;
   }
 
   .hint-trigger {
-    font-size: 0.78rem;
+    font-size: 0.78rem !important;
   }
 
   /* ------------------------------------------------------------------------
@@ -342,341 +396,359 @@ body {
      ------------------------------------------------------------------------ */
   .theme-picker-card,
   .music-picker-card {
-    padding: 18px 12px 22px 12px;
+    padding: 18px 12px 22px 12px !important;
+  }
+
+  .theme-picker-header,
+  .music-picker-header {
+    margin-bottom: 16px !important;
+  }
+
+  .theme-header-mascot {
+    width: 60px !important;
+    height: 60px !important;
+    margin: 0 auto 10px !important;
   }
 
   .theme-picker-title,
   .music-picker-title {
-    font-size: 1.25rem;
+    font-size: 1.25rem !important;
+    margin-bottom: 4px !important;
   }
 
   .theme-picker-subtitle,
   .music-picker-subtitle {
-    font-size: 0.78rem;
-    line-height: 1.45;
+    font-size: 0.78rem !important;
+    line-height: 1.45 !important;
   }
 
   .theme-options-grid {
-    gap: 10px;
+    gap: 10px !important;
+    margin-bottom: 18px !important;
   }
 
   .theme-option-card {
-    padding: 10px;
-    border-radius: 18px;
+    padding: 10px 12px !important;
+    border-radius: 16px !important;
+    gap: 10px !important;
   }
 
   .theme-preview {
-    height: 55px;
-    border-radius: 12px;
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 12px !important;
   }
 
   .theme-name {
-    font-size: 0.9rem;
+    font-size: 0.9rem !important;
   }
 
   .theme-desc {
-    font-size: 0.7rem;
+    font-size: 0.7rem !important;
   }
 
   .theme-color-dots .color-dot {
-    width: 14px;
-    height: 14px;
+    width: 14px !important;
+    height: 14px !important;
   }
 
   .theme-confirm-btn,
   .music-confirm-btn {
-    padding: 12px 16px;
-    font-size: 0.92rem;
-    border-radius: 16px;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    font-size: 0.92rem !important;
+    border-radius: 16px !important;
   }
 
   .music-options-list {
-    max-height: 270px;
-    gap: 8px;
+    max-height: 270px !important;
+    gap: 8px !important;
+    margin-bottom: 18px !important;
+    padding-right: 4px !important;
   }
 
   .music-option-card {
-    padding: 10px 12px;
-    border-radius: 14px;
-    gap: 10px;
+    padding: 10px 12px !important;
+    border-radius: 14px !important;
+    gap: 10px !important;
   }
 
   .music-option-icon-box {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    border-radius: 12px;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    border-radius: 12px !important;
   }
 
   .music-opt-icon {
-    font-size: 1.2rem;
+    font-size: 1.2rem !important;
   }
 
   .music-option-title {
-    font-size: 0.85rem;
+    font-size: 0.85rem !important;
   }
 
   /* ------------------------------------------------------------------------
      F. VIEW 2: MAIN DASHBOARD & TABS
      ------------------------------------------------------------------------ */
   .surprise-screen {
-    max-width: 100%;
-    width: 100%;
+    max-width: 100% !important;
+    width: 100% !important;
   }
 
   .dashboard-card {
-    padding: 14px 10px 22px 10px;
-    border-radius: 24px;
+    padding: 14px 10px 22px 10px !important;
+    border-radius: 24px !important;
   }
 
   /* Dashboard Top Bar */
   .dash-top-bar {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 12px !important;
   }
 
   .dash-user-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
   }
 
   .user-avatar-mini {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
   }
 
   .greeting-tiny {
-    font-size: 0.65rem;
+    font-size: 0.65rem !important;
   }
 
   .princess-name {
-    font-size: 0.95rem;
-    line-height: 1.2;
+    font-size: 0.95rem !important;
+    line-height: 1.2 !important;
   }
 
-  /* Action Buttons Bar: Grid 2-row / flex wrap rapi */
+  /* Action Buttons Bar: Grid 4-Kolom yang SIMETRIS & SEIMBANG */
   .dash-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-    justify-content: flex-start;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px !important;
+    width: 100% !important;
   }
 
   .theme-switch-btn,
   .music-switch-btn,
   .confetti-retrigger-btn,
   .lock-back-btn {
-    padding: 6px 10px;
-    font-size: 0.74rem;
-    border-radius: 20px;
-    flex: 1 1 auto;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
+    padding: 7px 4px !important;
+    font-size: 0.72rem !important;
+    border-radius: 14px !important;
+    width: 100% !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
   }
 
   .auto-save-pill {
-    padding: 4px 8px;
-    font-size: 0.66rem;
-    border-radius: 14px;
-    width: 100%;
-    justify-content: center;
-    text-align: center;
+    grid-column: 1 / -1 !important;
+    padding: 4px 8px !important;
+    font-size: 0.66rem !important;
+    border-radius: 12px !important;
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    margin-top: 2px !important;
   }
 
   /* Dashboard Navigation Tabs: Horizontal Swipeable Bar */
   .dash-tabs-nav {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 6px;
-    padding: 2px 2px 8px 2px;
-    margin-bottom: 14px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 6px !important;
+    padding: 2px 2px 8px 2px !important;
+    margin-bottom: 14px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
 
   .dash-tabs-nav::-webkit-scrollbar {
-    display: none;
+    display: none !important;
   }
 
   .dash-tab-btn {
-    flex: 0 0 auto;
-    padding: 7px 12px;
-    font-size: 0.76rem;
-    border-radius: 24px;
-    white-space: nowrap;
-    gap: 5px;
+    flex: 0 0 auto !important;
+    padding: 7px 12px !important;
+    font-size: 0.76rem !important;
+    border-radius: 24px !important;
+    white-space: nowrap !important;
+    gap: 5px !important;
   }
 
   .tab-icon {
-    font-size: 0.9rem;
+    font-size: 0.9rem !important;
   }
 
   .tab-label {
-    font-size: 0.74rem;
+    font-size: 0.74rem !important;
   }
 
   /* ------------------------------------------------------------------------
      G. TAB 1: CELEBRATION, WHEELS MENU, CAKE & WISHES
      ------------------------------------------------------------------------ */
   .hero-bday-section {
-    margin-bottom: 16px;
+    margin-bottom: 16px !important;
   }
 
   .photo-frame-crown {
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
   }
 
   .crown-icon {
-    font-size: 1.8rem;
-    top: -20px;
+    font-size: 1.8rem !important;
+    top: -20px !important;
   }
 
   .bday-main-photo-wrap {
-    width: 125px;
-    height: 125px;
-    padding: 4px;
+    width: 125px !important;
+    height: 125px !important;
+    padding: 4px !important;
   }
 
   .sparkle-tag {
-    font-size: 0.74rem;
-    padding: 3px 12px;
+    font-size: 0.74rem !important;
+    padding: 3px 12px !important;
   }
 
   .bday-title {
-    font-size: 1.4rem;
-    margin-bottom: 4px;
-    line-height: 1.25;
+    font-size: 1.4rem !important;
+    margin-bottom: 4px !important;
+    line-height: 1.25 !important;
   }
 
   .bday-subtitle {
-    font-size: 0.82rem;
-    line-height: 1.45;
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
   }
 
   /* Timeline Button */
   .timeline-btn-wrapper {
-    margin-bottom: 14px;
+    margin-bottom: 14px !important;
   }
 
   .timeline-open-btn {
-    width: 100%;
-    padding: 10px 14px;
-    font-size: 0.85rem;
-    border-radius: 16px;
-    justify-content: space-between;
+    width: 100% !important;
+    padding: 10px 14px !important;
+    font-size: 0.85rem !important;
+    border-radius: 16px !important;
+    justify-content: space-between !important;
   }
 
   .tl-btn-icon {
-    font-size: 1.1rem;
+    font-size: 1.1rem !important;
   }
 
   .tl-btn-badge {
-    font-size: 0.7rem;
-    padding: 2px 7px;
+    font-size: 0.7rem !important;
+    padding: 2px 7px !important;
   }
 
   /* Wheels Special Menu Banner */
   .wheels-menu-banner-btn {
-    padding: 10px 12px;
-    border-radius: 18px;
-    gap: 8px;
-    align-items: center;
+    padding: 10px 12px !important;
+    border-radius: 18px !important;
+    gap: 8px !important;
+    align-items: center !important;
   }
 
   .menu-banner-left {
-    gap: 10px;
-    flex: 1;
-    min-width: 0;
+    gap: 10px !important;
+    flex: 1 !important;
+    min-width: 0 !important;
   }
 
   .menu-banner-icon-wrap {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    border-radius: 12px;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    border-radius: 12px !important;
   }
 
   .menu-banner-icon {
-    font-size: 1.4rem;
+    font-size: 1.4rem !important;
   }
 
   .menu-banner-tag {
-    font-size: 0.58rem;
-    letter-spacing: 0.5px;
+    font-size: 0.58rem !important;
+    letter-spacing: 0.5px !important;
   }
 
   .menu-banner-title {
-    font-size: 0.95rem;
-    line-height: 1.2;
-    white-space: normal;
+    font-size: 0.95rem !important;
+    line-height: 1.2 !important;
+    white-space: normal !important;
   }
 
   .menu-banner-sub {
-    font-size: 0.68rem;
-    display: none; /* Hemat ruang vertikal di HP */
+    display: none !important;
   }
 
   .menu-toggle-pill {
-    padding: 5px 9px;
-    font-size: 0.68rem;
-    border-radius: 20px;
-    flex-shrink: 0;
+    padding: 5px 9px !important;
+    font-size: 0.68rem !important;
+    border-radius: 20px !important;
+    flex-shrink: 0 !important;
   }
 
   /* Royal Decree Parchment & Food Cards */
   .scroll-rod {
-    height: 16px;
-    padding: 0 8px;
+    height: 16px !important;
+    padding: 0 8px !important;
   }
 
   .rod-finial {
-    font-size: 0.85rem;
+    font-size: 0.85rem !important;
   }
 
   .rod-title {
-    font-size: 0.58rem;
-    letter-spacing: 0.5px;
+    font-size: 0.58rem !important;
+    letter-spacing: 0.5px !important;
   }
 
   .parchment-body {
-    padding: 16px 10px;
+    padding: 16px 10px !important;
   }
 
   .decree-title {
-    font-size: 1.05rem;
+    font-size: 1.05rem !important;
   }
 
   .decree-subtitle {
-    font-size: 0.75rem;
+    font-size: 0.75rem !important;
   }
 
   .decree-ornament-line {
-    font-size: 0.7rem;
+    font-size: 0.7rem !important;
   }
 
   .decree-proclamation {
-    font-size: 0.78rem;
-    line-height: 1.5;
+    font-size: 0.78rem !important;
+    line-height: 1.5 !important;
   }
 
   /* Royal Food Cards: Vertikal di layar HP */
   .royal-food-card {
     flex-direction: column !important;
-    gap: 10px;
-    padding: 10px;
-    border-radius: 16px;
+    gap: 10px !important;
+    padding: 10px !important;
+    border-radius: 16px !important;
   }
 
   .food-photo-col {
@@ -686,216 +758,216 @@ body {
   .food-photo-frame {
     width: 100% !important;
     height: 180px !important;
-    border-radius: 14px;
+    border-radius: 14px !important;
   }
 
   .food-img {
-    border-radius: 12px;
+    border-radius: 12px !important;
   }
 
   .food-badge-ribbon {
-    font-size: 0.65rem;
-    padding: 3px 8px;
+    font-size: 0.65rem !important;
+    padding: 3px 8px !important;
   }
 
   .food-info-col {
     width: 100% !important;
-    padding: 4px 2px;
+    padding: 4px 2px !important;
   }
 
   .food-tagline {
-    font-size: 0.7rem;
+    font-size: 0.7rem !important;
   }
 
   .food-title {
-    font-size: 1.35rem;
+    font-size: 1.35rem !important;
   }
 
   .food-aka {
-    font-size: 0.75rem;
+    font-size: 0.75rem !important;
   }
 
   .food-desc {
-    font-size: 0.8rem;
-    line-height: 1.5;
+    font-size: 0.8rem !important;
+    line-height: 1.5 !important;
   }
 
   .food-meta-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-top: 6px;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    margin-top: 6px !important;
   }
 
   .food-pill {
-    font-size: 0.65rem;
-    padding: 3px 7px;
+    font-size: 0.65rem !important;
+    padding: 3px 7px !important;
   }
 
   .food-romantic-note {
-    font-size: 0.74rem;
-    margin-top: 8px;
+    font-size: 0.74rem !important;
+    margin-top: 8px !important;
   }
 
   .royal-decree-footer {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    text-align: center;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+    text-align: center !important;
   }
 
   .royal-sign-box {
-    text-align: center;
+    text-align: center !important;
   }
 
   .sign-label {
-    font-size: 0.7rem;
+    font-size: 0.7rem !important;
   }
 
   .sign-name {
-    font-size: 0.85rem;
+    font-size: 0.85rem !important;
   }
 
   .sign-date {
-    font-size: 0.68rem;
+    font-size: 0.68rem !important;
   }
 
   .scroll-fold-btn {
-    font-size: 0.8rem;
-    padding: 8px 14px;
+    font-size: 0.8rem !important;
+    padding: 8px 14px !important;
   }
 
   /* Interactive Cake */
   .cake-container {
-    padding: 16px 10px;
-    border-radius: 20px;
-    margin-bottom: 18px;
+    padding: 16px 10px !important;
+    border-radius: 20px !important;
+    margin-bottom: 18px !important;
   }
 
   .cake-box {
-    transform: scale(0.9);
-    margin-bottom: 12px;
+    transform: scale(0.9) !important;
+    margin-bottom: 12px !important;
   }
 
   .blow-candle-btn {
-    padding: 9px 18px;
-    font-size: 0.85rem;
-    border-radius: 24px;
+    padding: 9px 18px !important;
+    font-size: 0.85rem !important;
+    border-radius: 24px !important;
   }
 
   /* Wishes Section */
   .wishes-section {
-    padding: 14px 10px;
-    border-radius: 18px;
-    margin-bottom: 16px;
+    padding: 14px 10px !important;
+    border-radius: 18px !important;
+    margin-bottom: 16px !important;
   }
 
   .section-title h3 {
-    font-size: 1.05rem;
+    font-size: 1.05rem !important;
   }
 
   .wishes-lead {
-    font-size: 0.78rem;
+    font-size: 0.78rem !important;
   }
 
   .wish-input-box textarea {
-    font-size: 0.82rem;
-    padding: 10px;
-    border-radius: 12px;
+    font-size: 16px !important; /* Mencegah auto-zoom */
+    padding: 10px !important;
+    border-radius: 12px !important;
   }
 
   .send-wish-btn {
-    font-size: 0.85rem;
-    padding: 10px 14px;
-    border-radius: 14px;
+    font-size: 0.85rem !important;
+    padding: 10px 14px !important;
+    border-radius: 14px !important;
   }
 
   .board-heading {
-    font-size: 0.82rem;
+    font-size: 0.82rem !important;
   }
 
   .wish-card-item {
-    padding: 10px;
-    border-radius: 12px;
-    font-size: 0.78rem;
+    padding: 10px !important;
+    border-radius: 12px !important;
+    font-size: 0.78rem !important;
   }
 
   /* Affirmation Card */
   .chiikawa-affirmation-card {
-    padding: 12px 10px;
-    border-radius: 18px;
-    gap: 10px;
+    padding: 12px 10px !important;
+    border-radius: 18px !important;
+    gap: 10px !important;
   }
 
   .affirmation-bubble {
-    font-size: 0.82rem;
-    padding: 10px 12px;
-    border-radius: 14px;
-    line-height: 1.45;
+    font-size: 0.82rem !important;
+    padding: 10px 12px !important;
+    border-radius: 14px !important;
+    line-height: 1.45 !important;
   }
 
   .roll-affirmation-btn {
-    font-size: 0.78rem;
-    padding: 8px 12px;
-    border-radius: 12px;
+    font-size: 0.78rem !important;
+    padding: 8px 12px !important;
+    border-radius: 12px !important;
   }
 
   /* ------------------------------------------------------------------------
      H. TAB 2: LOVE LETTER (INTERACTIVE ENVELOPE)
      ------------------------------------------------------------------------ */
   .envelope-card {
-    height: 160px;
-    border-radius: 18px;
-    margin-bottom: 16px;
+    height: 160px !important;
+    border-radius: 18px !important;
+    margin-bottom: 16px !important;
   }
 
   .wax-seal {
-    width: 56px;
-    height: 56px;
+    width: 56px !important;
+    height: 56px !important;
   }
 
   .wax-seal span {
-    font-size: 0.78rem;
+    font-size: 0.78rem !important;
   }
 
   .wax-seal small {
-    font-size: 0.58rem;
+    font-size: 0.58rem !important;
   }
 
   .envelope-hint-txt {
-    font-size: 0.74rem;
+    font-size: 0.74rem !important;
   }
 
   .love-letter-parchment {
-    padding: 16px 12px;
-    border-radius: 18px;
+    padding: 16px 12px !important;
+    border-radius: 18px !important;
   }
 
   .parchment-stamp {
-    position: static;
-    display: inline-block;
-    margin-bottom: 8px;
-    transform: none;
-    font-size: 0.65rem;
-    padding: 2px 7px;
+    position: static !important;
+    display: inline-block !important;
+    margin-bottom: 8px !important;
+    transform: none !important;
+    font-size: 0.65rem !important;
+    padding: 2px 7px !important;
   }
 
   .letter-edit-notice {
-    font-size: 0.66rem;
-    padding: 4px 8px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    font-size: 0.66rem !important;
+    padding: 4px 8px !important;
+    border-radius: 8px !important;
+    margin-bottom: 10px !important;
   }
 
   .letter-title {
-    font-size: 1.15rem;
-    margin-bottom: 12px;
+    font-size: 1.15rem !important;
+    margin-bottom: 12px !important;
   }
 
   .letter-paragraphs p {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    margin-bottom: 10px;
+    font-size: 0.85rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 10px !important;
   }
 
   .letter-romantic-end {
@@ -903,45 +975,44 @@ body {
   }
 
   .letter-signature-row {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 2px;
-    margin-top: 14px;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 2px !important;
+    margin-top: 14px !important;
   }
 
   .sig-date {
-    font-size: 0.74rem;
+    font-size: 0.74rem !important;
   }
 
   .sig-name {
-    font-size: 0.82rem;
+    font-size: 0.82rem !important;
   }
 
   /* ------------------------------------------------------------------------
-     I. TAB 3: PHOTO GALLERY
+     I. TAB 3: PHOTO GALLERY (2 KOLOM PRESISI)
      ------------------------------------------------------------------------ */
   .gallery-header-row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: stretch;
-    margin-bottom: 14px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    align-items: stretch !important;
+    margin-bottom: 14px !important;
   }
 
   .add-memory-btn {
-    padding: 9px 14px;
-    font-size: 0.82rem;
-    border-radius: 14px;
-    width: 100%;
-    justify-content: center;
+    padding: 9px 14px !important;
+    font-size: 0.82rem !important;
+    border-radius: 14px !important;
+    width: 100% !important;
+    justify-content: center !important;
   }
 
   .gallery-lead {
-    font-size: 0.76rem;
-    text-align: center;
+    font-size: 0.76rem !important;
+    text-align: center !important;
   }
 
-  /* 2 Kolom Presisi di Layar HP */
   .memory-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -949,459 +1020,453 @@ body {
   }
 
   #userPhotosContainer {
-    display: contents;
+    display: contents !important;
   }
 
   @supports not (display: contents) {
     #userPhotosContainer {
       display: grid !important;
-      grid-column: 1 / -1;
+      grid-column: 1 / -1 !important;
       grid-template-columns: repeat(2, 1fr) !important;
       gap: 8px !important;
     }
   }
 
   .polaroid-card {
-    padding: 6px 6px 8px 6px;
-    border-radius: 14px;
+    padding: 6px 6px 8px 6px !important;
+    border-radius: 14px !important;
   }
 
   .polaroid-img-wrap {
-    height: 125px;
-    border-radius: 10px;
+    height: 125px !important;
+    border-radius: 10px !important;
   }
 
   .polaroid-caption {
-    font-size: 0.68rem;
-    padding: 4px 2px 2px 2px;
+    font-size: 0.68rem !important;
+    padding: 4px 2px 2px 2px !important;
   }
 
   .heart-react-btn {
-    font-size: 0.68rem;
-    padding: 3px 8px;
-    border-radius: 12px;
+    font-size: 0.68rem !important;
+    padding: 3px 8px !important;
+    border-radius: 12px !important;
   }
 
   .heart-count {
-    font-size: 0.62rem;
+    font-size: 0.62rem !important;
   }
 
   /* ------------------------------------------------------------------------
      J. TAB 4: ARCADE GAMES & CANVAS
      ------------------------------------------------------------------------ */
   .games-lead {
-    font-size: 0.78rem;
-    margin-bottom: 14px;
+    font-size: 0.78rem !important;
+    margin-bottom: 14px !important;
   }
 
   .game-selector-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
   }
 
   .game-select-card {
-    padding: 12px;
-    border-radius: 16px;
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    gap: 12px;
+    padding: 12px !important;
+    border-radius: 16px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    text-align: left !important;
+    gap: 12px !important;
   }
 
   .game-card-icon {
-    font-size: 1.8rem;
-    flex-shrink: 0;
+    font-size: 1.8rem !important;
+    flex-shrink: 0 !important;
   }
 
   .game-card-title {
-    font-size: 0.95rem;
-    margin-bottom: 2px;
+    font-size: 0.95rem !important;
+    margin-bottom: 2px !important;
   }
 
   .game-card-desc {
-    font-size: 0.72rem;
-    line-height: 1.35;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
   }
 
   .game-badge-tag {
-    font-size: 0.58rem;
-    padding: 2px 6px;
-    top: 6px;
-    right: 8px;
+    font-size: 0.58rem !important;
+    padding: 2px 6px !important;
+    top: 6px !important;
+    right: 8px !important;
   }
 
   .play-game-btn {
-    padding: 6px 12px;
-    font-size: 0.74rem;
-    border-radius: 12px;
-    flex-shrink: 0;
+    padding: 6px 12px !important;
+    font-size: 0.74rem !important;
+    border-radius: 12px !important;
+    flex-shrink: 0 !important;
   }
 
-  /* Game Arena Wrapper */
   .game-arena-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
-    padding: 8px 10px;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 6px !important;
+    padding: 8px 10px !important;
   }
 
   .back-to-games-btn {
-    font-size: 0.78rem;
-    padding: 6px 12px;
-    align-self: flex-start;
+    font-size: 0.78rem !important;
+    padding: 6px 12px !important;
+    align-self: flex-start !important;
   }
 
   .game-arena-title {
-    font-size: 1.05rem;
-    text-align: center;
+    font-size: 1.05rem !important;
+    text-align: center !important;
   }
 
   .game-arena-score-badge {
-    font-size: 0.78rem;
-    justify-content: center;
+    font-size: 0.78rem !important;
+    justify-content: center !important;
   }
 
-  /* Responsive Canvas Container: Tetap menjaga aspect-ratio 360:460 */
+  /* Responsive Canvas: Menjaga rasio 18:23 */
   .game-canvas-container {
-    width: 100%;
-    max-width: 360px;
-    height: auto;
-    aspect-ratio: 18 / 23;
-    border-radius: 16px;
+    width: 100% !important;
+    max-width: 360px !important;
+    height: auto !important;
+    aspect-ratio: 18 / 23 !important;
+    border-radius: 16px !important;
   }
 
   .game-canvas-container canvas {
     width: 100% !important;
     height: 100% !important;
-    display: block;
-    object-fit: contain;
+    display: block !important;
+    object-fit: contain !important;
   }
 
-  /* Mobile Controls for Catch Game */
   .game-mobile-controls {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    width: 100%;
-    max-width: 360px;
+    display: flex !important;
+    gap: 10px !important;
+    margin-top: 10px !important;
+    width: 100% !important;
+    max-width: 360px !important;
   }
 
   .ctrl-btn {
-    flex: 1;
-    padding: 11px 12px;
-    font-size: 0.85rem;
-    border-radius: 14px;
+    flex: 1 !important;
+    padding: 11px 12px !important;
+    font-size: 0.85rem !important;
+    border-radius: 14px !important;
   }
 
-  /* D-Pad for Snake */
   .snake-dpad-container {
-    margin-top: 10px;
-    gap: 4px;
+    margin-top: 10px !important;
+    gap: 4px !important;
   }
 
   .dpad-row {
-    gap: 6px;
+    gap: 6px !important;
   }
 
   .dpad-btn {
-    width: 48px;
-    height: 44px;
-    font-size: 1.15rem;
-    border-radius: 12px;
+    width: 48px !important;
+    height: 44px !important;
+    font-size: 1.15rem !important;
+    border-radius: 12px !important;
   }
 
-  /* XOX Game Board */
   .xox-container {
-    padding: 10px;
+    padding: 10px !important;
   }
 
   .xox-mode-select {
-    gap: 6px;
+    gap: 6px !important;
   }
 
   .xox-mode-btn {
-    font-size: 0.74rem;
-    padding: 7px 10px;
-    border-radius: 12px;
+    font-size: 0.74rem !important;
+    padding: 7px 10px !important;
+    border-radius: 12px !important;
   }
 
   .xox-turn-indicator {
-    font-size: 0.82rem;
-    margin: 8px 0;
+    font-size: 0.82rem !important;
+    margin: 8px 0 !important;
   }
 
   .xox-board {
-    max-width: 250px;
-    gap: 6px;
+    max-width: 250px !important;
+    gap: 6px !important;
   }
 
   .xox-cell {
-    font-size: 1.6rem;
-    border-radius: 12px;
-    height: 70px;
+    font-size: 1.6rem !important;
+    border-radius: 12px !important;
+    height: 70px !important;
   }
 
   .xox-score-tracker {
-    font-size: 0.75rem;
-    gap: 8px;
-    margin: 10px 0;
+    font-size: 0.75rem !important;
+    gap: 8px !important;
+    margin: 10px 0 !important;
   }
 
   .xox-reset-btn {
-    font-size: 0.8rem;
-    padding: 8px 16px;
+    font-size: 0.8rem !important;
+    padding: 8px 16px !important;
   }
 
   /* ------------------------------------------------------------------------
      K. TAB 5: MENU LAINNYA (Sub-Tabs: Period, Jira, Notes, Savings)
      ------------------------------------------------------------------------ */
   .others-header {
-    margin-bottom: 12px;
+    margin-bottom: 12px !important;
   }
 
   .others-lead {
-    font-size: 0.78rem;
-    line-height: 1.45;
+    font-size: 0.78rem !important;
+    line-height: 1.45 !important;
   }
 
-  /* Sub-menu Navigation: Grid 2x2 yang seimbang di HP */
   .others-submenu-nav {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
-    margin-bottom: 12px;
+    margin-bottom: 12px !important;
   }
 
   .others-subtab-btn {
-    padding: 10px 8px;
-    border-radius: 16px;
-    gap: 8px;
-    align-items: center;
+    padding: 10px 8px !important;
+    border-radius: 16px !important;
+    gap: 8px !important;
+    align-items: center !important;
   }
 
   .subtab-icon-wrap {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    border-radius: 12px;
-    font-size: 1.15rem;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    border-radius: 12px !important;
+    font-size: 1.15rem !important;
   }
 
   .subtab-title {
-    font-size: 0.76rem;
-    line-height: 1.2;
+    font-size: 0.76rem !important;
+    line-height: 1.2 !important;
   }
 
   .subtab-desc {
-    font-size: 0.62rem;
-    display: none; /* Disederhanakan di HP */
+    display: none !important;
   }
 
   .others-card-box {
-    padding: 12px 10px;
-    border-radius: 18px;
+    padding: 12px 10px !important;
+    border-radius: 18px !important;
   }
 
   .card-box-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    margin-bottom: 10px;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    margin-bottom: 10px !important;
   }
 
   .box-icon-bubble {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    font-size: 1.1rem;
-    border-radius: 10px;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    font-size: 1.1rem !important;
+    border-radius: 10px !important;
   }
 
   .box-title {
-    font-size: 0.95rem;
+    font-size: 0.95rem !important;
   }
 
   .box-subtitle {
-    font-size: 0.7rem;
+    font-size: 0.7rem !important;
   }
 
   /* --- Sub-Tab 1: Period Tracker --- */
   .period-hereditary-badge {
-    padding: 10px;
-    border-radius: 14px;
-    gap: 8px;
+    padding: 10px !important;
+    border-radius: 14px !important;
+    gap: 8px !important;
   }
 
   .hereditary-icon {
-    font-size: 1.3rem;
+    font-size: 1.3rem !important;
   }
 
   .hereditary-info strong {
-    font-size: 0.82rem;
+    font-size: 0.82rem !important;
   }
 
   .hereditary-info p {
-    font-size: 0.72rem;
+    font-size: 0.72rem !important;
   }
 
   .period-preset-wrapper {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 6px !important;
   }
 
   .preset-label {
-    font-size: 0.72rem;
+    font-size: 0.72rem !important;
   }
 
   .preset-chips {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
   }
 
   .preset-chip {
-    font-size: 0.74rem;
-    padding: 7px 10px;
-    border-radius: 12px;
-    text-align: center;
+    font-size: 0.74rem !important;
+    padding: 7px 10px !important;
+    border-radius: 12px !important;
+    text-align: center !important;
   }
 
   .period-setup-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
   }
 
   .period-input-group label {
-    font-size: 0.74rem;
-    margin-bottom: 4px;
+    font-size: 0.74rem !important;
+    margin-bottom: 4px !important;
   }
 
   .period-input {
-    font-size: 0.82rem;
-    padding: 9px 10px;
-    border-radius: 12px;
+    font-size: 16px !important;
+    padding: 9px 10px !important;
+    border-radius: 12px !important;
   }
 
   .input-suffix {
-    font-size: 0.68rem;
+    font-size: 0.68rem !important;
   }
 
   .period-btn-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
   }
 
   .period-calc-btn,
   .period-sync-note-btn {
-    width: 100%;
-    padding: 11px 14px;
-    font-size: 0.82rem;
-    border-radius: 14px;
-    justify-content: center;
+    width: 100% !important;
+    padding: 11px 14px !important;
+    font-size: 0.82rem !important;
+    border-radius: 14px !important;
+    justify-content: center !important;
   }
 
   .period-status-banner {
-    padding: 12px 10px;
-    border-radius: 16px;
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
+    padding: 12px 10px !important;
+    border-radius: 16px !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 8px !important;
   }
 
   .status-badge-circle {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    font-size: 1.5rem;
-    margin: 0 auto;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    font-size: 1.5rem !important;
+    margin: 0 auto !important;
   }
 
   .status-super-tag {
-    font-size: 0.72rem;
+    font-size: 0.72rem !important;
   }
 
   .status-highlight-date {
-    font-size: 0.95rem;
+    font-size: 0.95rem !important;
   }
 
   .status-countdown-text {
-    font-size: 0.75rem;
+    font-size: 0.75rem !important;
   }
 
   .period-details-grid {
-    grid-template-columns: 1fr;
-    gap: 8px;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
   }
 
   .phase-card {
-    padding: 10px 12px;
-    border-radius: 14px;
+    padding: 10px 12px !important;
+    border-radius: 14px !important;
   }
 
   .phase-card strong {
-    font-size: 0.8rem;
+    font-size: 0.8rem !important;
   }
 
   .phase-val {
-    font-size: 0.95rem;
+    font-size: 0.95rem !important;
   }
 
   .period-forecast-box {
-    padding: 10px;
-    border-radius: 14px;
+    padding: 10px !important;
+    border-radius: 14px !important;
   }
 
   .forecast-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 6px;
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
   }
 
   .symptom-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 5px !important;
   }
 
   .symptom-chip {
-    font-size: 0.74rem;
-    padding: 6px 10px;
-    border-radius: 12px;
+    font-size: 0.74rem !important;
+    padding: 6px 10px !important;
+    border-radius: 12px !important;
   }
 
   .period-care-box {
-    padding: 10px 12px;
-    border-radius: 14px;
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
+    padding: 10px 12px !important;
+    border-radius: 14px !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 8px !important;
   }
 
   /* --- Sub-Tab 2: Jira Task Timeline --- */
   .jira-header-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
   }
 
   .jira-badge-tag {
-    font-size: 0.62rem;
+    font-size: 0.62rem !important;
   }
 
   .jira-add-form-wrap {
-    padding: 12px 10px;
-    border-radius: 16px;
+    padding: 12px 10px !important;
+    border-radius: 16px !important;
   }
 
   .jira-form-row {
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: column !important;
+    gap: 8px !important;
   }
 
   .form-field,
@@ -1412,551 +1477,550 @@ body {
   }
 
   .form-field label {
-    font-size: 0.74rem;
-    margin-bottom: 3px;
+    font-size: 0.74rem !important;
+    margin-bottom: 3px !important;
   }
 
   .jira-input {
-    font-size: 0.82rem;
-    padding: 9px 10px;
-    border-radius: 12px;
+    font-size: 16px !important;
+    padding: 9px 10px !important;
+    border-radius: 12px !important;
   }
 
   .jira-submit-btn {
-    width: 100%;
-    padding: 11px 14px;
-    font-size: 0.85rem;
-    border-radius: 14px;
+    width: 100% !important;
+    padding: 11px 14px !important;
+    font-size: 0.85rem !important;
+    border-radius: 14px !important;
   }
 
   .jira-view-switcher {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 6px !important;
   }
 
   .switcher-pills {
-    display: flex;
-    width: 100%;
-    gap: 6px;
+    display: flex !important;
+    width: 100% !important;
+    gap: 6px !important;
   }
 
   .jira-switch-btn {
-    flex: 1;
-    font-size: 0.74rem;
-    padding: 7px 10px;
-    border-radius: 12px;
-    text-align: center;
+    flex: 1 !important;
+    font-size: 0.74rem !important;
+    padding: 7px 10px !important;
+    border-radius: 12px !important;
+    text-align: center !important;
   }
 
   .jira-task-counter {
-    text-align: center;
-    font-size: 0.74rem;
+    text-align: center !important;
+    font-size: 0.74rem !important;
   }
 
-  /* Kanban: 1 Kolom Tersusun Rapi */
   .kanban-board-grid {
     grid-template-columns: 1fr !important;
-    gap: 10px;
+    gap: 10px !important;
   }
 
   .kanban-col {
-    padding: 8px;
-    border-radius: 14px;
+    padding: 8px !important;
+    border-radius: 14px !important;
   }
 
   .kanban-card {
-    padding: 10px;
-    border-radius: 12px;
+    padding: 10px !important;
+    border-radius: 12px !important;
   }
 
   .kanban-card-title {
-    font-size: 0.85rem;
+    font-size: 0.85rem !important;
   }
 
   /* --- Sub-Tab 3: Notes Cantik --- */
   .notes-period-shortcut-btn {
-    font-size: 0.72rem;
-    padding: 6px 10px;
-    border-radius: 12px;
-    width: 100%;
-    text-align: center;
+    font-size: 0.72rem !important;
+    padding: 6px 10px !important;
+    border-radius: 12px !important;
+    width: 100% !important;
+    text-align: center !important;
   }
 
   .notes-composer-box {
-    padding: 12px 10px;
-    border-radius: 16px;
+    padding: 12px 10px !important;
+    border-radius: 16px !important;
   }
 
   .note-composer-title {
-    font-size: 0.85rem;
-    padding: 9px 10px;
-    border-radius: 12px;
+    font-size: 16px !important;
+    padding: 9px 10px !important;
+    border-radius: 12px !important;
   }
 
   .note-composer-body {
-    font-size: 0.82rem;
-    padding: 9px 10px;
-    border-radius: 12px;
+    font-size: 16px !important;
+    padding: 9px 10px !important;
+    border-radius: 12px !important;
   }
 
   .note-composer-toolbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
   }
 
   .color-picker-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
   }
 
   .color-picker-label {
-    font-size: 0.74rem;
+    font-size: 0.74rem !important;
   }
 
   .add-note-btn {
-    width: 100%;
-    padding: 11px 14px;
-    font-size: 0.85rem;
-    border-radius: 14px;
+    width: 100% !important;
+    padding: 11px 14px !important;
+    font-size: 0.85rem !important;
+    border-radius: 14px !important;
   }
 
   .notes-grid-wall {
     grid-template-columns: 1fr !important;
-    gap: 10px;
+    gap: 10px !important;
   }
 
   /* --- Sub-Tab 4: Celengan Impian / Savings Tracker --- */
   .savings-header-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
   }
 
   .savings-add-item-btn {
-    width: 100%;
-    padding: 9px 14px;
-    font-size: 0.8rem;
-    border-radius: 14px;
-    margin-top: 6px;
+    width: 100% !important;
+    padding: 9px 14px !important;
+    font-size: 0.8rem !important;
+    border-radius: 14px !important;
+    margin-top: 6px !important;
   }
 
   .savings-form-card {
-    padding: 12px 10px;
-    border-radius: 16px;
+    padding: 12px 10px !important;
+    border-radius: 16px !important;
   }
 
   .savings-form-grid {
     grid-template-columns: 1fr !important;
-    gap: 8px;
+    gap: 8px !important;
   }
 
   .form-group-savings label {
-    font-size: 0.74rem;
-    margin-bottom: 3px;
+    font-size: 0.74rem !important;
+    margin-bottom: 3px !important;
   }
 
   .form-group-savings input,
   .form-group-savings select {
-    font-size: 0.82rem;
-    padding: 9px 10px;
-    border-radius: 12px;
+    font-size: 16px !important;
+    padding: 9px 10px !important;
+    border-radius: 12px !important;
   }
 
   .savings-plan-row {
     flex-direction: column !important;
-    gap: 6px;
+    gap: 6px !important;
   }
 
   .savings-photo-picker-row {
     flex-direction: column !important;
-    align-items: center;
-    gap: 8px;
+    align-items: center !important;
+    gap: 8px !important;
   }
 
   .savings-photo-preview {
-    width: 72px;
-    height: 72px;
+    width: 72px !important;
+    height: 72px !important;
   }
 
   .savings-photo-inputs {
     width: 100% !important;
     min-width: 100% !important;
-    text-align: center;
+    text-align: center !important;
   }
 
   .savings-upload-btn {
-    width: 100%;
-    padding: 9px 12px;
-    font-size: 0.78rem;
-    border-radius: 12px;
+    width: 100% !important;
+    padding: 9px 12px !important;
+    font-size: 0.78rem !important;
+    border-radius: 12px !important;
   }
 
   .savings-emoji-presets {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
   }
 
   .form-savings-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
   }
 
   .savings-submit-btn,
   .savings-cancel-btn {
-    width: 100%;
-    padding: 11px 14px;
-    font-size: 0.85rem;
-    border-radius: 14px;
+    width: 100% !important;
+    padding: 11px 14px !important;
+    font-size: 0.85rem !important;
+    border-radius: 14px !important;
   }
 
   .savings-items-tabs-wrap {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
   }
 
   .savings-items-tabs {
-    display: flex;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    gap: 6px;
-    width: 100%;
-    padding-bottom: 4px;
-    scrollbar-width: none;
+    display: flex !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    width: 100% !important;
+    padding-bottom: 4px !important;
+    scrollbar-width: none !important;
   }
 
   .savings-item-tab-pill {
-    flex: 0 0 auto;
-    font-size: 0.74rem;
-    padding: 6px 12px;
-    border-radius: 20px;
-    white-space: nowrap;
+    flex: 0 0 auto !important;
+    font-size: 0.74rem !important;
+    padding: 6px 12px !important;
+    border-radius: 20px !important;
+    white-space: nowrap !important;
   }
 
   /* Showcase Card */
   .savings-showcase-card {
-    padding: 14px 10px;
-    border-radius: 18px;
+    padding: 14px 10px !important;
+    border-radius: 18px !important;
   }
 
   .showcase-header {
     flex-direction: column !important;
     text-align: center !important;
-    gap: 8px;
+    gap: 8px !important;
   }
 
   .showcase-photo-wrap {
-    width: 68px;
-    height: 68px;
-    margin: 0 auto;
+    width: 68px !important;
+    height: 68px !important;
+    margin: 0 auto !important;
   }
 
   .showcase-title {
-    font-size: 1.1rem;
+    font-size: 1.1rem !important;
   }
 
   .showcase-status-badge {
-    font-size: 0.65rem;
-    padding: 2px 8px;
+    font-size: 0.65rem !important;
+    padding: 2px 8px !important;
   }
 
   .price-val {
-    font-size: 1.2rem;
+    font-size: 1.2rem !important;
   }
 
   .showcase-plan-row {
-    justify-content: center;
-    font-size: 0.74rem;
+    justify-content: center !important;
+    font-size: 0.74rem !important;
   }
 
   .showcase-actions {
     margin-left: 0 !important;
     justify-content: center !important;
-    gap: 8px;
+    gap: 8px !important;
   }
 
   .btn-goal-edit,
   .btn-goal-del {
-    font-size: 0.74rem;
-    padding: 6px 12px;
-    border-radius: 12px;
+    font-size: 0.74rem !important;
+    padding: 6px 12px !important;
+    border-radius: 12px !important;
   }
 
   /* Progress Bar */
   .progress-labels-row {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 4px;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 4px !important;
   }
 
   .val-saved,
   .val-remain {
-    font-size: 0.8rem;
+    font-size: 0.8rem !important;
   }
 
   .val-percent {
-    font-size: 1.25rem;
+    font-size: 1.25rem !important;
   }
 
   .savings-progress-bar-track {
-    height: 22px;
-    border-radius: 12px;
+    height: 22px !important;
+    border-radius: 12px !important;
   }
 
   /* Forecast Banner */
   .savings-forecast-banner {
-    padding: 10px;
-    border-radius: 14px;
-    flex-direction: column;
-    text-align: center;
+    padding: 10px !important;
+    border-radius: 14px !important;
+    flex-direction: column !important;
+    text-align: center !important;
   }
 
   .forecast-days-bold {
-    font-size: 1.05rem;
+    font-size: 1.05rem !important;
   }
 
   .forecast-desc {
-    font-size: 0.78rem;
+    font-size: 0.78rem !important;
   }
 
   /* Dual Action Boxes */
   .savings-dual-actions-grid {
     grid-template-columns: 1fr !important;
-    gap: 10px;
+    gap: 10px !important;
   }
 
   .savings-action-box {
-    padding: 12px 10px;
-    border-radius: 14px;
+    padding: 12px 10px !important;
+    border-radius: 14px !important;
   }
 
   .action-box-header h5 {
-    font-size: 0.88rem;
+    font-size: 0.88rem !important;
   }
 
   .quick-amount-presets {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
   }
 
   .preset-btn {
-    flex: 1 1 calc(33.33% - 4px);
-    font-size: 0.72rem;
-    padding: 6px 4px;
-    border-radius: 10px;
-    text-align: center;
+    flex: 1 1 calc(33.33% - 4px) !important;
+    font-size: 0.72rem !important;
+    padding: 6px 4px !important;
+    border-radius: 10px !important;
+    text-align: center !important;
   }
 
   .deposit-input-row {
     flex-direction: column !important;
-    gap: 6px;
+    gap: 6px !important;
   }
 
   .deposit-input-wrap {
-    width: 100%;
+    width: 100% !important;
   }
 
   .deposit-submit-btn {
-    width: 100%;
-    padding: 11px 14px;
-    font-size: 0.85rem;
-    border-radius: 14px;
+    width: 100% !important;
+    padding: 11px 14px !important;
+    font-size: 0.85rem !important;
+    border-radius: 14px !important;
   }
 
   .simulation-fields-row {
-    flex-direction: column;
-    gap: 6px;
+    flex-direction: column !important;
+    gap: 6px !important;
   }
 
   .simulation-btn {
-    width: 100%;
-    padding: 10px 14px;
-    font-size: 0.82rem;
-    border-radius: 12px;
+    width: 100% !important;
+    padding: 10px 14px !important;
+    font-size: 0.82rem !important;
+    border-radius: 12px !important;
   }
 
   /* ------------------------------------------------------------------------
      L. MODALS & POPUPS
      ------------------------------------------------------------------------ */
   .modal-overlay {
-    padding: 10px;
+    padding: 10px !important;
   }
 
   .modal-card {
-    width: 100%;
+    width: 100% !important;
     max-width: calc(100vw - 20px) !important;
-    max-height: 88vh;
-    padding: 18px 14px;
-    border-radius: 20px;
+    max-height: 88vh !important;
+    padding: 18px 14px !important;
+    border-radius: 20px !important;
   }
 
   .modal-close-btn {
-    width: 34px;
-    height: 34px;
-    font-size: 1rem;
-    top: 10px;
-    right: 10px;
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 1rem !important;
+    top: 10px !important;
+    right: 10px !important;
   }
 
   .modal-icon {
-    font-size: 1.8rem;
+    font-size: 1.8rem !important;
   }
 
   .modal-title {
-    font-size: 1.15rem;
+    font-size: 1.15rem !important;
   }
 
   .modal-body p {
-    font-size: 0.82rem;
+    font-size: 0.82rem !important;
   }
 
   .default-pin-box {
-    padding: 8px 12px;
-    border-radius: 12px;
+    padding: 8px 12px !important;
+    border-radius: 12px !important;
   }
 
   .default-pin-box code {
-    font-size: 1.4rem;
+    font-size: 1.4rem !important;
   }
 
   .custom-pin-control {
-    flex-direction: column;
-    gap: 6px;
+    flex-direction: column !important;
+    gap: 6px !important;
   }
 
   .custom-pin-control input {
-    font-size: 0.85rem;
-    padding: 9px 10px;
-    border-radius: 12px;
+    font-size: 16px !important;
+    padding: 9px 10px !important;
+    border-radius: 12px !important;
   }
 
   .custom-pin-control button {
-    font-size: 0.82rem;
-    padding: 9px 14px;
-    border-radius: 12px;
+    font-size: 0.82rem !important;
+    padding: 9px 14px !important;
+    border-radius: 12px !important;
   }
 
   /* Photo Lightbox */
   .photo-modal-card {
-    padding: 10px;
+    padding: 10px !important;
   }
 
   .lightbox-img-wrap {
-    max-height: 50vh;
-    border-radius: 14px;
+    max-height: 50vh !important;
+    border-radius: 14px !important;
   }
 
   .lightbox-img-wrap img {
-    max-height: 50vh;
+    max-height: 50vh !important;
   }
 
   .lightbox-caption {
-    font-size: 0.85rem;
-    margin-top: 6px;
+    font-size: 0.85rem !important;
+    margin-top: 6px !important;
   }
 
   /* Timeline Checklist Modal */
   .timeline-modal .modal-card {
     max-width: calc(100vw - 20px) !important;
-    border-radius: 20px;
+    border-radius: 20px !important;
   }
 
   .tl-modal-header {
-    padding: 18px 14px 14px 14px;
+    padding: 18px 14px 14px 14px !important;
   }
 
   .tl-header-icon {
-    font-size: 1.8rem;
+    font-size: 1.8rem !important;
   }
 
   .tl-modal-title {
-    font-size: 1.15rem;
+    font-size: 1.15rem !important;
   }
 
   .tl-checklist {
-    padding: 12px 10px;
-    max-height: 48vh;
+    padding: 12px 10px !important;
+    max-height: 48vh !important;
   }
 
   .tl-item {
-    padding: 10px 8px;
-    gap: 10px;
-    border-radius: 12px;
+    padding: 10px 8px !important;
+    gap: 10px !important;
+    border-radius: 12px !important;
   }
 
   .tl-item-emoji {
-    font-size: 1.1rem;
+    font-size: 1.1rem !important;
   }
 
   .tl-item-text strong {
-    font-size: 0.82rem;
+    font-size: 0.82rem !important;
   }
 
   .tl-item-text small {
-    font-size: 0.68rem;
+    font-size: 0.68rem !important;
   }
 
   /* Rating Modal */
   .rating-modal .modal-card {
     max-width: calc(100vw - 20px) !important;
-    padding: 20px 14px;
-    border-radius: 20px;
+    padding: 20px 14px !important;
+    border-radius: 20px !important;
   }
 
   .rating-stars-row {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 6px !important;
   }
 
   .rating-star {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 12px !important;
   }
 
   .star-emoji {
-    font-size: 1.3rem;
+    font-size: 1.3rem !important;
   }
 
   .star-label {
-    font-size: 0.65rem;
+    font-size: 0.65rem !important;
   }
 
   .rating-close-btn {
-    width: 100%;
-    padding: 10px 16px;
-    font-size: 0.85rem;
-    border-radius: 14px;
+    width: 100% !important;
+    padding: 10px 16px !important;
+    font-size: 0.85rem !important;
+    border-radius: 14px !important;
   }
 
   /* ------------------------------------------------------------------------
      M. FOOTER
      ------------------------------------------------------------------------ */
   .chiikawa-footer-party {
-    padding: 14px 8px;
-    gap: 8px;
+    padding: 14px 8px !important;
+    gap: 8px !important;
   }
 
   .footer-mascot .chiikawa-mini-svg {
-    width: 36px;
-    height: 36px;
+    width: 36px !important;
+    height: 36px !important;
   }
 
   .footer-mascot span {
-    font-size: 0.65rem;
+    font-size: 0.65rem !important;
   }
 
   .footer-heart {
-    font-size: 0.72rem;
+    font-size: 0.72rem !important;
   }
 
 } /* End max-width: 650px */
@@ -1966,54 +2030,55 @@ body {
    ========================================================================== */
 @media (max-width: 360px) {
   .app-container {
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
   }
 
   .glass-card {
-    padding: 14px 8px 18px 8px;
-    border-radius: 20px;
+    padding: 14px 8px 18px 8px !important;
+    border-radius: 20px !important;
   }
 
   .dashboard-card {
-    padding: 12px 6px 18px 6px;
+    padding: 12px 6px 18px 6px !important;
   }
 
   .cute-clock-card {
-    max-width: 130px;
-    padding: 3px 6px;
+    min-width: 140px !important;
+    max-width: 155px !important;
+    padding: 4px 6px !important;
   }
 
   .clock-digits {
-    font-size: 0.9rem;
+    font-size: 1.05rem !important;
   }
 
   .music-pill {
-    padding: 4px 6px;
-    font-size: 0.68rem;
+    padding: 5px 8px !important;
+    font-size: 0.68rem !important;
   }
 
   .login-title {
-    font-size: 1.2rem;
+    font-size: 1.25rem !important;
   }
 
   .key-btn {
-    height: 44px;
-    font-size: 1.1rem;
+    height: 44px !important;
+    font-size: 1.15rem !important;
   }
 
   .bday-main-photo-wrap {
-    width: 105px;
-    height: 105px;
+    width: 110px !important;
+    height: 110px !important;
   }
 
   .bday-title {
-    font-size: 1.2rem;
+    font-size: 1.25rem !important;
   }
 
   .dash-tab-btn {
-    padding: 6px 9px;
-    font-size: 0.7rem;
+    padding: 6px 10px !important;
+    font-size: 0.72rem !important;
   }
 
   .memory-grid {
@@ -2021,39 +2086,28 @@ body {
   }
 
   .polaroid-img-wrap {
-    height: 105px;
+    height: 110px !important;
   }
 
   .others-subtab-btn {
-    padding: 8px 6px;
+    padding: 8px 6px !important;
   }
 
   .subtab-icon-wrap {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
-    font-size: 1rem;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    font-size: 1rem !important;
   }
 
   .subtab-title {
-    font-size: 0.7rem;
+    font-size: 0.72rem !important;
   }
 }
 
 /* ==========================================================================
-   4. SAFE AREA & PWA STANDALONE MODE
+   4. PWA / STANDALONE APP DISPLAY MODE
    ========================================================================== */
-@supports (padding: env(safe-area-inset-top)) {
-  .floating-top-widgets {
-    top: calc(8px + env(safe-area-inset-top));
-  }
-
-  .app-container {
-    padding-top: calc(50px + env(safe-area-inset-top));
-    padding-bottom: calc(24px + env(safe-area-inset-bottom));
-  }
-}
-
 @media (display-mode: standalone), (display-mode: fullscreen) {
   body {
     user-select: none;
