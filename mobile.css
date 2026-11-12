@@ -1,103 +1,126 @@
 /* ==========================================================================
-   MOBILE-FIRST RESPONSIVE DESIGN
-   Hachiware Birthday App - Optimized for Smartphone (320px - 480px)
-   Semua fitur tetap ada, tampilan disesuaikan untuk layar HP
+   MOBILE & APP OPTIMIZATION STYLESHEET
+   Special Chiikawa & Tosca Celebration Web-App
+   Dirancang khusus untuk smartphone & WebView aplikasi HP (320px - 768px)
+   Semua fitur lengkap tetap berfungsi 100%, tampilan rapi, bersih & intuitif.
    ========================================================================== */
 
 /* ==========================================================================
-   1. GLOBAL MOBILE ADJUSTMENTS
+   1. GLOBAL MOBILE RESETS & APP FEEL
    ========================================================================== */
-
-/* Force mobile viewport behavior */
 html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   touch-action: manipulation;
   overflow-x: hidden;
+  width: 100%;
 }
 
 body {
-  -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Improve touch targets - minimum 44px */
-button, a, input, select, textarea, [role="button"] {
-  min-height: 44px;
-}
-
-/* Remove hover effects on touch devices */
-@media (hover: none) and (pointer: coarse) {
-  .key-btn:hover,
-  .strobo-item:hover,
-  .polaroid-card:hover,
-  .game-select-card:hover,
-  .theme-option-card:hover,
-  .music-option-card:hover,
-  .dash-tab-btn:hover,
-  .wheels-menu-banner-btn:hover,
-  .cute-clock-card:hover {
-    transform: none;
-  }
+/* Hindari horizontal scrolling pada container utama */
+.bg-wrapper,
+.app-container,
+.card-screen {
+  overflow-x: hidden;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 
 /* ==========================================================================
-   2. MOBILE BREAKPOINT: <= 480px (Primary Mobile)
+   2. RESPONSIVE BREAKPOINT: MOBILE (max-width: 650px)
    ========================================================================== */
-@media (max-width: 480px) {
+@media (max-width: 650px) {
 
-  /* -- APP CONTAINER -- */
-  .app-container {
-    padding: 12px 6px;
-    min-height: 100vh;
-    align-items: flex-start;
-  }
-
-  /* -- BACKGROUND SCENERY -- */
+  /* ------------------------------------------------------------------------
+     A. BACKGROUND SCENERY OPTIMIZATION
+     ------------------------------------------------------------------------ */
   .bg-glow {
-    width: 320px;
-    height: 320px;
-    top: 8%;
+    width: 280px;
+    height: 280px;
+    top: 5%;
+    filter: blur(30px);
+    opacity: 0.75;
   }
 
-  .pine-trees {
-    width: 80px;
-    opacity: 0.4;
+  .cloud-1 {
+    width: 140px;
+    height: 40px;
+  }
+
+  .cloud-2,
+  .cloud-3 {
+    display: none; /* Hemat render GPU HP */
   }
 
   .birds-group {
-    display: none;
+    display: none; /* Hindari distracting di layar kecil */
   }
 
-  .mountain-far { height: 35vh; }
-  .mountain-mid { height: 28vh; }
-  .mountain-near { height: 20vh; }
+  .pine-trees {
+    width: 70px;
+    height: 40vh;
+    opacity: 0.35;
+  }
 
-  /* -- FLOATING TOP WIDGETS (Music & Clock) -- */
+  .mountain-far { height: 32vh; }
+  .mountain-mid { height: 24vh; }
+  .mountain-near { height: 16vh; }
+
+  /* ------------------------------------------------------------------------
+     B. FLOATING TOP WIDGETS (Music Pill & Clock Card)
+     Diubah jadi status-bar mengambang yang compact agar tidak menutupi isi layar
+     ------------------------------------------------------------------------ */
   .floating-top-widgets {
-    top: 8px;
+    position: fixed;
+    top: max(8px, env(safe-area-inset-top));
     right: 8px;
-    gap: 4px;
+    left: 8px;
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    pointer-events: none;
   }
 
+  .floating-top-widgets > * {
+    pointer-events: auto;
+  }
+
+  /* Music Pill: Mini Pill */
   .music-pill {
     padding: 5px 10px;
-    font-size: 0.72rem;
-    gap: 4px;
-    border-radius: 40px;
+    font-size: 0.74rem;
+    gap: 5px;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-shrink: 0;
   }
 
   .music-icon {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 
   .music-label {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
+    font-weight: 700;
   }
 
   .music-wave {
     height: 10px;
+    gap: 2px;
   }
 
   .music-wave span {
@@ -105,112 +128,123 @@ button, a, input, select, textarea, [role="button"] {
     height: 3px;
   }
 
+  /* Cute Clock Card: Compact Badge */
   .cute-clock-card {
-    width: 130px;
-    padding: 6px 8px;
-    border-radius: 14px;
-    gap: 3px;
+    width: auto;
+    max-width: 160px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.18);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .cute-clock-card::before {
+    display: none;
+  }
+
+  .clock-card-top,
+  .clock-card-footer {
+    display: none !important; /* Disembunyikan dari pill kecil, bisa dilihat saat di-tap */
+  }
+
+  .clock-card-main {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
   }
 
   .clock-digits {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  .clock-sec-badge {
+    padding: 1px 4px;
+    min-width: 22px;
+    border-radius: 6px;
+    box-shadow: none;
   }
 
   .clock-seconds {
     font-size: 0.65rem;
-  }
-
-  .clock-sec-badge {
-    padding: 2px 4px;
-    border-radius: 6px;
-    min-width: 28px;
-  }
-
-  .clock-day-date {
-    font-size: 0.58rem;
-  }
-
-  .clock-date-icon {
-    font-size: 0.7rem;
-  }
-
-  .clock-greeting {
-    font-size: 0.58rem;
+    font-weight: 800;
   }
 
   .clock-timezone {
-    font-size: 0.5rem;
-  }
-
-  .clock-heart-pulse {
-    font-size: 0.6rem;
+    display: none;
   }
 
   .clock-bubble-toast {
-    top: 110px;
-    right: 8px;
-    max-width: 190px;
-    font-size: 0.68rem;
-    padding: 6px 10px;
-    border-radius: 12px;
+    top: calc(52px + env(safe-area-inset-top));
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    font-size: 0.78rem;
+    padding: 10px 14px;
+    border-radius: 14px;
   }
 
-  /* -- CARD SCREENS (Login, Theme, Music Picker) -- */
+  /* ------------------------------------------------------------------------
+     C. APP CONTAINER & CARD SCREENS
+     ------------------------------------------------------------------------ */
+  .app-container {
+    padding: calc(48px + env(safe-area-inset-top)) 8px calc(20px + env(safe-area-inset-bottom)) 8px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
   .card-screen {
     max-width: 100%;
     width: 100%;
+    margin: 0 auto;
   }
 
   .glass-card {
-    padding: 16px 12px 20px 12px;
-    border-radius: 22px;
+    padding: 18px 14px 22px 14px;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(13, 148, 136, 0.16);
   }
 
-  .glass-card::before {
-    border-top-left-radius: 22px;
-    border-top-right-radius: 22px;
-  }
-
-  /* -- LOGIN SCREEN -- */
-  .login-card-inner {
-    padding: 14px 10px 18px 10px;
-  }
-
-  .login-title {
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-  }
-
-  .login-subtitle {
-    font-size: 0.78rem;
-  }
-
+  /* ------------------------------------------------------------------------
+     D. VIEW 1: LOGIN CARD & KEYPAD
+     ------------------------------------------------------------------------ */
   .peeking-chiikawa {
-    top: -32px;
-    left: 5px;
-    width: 58px;
+    top: -30px;
+    left: 10px;
+    width: 60px;
   }
 
   .peeking-hachiware {
-    top: -30px;
-    right: 5px;
-    width: 58px;
+    top: -28px;
+    right: 10px;
+    width: 60px;
   }
 
   .mascot-usagi {
-    right: -8px;
+    right: 2px;
     bottom: -15px;
-    width: 55px;
+    width: 58px;
   }
 
   .bubble-speech {
-    font-size: 0.6rem;
+    font-size: 0.62rem;
     padding: 2px 6px;
     left: 45px;
-    top: -12px;
+    top: -10px;
   }
 
-  /* Strobo Photos */
   .strobo-header-container {
     margin-bottom: 12px;
   }
@@ -220,12 +254,8 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .strobo-title {
-    font-size: 0.7rem;
-    padding: 2px 8px;
-  }
-
-  .strobo-sparkle {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
+    padding: 2px 10px;
   }
 
   .strobo-marquee-wrapper {
@@ -234,23 +264,36 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .strobo-item {
-    width: 52px;
-    height: 52px;
-    border-radius: 10px;
-    border-width: 2px;
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
   }
 
   .strobo-track {
     gap: 8px;
   }
 
-  /* PIN & Keypad */
+  .login-title-section {
+    margin-bottom: 14px;
+  }
+
+  .login-title {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    margin-bottom: 2px;
+  }
+
+  .login-subtitle {
+    font-size: 0.78rem;
+  }
+
   .pin-display-wrapper {
     margin-bottom: 14px;
   }
 
   .pin-dots {
     gap: 12px;
+    padding: 4px;
   }
 
   .pin-dot {
@@ -260,11 +303,12 @@ button, a, input, select, textarea, [role="button"] {
 
   .pin-status-msg {
     font-size: 0.75rem;
+    min-height: 18px;
   }
 
   .keypad-container {
-    max-width: 280px;
-    margin-bottom: 14px;
+    max-width: 290px;
+    margin: 0 auto 14px auto;
   }
 
   .keypad-grid {
@@ -272,16 +316,20 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .key-btn {
-    height: 46px;
-    font-size: 1.15rem;
+    height: 48px;
+    font-size: 1.2rem;
     border-radius: 16px;
   }
 
+  .key-btn.special-key {
+    font-size: 1.05rem;
+  }
+
   .login-submit-btn {
-    max-width: 280px;
-    padding: 11px 16px;
-    font-size: 0.9rem;
-    border-radius: 14px;
+    max-width: 290px;
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    border-radius: 16px;
     margin-bottom: 10px;
   }
 
@@ -289,22 +337,23 @@ button, a, input, select, textarea, [role="button"] {
     font-size: 0.78rem;
   }
 
-  /* -- THEME PICKER -- */
-  .theme-picker-card {
-    padding: 14px 10px 18px 10px;
+  /* ------------------------------------------------------------------------
+     E. VIEW 1.5 & 1.6: THEME & MUSIC PICKERS
+     ------------------------------------------------------------------------ */
+  .theme-picker-card,
+  .music-picker-card {
+    padding: 18px 12px 22px 12px;
   }
 
-  .theme-picker-title {
-    font-size: 1.2rem;
+  .theme-picker-title,
+  .music-picker-title {
+    font-size: 1.25rem;
   }
 
-  .theme-picker-subtitle {
+  .theme-picker-subtitle,
+  .music-picker-subtitle {
     font-size: 0.78rem;
-  }
-
-  .theme-header-mascot .chiikawa-mini-svg {
-    width: 40px;
-    height: 40px;
+    line-height: 1.45;
   }
 
   .theme-options-grid {
@@ -313,7 +362,7 @@ button, a, input, select, textarea, [role="button"] {
 
   .theme-option-card {
     padding: 10px;
-    border-radius: 16px;
+    border-radius: 18px;
   }
 
   .theme-preview {
@@ -322,11 +371,11 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .theme-name {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 
   .theme-desc {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
   }
 
   .theme-color-dots .color-dot {
@@ -334,35 +383,15 @@ button, a, input, select, textarea, [role="button"] {
     height: 14px;
   }
 
-  .theme-confirm-btn {
-    padding: 11px 18px;
-    font-size: 0.88rem;
-    border-radius: 14px;
-  }
-
-  .theme-hint-text {
-    font-size: 0.72rem;
-  }
-
-  /* -- MUSIC PICKER -- */
-  .music-picker-card {
-    padding: 14px 10px 18px 10px;
-  }
-
-  .music-picker-title {
-    font-size: 1.15rem;
-  }
-
-  .music-picker-subtitle {
-    font-size: 0.76rem;
-  }
-
-  .music-mascot-emoji {
-    font-size: 2rem;
+  .theme-confirm-btn,
+  .music-confirm-btn {
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    border-radius: 16px;
   }
 
   .music-options-list {
-    max-height: 260px;
+    max-height: 270px;
     gap: 8px;
   }
 
@@ -373,10 +402,10 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .music-option-icon-box {
-    width: 38px;
-    height: 38px;
-    min-width: 38px;
-    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 12px;
   }
 
   .music-opt-icon {
@@ -384,107 +413,94 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .music-option-title {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
   }
 
-  .music-default-badge {
-    font-size: 0.58rem;
-    padding: 1px 5px;
-  }
-
-  .music-confirm-btn {
-    padding: 11px 18px;
-    font-size: 0.88rem;
-    border-radius: 14px;
-  }
-
-  .music-hint-text {
-    font-size: 0.68rem;
-  }
-
-  /* =================================================================
-     DASHBOARD MAIN SCREEN
-     ================================================================= */
+  /* ------------------------------------------------------------------------
+     F. VIEW 2: MAIN DASHBOARD & TABS
+     ------------------------------------------------------------------------ */
   .surprise-screen {
     max-width: 100%;
     width: 100%;
   }
 
   .dashboard-card {
-    padding: 12px 8px 20px 8px;
-    border-radius: 20px;
+    padding: 14px 10px 22px 10px;
+    border-radius: 24px;
   }
 
-  /* -- Dashboard Top Bar -- */
+  /* Dashboard Top Bar */
   .dash-top-bar {
+    display: flex;
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
     padding-bottom: 12px;
     margin-bottom: 12px;
-    gap: 8px;
   }
 
   .dash-user-badge {
-    gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   .user-avatar-mini {
-    width: 36px;
-    height: 36px;
-  }
-
-  .user-status-dot {
-    width: 9px;
-    height: 9px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
   }
 
   .greeting-tiny {
-    font-size: 0.62rem;
+    font-size: 0.65rem;
   }
 
   .princess-name {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    line-height: 1.2;
   }
 
+  /* Action Buttons Bar: Grid 2-row / flex wrap rapi */
   .dash-actions {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 6px;
-    justify-content: center;
-  }
-
-  .lock-back-btn,
-  .confetti-retrigger-btn {
-    padding: 5px 10px;
-    font-size: 0.7rem;
-    border-radius: 16px;
+    justify-content: flex-start;
   }
 
   .theme-switch-btn,
-  .music-switch-btn {
-    padding: 5px 10px;
-    font-size: 0.7rem;
-    border-radius: 16px;
+  .music-switch-btn,
+  .confetti-retrigger-btn,
+  .lock-back-btn {
+    padding: 6px 10px;
+    font-size: 0.74rem;
+    border-radius: 20px;
+    flex: 1 1 auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
   }
 
   .auto-save-pill {
     padding: 4px 8px;
-    font-size: 0.65rem;
-    border-radius: 12px;
+    font-size: 0.66rem;
+    border-radius: 14px;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 
-  .save-icon {
-    font-size: 0.7rem;
-  }
-
-  /* -- Dashboard Tabs Nav -- */
+  /* Dashboard Navigation Tabs: Horizontal Swipeable Bar */
   .dash-tabs-nav {
-    gap: 4px;
-    margin-bottom: 16px;
-    overflow-x: auto;
+    display: flex;
     flex-wrap: nowrap;
-    justify-content: flex-start;
-    padding-bottom: 4px;
+    overflow-x: auto;
+    gap: 6px;
+    padding: 2px 2px 8px 2px;
+    margin-bottom: 14px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -495,27 +511,27 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .dash-tab-btn {
-    padding: 6px 10px;
-    font-size: 0.72rem;
-    border-radius: 20px;
+    flex: 0 0 auto;
+    padding: 7px 12px;
+    font-size: 0.76rem;
+    border-radius: 24px;
     white-space: nowrap;
-    flex-shrink: 0;
-    gap: 4px;
+    gap: 5px;
   }
 
   .tab-icon {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 
   .tab-label {
-    font-size: 0.68rem;
+    font-size: 0.74rem;
   }
 
-  /* =================================================================
-     TAB 1: CELEBRATION & CAKE
-     ================================================================= */
+  /* ------------------------------------------------------------------------
+     G. TAB 1: CELEBRATION, WHEELS MENU, CAKE & WISHES
+     ------------------------------------------------------------------------ */
   .hero-bday-section {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
   .photo-frame-crown {
@@ -523,28 +539,30 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .crown-icon {
-    font-size: 1.6rem;
-    top: -18px;
+    font-size: 1.8rem;
+    top: -20px;
   }
 
   .bday-main-photo-wrap {
-    width: 120px;
-    height: 120px;
-    padding: 3px;
+    width: 125px;
+    height: 125px;
+    padding: 4px;
   }
 
   .sparkle-tag {
-    font-size: 0.72rem;
+    font-size: 0.74rem;
     padding: 3px 12px;
   }
 
   .bday-title {
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     margin-bottom: 4px;
+    line-height: 1.25;
   }
 
   .bday-subtitle {
     font-size: 0.82rem;
+    line-height: 1.45;
   }
 
   /* Timeline Button */
@@ -553,169 +571,181 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .timeline-open-btn {
+    width: 100%;
     padding: 10px 14px;
-    font-size: 0.82rem;
-    border-radius: 14px;
+    font-size: 0.85rem;
+    border-radius: 16px;
+    justify-content: space-between;
   }
 
   .tl-btn-icon {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .tl-btn-badge {
-    font-size: 0.65rem;
-    padding: 2px 6px;
+    font-size: 0.7rem;
+    padding: 2px 7px;
   }
 
-  /* -- Wheels Menu Accordion -- */
+  /* Wheels Special Menu Banner */
   .wheels-menu-banner-btn {
     padding: 10px 12px;
-    border-radius: 16px;
-    flex-direction: column;
+    border-radius: 18px;
     gap: 8px;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .menu-banner-left {
     gap: 10px;
+    flex: 1;
+    min-width: 0;
   }
 
   .menu-banner-icon-wrap {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
     border-radius: 12px;
   }
 
   .menu-banner-icon {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
   .menu-banner-tag {
-    font-size: 0.55rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.5px;
   }
 
   .menu-banner-title {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    white-space: normal;
   }
 
   .menu-banner-sub {
     font-size: 0.68rem;
+    display: none; /* Hemat ruang vertikal di HP */
   }
 
   .menu-toggle-pill {
-    padding: 6px 10px;
-    font-size: 0.7rem;
-    align-self: flex-end;
+    padding: 5px 9px;
+    font-size: 0.68rem;
+    border-radius: 20px;
+    flex-shrink: 0;
   }
 
-  .menu-banner-right {
-    align-self: flex-end;
-  }
-
-  /* Royal Scroll / Food Menu */
+  /* Royal Decree Parchment & Food Cards */
   .scroll-rod {
     height: 16px;
-    padding: 0 10px;
+    padding: 0 8px;
   }
 
   .rod-finial {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 
   .rod-title {
-    font-size: 0.55rem;
+    font-size: 0.58rem;
     letter-spacing: 0.5px;
   }
 
   .parchment-body {
-    padding: 14px 10px;
+    padding: 16px 10px;
   }
 
   .decree-title {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .decree-subtitle {
-    font-size: 0.72rem;
-  }
-
-  .decree-ornament-line {
-    font-size: 0.65rem;
-  }
-
-  .decree-proclamation {
     font-size: 0.75rem;
   }
 
-  .royal-food-card {
-    flex-direction: column;
-    gap: 12px;
+  .decree-ornament-line {
+    font-size: 0.7rem;
   }
 
-  .food-photo-col {
-    width: 100%;
-  }
-
-  .food-photo-frame {
-    width: 100%;
-    height: 180px;
-    border-radius: 12px;
-  }
-
-  .food-img {
-    border-radius: 10px;
-  }
-
-  .food-badge-ribbon {
-    font-size: 0.62rem;
-    padding: 3px 8px;
-  }
-
-  .food-info-col {
-    width: 100%;
-  }
-
-  .food-tagline {
-    font-size: 0.68rem;
-  }
-
-  .food-title {
-    font-size: 1.3rem;
-  }
-
-  .food-aka {
-    font-size: 0.72rem;
-  }
-
-  .food-desc {
+  .decree-proclamation {
     font-size: 0.78rem;
     line-height: 1.5;
   }
 
+  /* Royal Food Cards: Vertikal di layar HP */
+  .royal-food-card {
+    flex-direction: column !important;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .food-photo-col {
+    width: 100% !important;
+  }
+
+  .food-photo-frame {
+    width: 100% !important;
+    height: 180px !important;
+    border-radius: 14px;
+  }
+
+  .food-img {
+    border-radius: 12px;
+  }
+
+  .food-badge-ribbon {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+
+  .food-info-col {
+    width: 100% !important;
+    padding: 4px 2px;
+  }
+
+  .food-tagline {
+    font-size: 0.7rem;
+  }
+
+  .food-title {
+    font-size: 1.35rem;
+  }
+
+  .food-aka {
+    font-size: 0.75rem;
+  }
+
+  .food-desc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
   .food-meta-pills {
-    gap: 4px;
+    display: flex;
     flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
   }
 
   .food-pill {
-    font-size: 0.62rem;
+    font-size: 0.65rem;
     padding: 3px 7px;
   }
 
   .food-romantic-note {
-    font-size: 0.72rem;
+    font-size: 0.74rem;
+    margin-top: 8px;
   }
 
   .royal-decree-footer {
     flex-direction: column;
+    align-items: center;
     gap: 10px;
     text-align: center;
   }
 
-  .royal-wax-seal {
-    width: 60px;
-    height: 60px;
+  .royal-sign-box {
+    text-align: center;
   }
 
   .sign-label {
@@ -723,45 +753,45 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .sign-name {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
   }
 
   .sign-date {
-    font-size: 0.65rem;
+    font-size: 0.68rem;
   }
 
   .scroll-fold-btn {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     padding: 8px 14px;
   }
 
   /* Interactive Cake */
   .cake-container {
+    padding: 16px 10px;
+    border-radius: 20px;
     margin-bottom: 18px;
   }
 
   .cake-box {
-    transform: scale(0.85);
+    transform: scale(0.9);
+    margin-bottom: 12px;
   }
 
   .blow-candle-btn {
-    font-size: 0.82rem;
-    padding: 10px 16px;
-    border-radius: 14px;
+    padding: 9px 18px;
+    font-size: 0.85rem;
+    border-radius: 24px;
   }
 
   /* Wishes Section */
   .wishes-section {
     padding: 14px 10px;
-    border-radius: 16px;
+    border-radius: 18px;
+    margin-bottom: 16px;
   }
 
   .section-title h3 {
-    font-size: 1rem;
-  }
-
-  .title-star {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
   }
 
   .wishes-lead {
@@ -770,11 +800,14 @@ button, a, input, select, textarea, [role="button"] {
 
   .wish-input-box textarea {
     font-size: 0.82rem;
+    padding: 10px;
+    border-radius: 12px;
   }
 
   .send-wish-btn {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     padding: 10px 14px;
+    border-radius: 14px;
   }
 
   .board-heading {
@@ -784,117 +817,135 @@ button, a, input, select, textarea, [role="button"] {
   .wish-card-item {
     padding: 10px;
     border-radius: 12px;
-  }
-
-  .wish-item-text {
     font-size: 0.78rem;
   }
 
-  /* Chiikawa Affirmation Card */
+  /* Affirmation Card */
   .chiikawa-affirmation-card {
     padding: 12px 10px;
-    border-radius: 16px;
-  }
-
-  .affirmation-mascot .chiikawa-mini-svg {
-    width: 40px;
-    height: 40px;
+    border-radius: 18px;
+    gap: 10px;
   }
 
   .affirmation-bubble {
     font-size: 0.82rem;
     padding: 10px 12px;
     border-radius: 14px;
+    line-height: 1.45;
   }
 
   .roll-affirmation-btn {
     font-size: 0.78rem;
     padding: 8px 12px;
+    border-radius: 12px;
   }
 
-  /* =================================================================
-     TAB 2: LOVE LETTER (ENVELOPE)
-     ================================================================= */
-  .envelope-outer-wrap {
-    padding: 8px;
-  }
-
+  /* ------------------------------------------------------------------------
+     H. TAB 2: LOVE LETTER (INTERACTIVE ENVELOPE)
+     ------------------------------------------------------------------------ */
   .envelope-card {
-    max-width: 100%;
-    height: 200px;
-    border-radius: 16px;
+    height: 160px;
+    border-radius: 18px;
+    margin-bottom: 16px;
   }
 
   .wax-seal {
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
   }
 
   .wax-seal span {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
   }
 
   .wax-seal small {
-    font-size: 0.55rem;
+    font-size: 0.58rem;
   }
 
   .envelope-hint-txt {
-    font-size: 0.68rem;
+    font-size: 0.74rem;
   }
 
   .love-letter-parchment {
     padding: 16px 12px;
-    border-radius: 16px;
+    border-radius: 18px;
   }
 
   .parchment-stamp {
-    font-size: 0.68rem;
-    padding: 3px 10px;
+    position: static;
+    display: inline-block;
+    margin-bottom: 8px;
+    transform: none;
+    font-size: 0.65rem;
+    padding: 2px 7px;
   }
 
   .letter-edit-notice {
-    font-size: 0.65rem;
-    padding: 5px 8px;
+    font-size: 0.66rem;
+    padding: 4px 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
   }
 
   .letter-title {
     font-size: 1.15rem;
+    margin-bottom: 12px;
   }
 
   .letter-paragraphs p {
-    font-size: 0.82rem;
-    line-height: 1.65;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .letter-romantic-end {
+    font-size: 0.9rem !important;
+  }
+
+  .letter-signature-row {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    margin-top: 14px;
   }
 
   .sig-date {
-    font-size: 0.75rem;
+    font-size: 0.74rem;
   }
 
   .sig-name {
     font-size: 0.82rem;
   }
 
-  /* =================================================================
-     TAB 3: PHOTO GALLERY
-     ================================================================= */
+  /* ------------------------------------------------------------------------
+     I. TAB 3: PHOTO GALLERY
+     ------------------------------------------------------------------------ */
   .gallery-header-row {
+    display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+    align-items: stretch;
     margin-bottom: 14px;
   }
 
   .add-memory-btn {
-    padding: 8px 14px;
-    font-size: 0.78rem;
+    padding: 9px 14px;
+    font-size: 0.82rem;
+    border-radius: 14px;
+    width: 100%;
+    justify-content: center;
   }
 
   .gallery-lead {
-    font-size: 0.75rem;
+    font-size: 0.76rem;
+    text-align: center;
   }
 
+  /* 2 Kolom Presisi di Layar HP */
   .memory-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
   }
 
   #userPhotosContainer {
@@ -903,59 +954,41 @@ button, a, input, select, textarea, [role="button"] {
 
   @supports not (display: contents) {
     #userPhotosContainer {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+      display: grid !important;
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 8px !important;
     }
   }
 
   .polaroid-card {
-    padding: 5px 5px 8px 5px;
-    border-radius: 12px;
+    padding: 6px 6px 8px 6px;
+    border-radius: 14px;
   }
 
   .polaroid-img-wrap {
-    height: 110px;
-    border-radius: 8px;
+    height: 125px;
+    border-radius: 10px;
   }
 
   .polaroid-caption {
-    font-size: 0.62rem;
-    padding: 4px 0 2px 0;
+    font-size: 0.68rem;
+    padding: 4px 2px 2px 2px;
   }
 
   .heart-react-btn {
-    font-size: 0.65rem;
-    padding: 3px 6px;
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    border-radius: 12px;
   }
 
   .heart-count {
-    font-size: 0.58rem;
+    font-size: 0.62rem;
   }
 
-  /* Memory Caption Modal */
-  .memory-caption-box {
-    padding: 16px 12px;
-    border-radius: 16px;
-    width: 92%;
-    max-width: 320px;
-  }
-
-  .memory-caption-box h4 {
-    font-size: 1rem;
-  }
-
-  .caption-modal-hint {
-    font-size: 0.75rem;
-  }
-
-  #memoryCaptionInput {
-    font-size: 0.85rem;
-    padding: 8px 10px;
-  }
-
-  /* =================================================================
-     TAB 4: ARCADE GAMES
-     ================================================================= */
+  /* ------------------------------------------------------------------------
+     J. TAB 4: ARCADE GAMES & CANVAS
+     ------------------------------------------------------------------------ */
   .games-lead {
     font-size: 0.78rem;
     margin-bottom: 14px;
@@ -967,9 +1000,10 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .game-select-card {
-    padding: 14px 12px;
+    padding: 12px;
     border-radius: 16px;
     flex-direction: row;
+    align-items: center;
     text-align: left;
     gap: 12px;
   }
@@ -980,11 +1014,13 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .game-card-title {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
   }
 
   .game-card-desc {
     font-size: 0.72rem;
+    line-height: 1.35;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -992,224 +1028,216 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .game-badge-tag {
-    font-size: 0.55rem;
+    font-size: 0.58rem;
     padding: 2px 6px;
     top: 6px;
-    right: 6px;
+    right: 8px;
   }
 
   .play-game-btn {
-    padding: 7px 12px;
-    font-size: 0.75rem;
+    padding: 6px 12px;
+    font-size: 0.74rem;
     border-radius: 12px;
+    flex-shrink: 0;
   }
 
-  /* Game Arena */
+  /* Game Arena Wrapper */
   .game-arena-header {
     flex-direction: column;
+    align-items: stretch;
     gap: 6px;
-    padding: 8px;
+    padding: 8px 10px;
   }
 
   .back-to-games-btn {
-    font-size: 0.75rem;
-    padding: 6px 10px;
+    font-size: 0.78rem;
+    padding: 6px 12px;
+    align-self: flex-start;
   }
 
   .game-arena-title {
-    font-size: 1rem;
+    font-size: 1.05rem;
+    text-align: center;
   }
 
   .game-arena-score-badge {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
+    justify-content: center;
   }
 
+  /* Responsive Canvas Container: Tetap menjaga aspect-ratio 360:460 */
   .game-canvas-container {
-    max-width: 100%;
-    overflow: hidden;
-  }
-
-  #flappyCanvas,
-  #catchCanvas,
-  #snakeCanvas,
-  #popCanvas {
-    width: 100% !important;
+    width: 100%;
     max-width: 360px;
-    height: auto !important;
-    max-height: 400px;
+    height: auto;
+    aspect-ratio: 18 / 23;
+    border-radius: 16px;
   }
 
-  /* XOX Game */
+  .game-canvas-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* Mobile Controls for Catch Game */
+  .game-mobile-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .ctrl-btn {
+    flex: 1;
+    padding: 11px 12px;
+    font-size: 0.85rem;
+    border-radius: 14px;
+  }
+
+  /* D-Pad for Snake */
+  .snake-dpad-container {
+    margin-top: 10px;
+    gap: 4px;
+  }
+
+  .dpad-row {
+    gap: 6px;
+  }
+
+  .dpad-btn {
+    width: 48px;
+    height: 44px;
+    font-size: 1.15rem;
+    border-radius: 12px;
+  }
+
+  /* XOX Game Board */
   .xox-container {
-    padding: 8px;
+    padding: 10px;
+  }
+
+  .xox-mode-select {
+    gap: 6px;
   }
 
   .xox-mode-btn {
-    font-size: 0.75rem;
-    padding: 8px 12px;
+    font-size: 0.74rem;
+    padding: 7px 10px;
+    border-radius: 12px;
+  }
+
+  .xox-turn-indicator {
+    font-size: 0.82rem;
+    margin: 8px 0;
   }
 
   .xox-board {
+    max-width: 250px;
     gap: 6px;
-    max-width: 260px;
   }
 
   .xox-cell {
-    font-size: 1.5rem;
-    border-radius: 10px;
+    font-size: 1.6rem;
+    border-radius: 12px;
+    height: 70px;
   }
 
   .xox-score-tracker {
     font-size: 0.75rem;
     gap: 8px;
+    margin: 10px 0;
   }
 
-  /* Memory Board */
-  .memory-board {
-    gap: 6px;
+  .xox-reset-btn {
+    font-size: 0.8rem;
+    padding: 8px 16px;
   }
 
-  /* Whack Board */
-  .whack-board {
-    gap: 8px;
-  }
-
-  /* Game Over Overlay */
-  .game-over-box {
-    padding: 16px 14px;
-    border-radius: 16px;
-    max-width: 280px;
-  }
-
-  .game-over-emoji {
-    font-size: 2rem;
-  }
-
-  .game-over-box h3 {
-    font-size: 1.1rem;
-  }
-
-  .restart-game-btn {
-    font-size: 0.82rem;
-    padding: 8px 14px;
-  }
-
-  /* Mobile Game Controls */
-  .game-mobile-controls {
-    gap: 8px;
-    padding: 8px;
-  }
-
-  .ctrl-btn {
-    font-size: 0.78rem;
-    padding: 10px 14px;
-    flex: 1;
-  }
-
-  .snake-dpad-container {
-    padding: 8px;
-  }
-
-  .dpad-btn {
-    width: 52px;
-    height: 52px;
-    font-size: 1.2rem;
-  }
-
-  /* =================================================================
-     TAB 5: OTHERS (Period, Jira, Notes, Savings)
-     ================================================================= */
-  .others-container {
-    width: 100%;
-  }
-
+  /* ------------------------------------------------------------------------
+     K. TAB 5: MENU LAINNYA (Sub-Tabs: Period, Jira, Notes, Savings)
+     ------------------------------------------------------------------------ */
   .others-header {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
   .others-lead {
     font-size: 0.78rem;
-    line-height: 1.5;
+    line-height: 1.45;
   }
 
-  /* Sub-Menu Nav (horizontal scroll) */
+  /* Sub-menu Navigation: Grid 2x2 yang seimbang di HP */
   .others-submenu-nav {
-    display: flex;
-    overflow-x: auto;
-    gap: 6px;
-    padding-bottom: 6px;
-    flex-wrap: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .others-submenu-nav::-webkit-scrollbar {
-    display: none;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    margin-bottom: 12px;
   }
 
   .others-subtab-btn {
-    flex-shrink: 0;
-    padding: 8px 10px;
-    border-radius: 12px;
-    gap: 6px;
-    min-width: auto;
+    padding: 10px 8px;
+    border-radius: 16px;
+    gap: 8px;
+    align-items: center;
   }
 
   .subtab-icon-wrap {
-    font-size: 1.1rem;
-    min-width: 32px;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 12px;
+    font-size: 1.15rem;
   }
 
   .subtab-title {
-    font-size: 0.68rem;
-    white-space: nowrap;
+    font-size: 0.76rem;
+    line-height: 1.2;
   }
 
   .subtab-desc {
-    font-size: 0.55rem;
-    display: none;
+    font-size: 0.62rem;
+    display: none; /* Disederhanakan di HP */
   }
 
-  /* -- Period Tracker -- */
   .others-card-box {
-    padding: 12px 8px;
-    border-radius: 16px;
+    padding: 12px 10px;
+    border-radius: 18px;
   }
 
   .card-box-header {
     flex-direction: column;
+    align-items: flex-start;
     gap: 6px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .box-icon-bubble {
     width: 36px;
     height: 36px;
+    min-width: 36px;
     font-size: 1.1rem;
     border-radius: 10px;
   }
 
   .box-title {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
   }
 
   .box-subtitle {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
   }
 
+  /* --- Sub-Tab 1: Period Tracker --- */
   .period-hereditary-badge {
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 14px;
     gap: 8px;
-    flex-direction: column;
-    text-align: center;
   }
 
   .hereditary-icon {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .hereditary-info strong {
@@ -1222,6 +1250,7 @@ button, a, input, select, textarea, [role="button"] {
 
   .period-preset-wrapper {
     flex-direction: column;
+    align-items: stretch;
     gap: 6px;
   }
 
@@ -1230,49 +1259,57 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .preset-chips {
+    display: flex;
     flex-direction: column;
     gap: 4px;
   }
 
   .preset-chip {
-    font-size: 0.72rem;
-    padding: 8px 10px;
+    font-size: 0.74rem;
+    padding: 7px 10px;
+    border-radius: 12px;
+    text-align: center;
   }
 
   .period-setup-grid {
+    display: flex;
+    flex-direction: column;
     gap: 8px;
   }
 
   .period-input-group label {
-    font-size: 0.75rem;
+    font-size: 0.74rem;
+    margin-bottom: 4px;
   }
 
   .period-input {
     font-size: 0.82rem;
-    padding: 8px 10px;
-    border-radius: 10px;
+    padding: 9px 10px;
+    border-radius: 12px;
   }
 
   .input-suffix {
-    font-size: 0.65rem;
+    font-size: 0.68rem;
   }
 
   .period-btn-group {
+    display: flex;
     flex-direction: column;
     gap: 6px;
   }
 
   .period-calc-btn,
   .period-sync-note-btn {
-    font-size: 0.82rem;
-    padding: 10px 14px;
-    border-radius: 12px;
     width: 100%;
+    padding: 11px 14px;
+    font-size: 0.82rem;
+    border-radius: 14px;
+    justify-content: center;
   }
 
   .period-status-banner {
     padding: 12px 10px;
-    border-radius: 14px;
+    border-radius: 16px;
     flex-direction: column;
     text-align: center;
     gap: 8px;
@@ -1283,6 +1320,7 @@ button, a, input, select, textarea, [role="button"] {
     height: 48px;
     min-width: 48px;
     font-size: 1.5rem;
+    margin: 0 auto;
   }
 
   .status-super-tag {
@@ -1290,7 +1328,7 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .status-highlight-date {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
   }
 
   .status-countdown-text {
@@ -1303,29 +1341,21 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .phase-card {
-    padding: 10px;
-    border-radius: 12px;
-  }
-
-  .phase-icon {
-    font-size: 1.1rem;
+    padding: 10px 12px;
+    border-radius: 14px;
   }
 
   .phase-card strong {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
   }
 
   .phase-val {
-    font-size: 0.92rem;
-  }
-
-  .phase-desc {
-    font-size: 0.65rem;
+    font-size: 0.95rem;
   }
 
   .period-forecast-box {
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 14px;
   }
 
   .forecast-cards-grid {
@@ -1334,52 +1364,39 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .symptom-chips {
-    gap: 4px;
+    display: flex;
     flex-wrap: wrap;
+    gap: 5px;
   }
 
   .symptom-chip {
-    font-size: 0.72rem;
+    font-size: 0.74rem;
     padding: 6px 10px;
-    border-radius: 10px;
-  }
-
-  .symptom-solution-box {
-    padding: 10px;
     border-radius: 12px;
   }
 
   .period-care-box {
-    padding: 10px;
-    border-radius: 12px;
+    padding: 10px 12px;
+    border-radius: 14px;
     flex-direction: column;
     text-align: center;
     gap: 8px;
   }
 
-  .care-box-text p {
-    font-size: 0.78rem;
-  }
-
-  /* -- Jira Timeline -- */
+  /* --- Sub-Tab 2: Jira Task Timeline --- */
   .jira-header-top {
     flex-direction: column;
+    align-items: flex-start;
     gap: 4px;
   }
 
   .jira-badge-tag {
-    font-size: 0.6rem;
-  }
-
-  .jira-alert-banner {
-    padding: 8px 10px;
-    border-radius: 12px;
-    font-size: 0.75rem;
+    font-size: 0.62rem;
   }
 
   .jira-add-form-wrap {
-    padding: 10px;
-    border-radius: 14px;
+    padding: 12px 10px;
+    border-radius: 16px;
   }
 
   .jira-form-row {
@@ -1387,399 +1404,414 @@ button, a, input, select, textarea, [role="button"] {
     gap: 8px;
   }
 
-  .form-field {
+  .form-field,
+  .form-field.flex-2,
+  .form-field.flex-1 {
+    width: 100% !important;
     min-width: 100% !important;
   }
 
-  .form-field.flex-2,
-  .form-field.flex-1 {
-    flex: 1;
-    min-width: 100% !important;
+  .form-field label {
+    font-size: 0.74rem;
+    margin-bottom: 3px;
   }
 
   .jira-input {
     font-size: 0.82rem;
-    padding: 8px 10px;
-    border-radius: 10px;
+    padding: 9px 10px;
+    border-radius: 12px;
   }
 
   .jira-submit-btn {
-    font-size: 0.82rem;
-    padding: 10px 14px;
     width: 100%;
+    padding: 11px 14px;
+    font-size: 0.85rem;
+    border-radius: 14px;
   }
 
   .jira-view-switcher {
     flex-direction: column;
+    align-items: stretch;
     gap: 6px;
   }
 
   .switcher-pills {
-    flex-direction: column;
-    gap: 4px;
+    display: flex;
+    width: 100%;
+    gap: 6px;
   }
 
   .jira-switch-btn {
-    font-size: 0.75rem;
-    padding: 8px 12px;
+    flex: 1;
+    font-size: 0.74rem;
+    padding: 7px 10px;
+    border-radius: 12px;
+    text-align: center;
   }
 
   .jira-task-counter {
-    font-size: 0.72rem;
+    text-align: center;
+    font-size: 0.74rem;
   }
 
-  /* Kanban Board */
+  /* Kanban: 1 Kolom Tersusun Rapi */
   .kanban-board-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 10px;
   }
 
   .kanban-col {
-    border-radius: 12px;
     padding: 8px;
-  }
-
-  .kanban-col-header {
-    padding: 6px 8px;
-    font-size: 0.75rem;
-    border-radius: 8px;
+    border-radius: 14px;
   }
 
   .kanban-card {
-    padding: 8px 10px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 12px;
   }
 
   .kanban-card-title {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
   }
 
-  .kanban-card-meta {
-    font-size: 0.65rem;
-  }
-
-  /* -- Notes Cantik -- */
+  /* --- Sub-Tab 3: Notes Cantik --- */
   .notes-period-shortcut-btn {
     font-size: 0.72rem;
     padding: 6px 10px;
-    border-radius: 10px;
+    border-radius: 12px;
+    width: 100%;
+    text-align: center;
   }
 
   .notes-composer-box {
-    padding: 10px;
-    border-radius: 14px;
+    padding: 12px 10px;
+    border-radius: 16px;
   }
 
   .note-composer-title {
     font-size: 0.85rem;
-    padding: 8px 10px;
+    padding: 9px 10px;
+    border-radius: 12px;
   }
 
   .note-composer-body {
     font-size: 0.82rem;
-    padding: 8px 10px;
+    padding: 9px 10px;
+    border-radius: 12px;
   }
 
   .note-composer-toolbar {
     flex-direction: column;
+    align-items: stretch;
     gap: 8px;
+  }
+
+  .color-picker-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .color-picker-label {
-    font-size: 0.72rem;
+    font-size: 0.74rem;
   }
 
   .add-note-btn {
-    font-size: 0.82rem;
-    padding: 10px 14px;
     width: 100%;
+    padding: 11px 14px;
+    font-size: 0.85rem;
+    border-radius: 14px;
   }
 
   .notes-grid-wall {
-    grid-template-columns: 1fr;
-    gap: 8px;
+    grid-template-columns: 1fr !important;
+    gap: 10px;
   }
 
-  /* -- Savings / Celengan -- */
+  /* --- Sub-Tab 4: Celengan Impian / Savings Tracker --- */
   .savings-header-top {
     flex-direction: column;
+    align-items: flex-start;
     gap: 4px;
   }
 
-  .savings-badge-tag {
-    font-size: 0.6rem;
-  }
-
   .savings-add-item-btn {
-    font-size: 0.75rem;
-    padding: 8px 12px;
-    border-radius: 12px;
     width: 100%;
+    padding: 9px 14px;
+    font-size: 0.8rem;
+    border-radius: 14px;
+    margin-top: 6px;
   }
 
   .savings-form-card {
     padding: 12px 10px;
-    border-radius: 14px;
+    border-radius: 16px;
   }
 
   .savings-form-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 8px;
   }
 
+  .form-group-savings label {
+    font-size: 0.74rem;
+    margin-bottom: 3px;
+  }
+
+  .form-group-savings input,
+  .form-group-savings select {
+    font-size: 0.82rem;
+    padding: 9px 10px;
+    border-radius: 12px;
+  }
+
   .savings-plan-row {
-    flex-direction: column;
+    flex-direction: column !important;
     gap: 6px;
   }
 
   .savings-photo-picker-row {
-    flex-direction: column;
+    flex-direction: column !important;
+    align-items: center;
     gap: 8px;
   }
 
   .savings-photo-preview {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto;
+    width: 72px;
+    height: 72px;
   }
 
   .savings-photo-inputs {
-    min-width: 100%;
+    width: 100% !important;
+    min-width: 100% !important;
+    text-align: center;
+  }
+
+  .savings-upload-btn {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 0.78rem;
+    border-radius: 12px;
   }
 
   .savings-emoji-presets {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 6px;
+  }
+
+  .form-savings-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
   .savings-submit-btn,
   .savings-cancel-btn {
     width: 100%;
-    padding: 10px 14px;
-    font-size: 0.82rem;
+    padding: 11px 14px;
+    font-size: 0.85rem;
+    border-radius: 14px;
   }
 
   .savings-items-tabs-wrap {
     flex-direction: column;
+    align-items: flex-start;
     gap: 4px;
   }
 
-  .tabs-label {
-    font-size: 0.72rem;
-  }
-
   .savings-items-tabs {
+    display: flex;
     overflow-x: auto;
     flex-wrap: nowrap;
-    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    width: 100%;
+    padding-bottom: 4px;
     scrollbar-width: none;
   }
 
-  .savings-items-tabs::-webkit-scrollbar {
-    display: none;
-  }
-
   .savings-item-tab-pill {
-    font-size: 0.72rem;
-    padding: 6px 10px;
-    flex-shrink: 0;
+    flex: 0 0 auto;
+    font-size: 0.74rem;
+    padding: 6px 12px;
+    border-radius: 20px;
     white-space: nowrap;
   }
 
-  /* Showcase */
+  /* Showcase Card */
   .savings-showcase-card {
-    padding: 12px 10px;
-    border-radius: 14px;
+    padding: 14px 10px;
+    border-radius: 18px;
   }
 
   .showcase-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 8px;
   }
 
   .showcase-photo-wrap {
-    width: 64px;
-    height: 64px;
+    width: 68px;
+    height: 68px;
     margin: 0 auto;
   }
 
-  .showcase-info {
-    text-align: center;
-  }
-
   .showcase-title {
-    font-size: 1.05rem;
-  }
-
-  .showcase-status-badge {
-    font-size: 0.62rem;
-  }
-
-  .price-val {
     font-size: 1.1rem;
   }
 
+  .showcase-status-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+  }
+
+  .price-val {
+    font-size: 1.2rem;
+  }
+
   .showcase-plan-row {
-    font-size: 0.72rem;
     justify-content: center;
+    font-size: 0.74rem;
   }
 
   .showcase-actions {
-    margin-left: 0;
-    justify-content: center;
-    margin-top: 6px;
+    margin-left: 0 !important;
+    justify-content: center !important;
+    gap: 8px;
   }
 
   .btn-goal-edit,
   .btn-goal-del {
-    font-size: 0.72rem;
-    padding: 5px 10px;
+    font-size: 0.74rem;
+    padding: 6px 12px;
+    border-radius: 12px;
   }
 
   /* Progress Bar */
   .progress-labels-row {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     gap: 4px;
   }
 
   .val-saved,
   .val-remain {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
   }
 
   .val-percent {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
   }
 
   .savings-progress-bar-track {
-    height: 24px;
+    height: 22px;
     border-radius: 12px;
   }
 
   /* Forecast Banner */
   .savings-forecast-banner {
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 14px;
     flex-direction: column;
     text-align: center;
   }
 
   .forecast-days-bold {
-    font-size: 1rem;
-  }
-
-  .forecast-approx {
-    font-size: 0.72rem;
+    font-size: 1.05rem;
   }
 
   .forecast-desc {
     font-size: 0.78rem;
   }
 
-  /* Dual Actions */
+  /* Dual Action Boxes */
   .savings-dual-actions-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 10px;
   }
 
   .savings-action-box {
-    padding: 10px;
-    border-radius: 12px;
+    padding: 12px 10px;
+    border-radius: 14px;
   }
 
   .action-box-header h5 {
     font-size: 0.88rem;
   }
 
-  .box-mini-sub {
-    font-size: 0.65rem;
-  }
-
   .quick-amount-presets {
+    display: flex;
     flex-wrap: wrap;
     gap: 4px;
   }
 
   .preset-btn {
+    flex: 1 1 calc(33.33% - 4px);
     font-size: 0.72rem;
-    padding: 6px 8px;
+    padding: 6px 4px;
+    border-radius: 10px;
+    text-align: center;
   }
 
   .deposit-input-row {
-    flex-direction: column;
+    flex-direction: column !important;
     gap: 6px;
   }
 
   .deposit-input-wrap {
-    min-width: 100%;
+    width: 100%;
   }
 
   .deposit-submit-btn {
     width: 100%;
+    padding: 11px 14px;
+    font-size: 0.85rem;
+    border-radius: 14px;
+  }
+
+  .simulation-fields-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .simulation-btn {
+    width: 100%;
     padding: 10px 14px;
     font-size: 0.82rem;
+    border-radius: 12px;
   }
 
-  /* History */
-  .savings-history-toggle-btn {
-    font-size: 0.75rem;
-    padding: 8px 12px;
+  /* ------------------------------------------------------------------------
+     L. MODALS & POPUPS
+     ------------------------------------------------------------------------ */
+  .modal-overlay {
+    padding: 10px;
   }
 
-  .savings-history-item {
-    padding: 8px 10px;
-    font-size: 0.75rem;
-    border-radius: 10px;
-  }
-
-  /* Empty State */
-  .savings-empty-state {
-    padding: 20px 12px;
-  }
-
-  .empty-icon-pig {
-    font-size: 2rem;
-  }
-
-  .savings-empty-state h4 {
-    font-size: 1rem;
-  }
-
-  .savings-empty-state p {
-    font-size: 0.78rem;
-  }
-
-  .btn-create-first-goal {
-    font-size: 0.82rem;
-    padding: 10px 16px;
-  }
-
-  /* =================================================================
-     MODALS
-     ================================================================= */
   .modal-card {
-    max-width: 92vw;
-    padding: 16px 12px;
-    border-radius: 18px;
-    margin: 10px;
+    width: 100%;
+    max-width: calc(100vw - 20px) !important;
+    max-height: 88vh;
+    padding: 18px 14px;
+    border-radius: 20px;
   }
 
   .modal-close-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 0.9rem;
-    top: 8px;
-    right: 8px;
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+    top: 10px;
+    right: 10px;
   }
 
   .modal-icon {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .modal-title {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .modal-body p {
@@ -1788,11 +1820,11 @@ button, a, input, select, textarea, [role="button"] {
 
   .default-pin-box {
     padding: 8px 12px;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
   .default-pin-box code {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .custom-pin-control {
@@ -1802,62 +1834,66 @@ button, a, input, select, textarea, [role="button"] {
 
   .custom-pin-control input {
     font-size: 0.85rem;
-    padding: 8px 10px;
+    padding: 9px 10px;
+    border-radius: 12px;
   }
 
   .custom-pin-control button {
     font-size: 0.82rem;
-    padding: 8px 14px;
+    padding: 9px 14px;
+    border-radius: 12px;
   }
 
   /* Photo Lightbox */
   .photo-modal-card {
-    max-width: 95vw;
     padding: 10px;
   }
 
   .lightbox-img-wrap {
-    max-height: 350px;
-    border-radius: 12px;
+    max-height: 50vh;
+    border-radius: 14px;
   }
 
   .lightbox-img-wrap img {
-    max-height: 350px;
+    max-height: 50vh;
   }
 
   .lightbox-caption {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
+    margin-top: 6px;
   }
 
-  /* Timeline Modal */
+  /* Timeline Checklist Modal */
   .timeline-modal .modal-card {
-    max-width: 92vw;
-    padding: 14px 10px;
+    max-width: calc(100vw - 20px) !important;
+    border-radius: 20px;
   }
 
-  .tl-modal-header .tl-header-icon {
+  .tl-modal-header {
+    padding: 18px 14px 14px 14px;
+  }
+
+  .tl-header-icon {
     font-size: 1.8rem;
   }
 
   .tl-modal-title {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
-  .tl-modal-name {
-    font-size: 0.85rem;
-  }
-
-  .tl-progress-text {
-    font-size: 0.72rem;
+  .tl-checklist {
+    padding: 12px 10px;
+    max-height: 48vh;
   }
 
   .tl-item {
-    padding: 8px;
-    border-radius: 10px;
+    padding: 10px 8px;
+    gap: 10px;
+    border-radius: 12px;
   }
 
   .tl-item-emoji {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .tl-item-text strong {
@@ -1865,51 +1901,46 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .tl-item-text small {
-    font-size: 0.65rem;
-  }
-
-  .tl-check-icon {
-    font-size: 0.82rem;
+    font-size: 0.68rem;
   }
 
   /* Rating Modal */
   .rating-modal .modal-card {
-    max-width: 92vw;
-    padding: 16px 12px;
-  }
-
-  .rating-header-emoji {
-    font-size: 2rem;
-  }
-
-  .rating-title {
-    font-size: 1.1rem;
-  }
-
-  .rating-subtitle {
-    font-size: 0.78rem;
+    max-width: calc(100vw - 20px) !important;
+    padding: 20px 14px;
+    border-radius: 20px;
   }
 
   .rating-stars-row {
+    display: flex;
+    justify-content: center;
     gap: 6px;
   }
 
   .rating-star {
     width: 44px;
     height: 44px;
+    border-radius: 12px;
   }
 
   .star-emoji {
     font-size: 1.3rem;
   }
 
-  .rating-response-text {
-    font-size: 0.85rem;
+  .star-label {
+    font-size: 0.65rem;
   }
 
-  /* =================================================================
-     FOOTER
-     ================================================================= */
+  .rating-close-btn {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    border-radius: 14px;
+  }
+
+  /* ------------------------------------------------------------------------
+     M. FOOTER
+     ------------------------------------------------------------------------ */
   .chiikawa-footer-party {
     padding: 14px 8px;
     gap: 8px;
@@ -1921,385 +1952,111 @@ button, a, input, select, textarea, [role="button"] {
   }
 
   .footer-mascot span {
-    font-size: 0.6rem;
+    font-size: 0.65rem;
   }
 
   .footer-heart {
     font-size: 0.72rem;
   }
 
-} /* End 480px */
-
+} /* End max-width: 650px */
 
 /* ==========================================================================
-   3. MOBILE BREAKPOINT: <= 360px (Small Phones)
+   3. EXTRA SMALL PHONES: max-width: 360px
    ========================================================================== */
 @media (max-width: 360px) {
-
   .app-container {
-    padding: 8px 4px;
+    padding-left: 4px;
+    padding-right: 4px;
   }
 
   .glass-card {
-    padding: 12px 8px 16px 8px;
-    border-radius: 18px;
+    padding: 14px 8px 18px 8px;
+    border-radius: 20px;
   }
 
   .dashboard-card {
-    padding: 10px 6px 16px 6px;
-  }
-
-  .floating-top-widgets {
-    top: 6px;
-    right: 6px;
+    padding: 12px 6px 18px 6px;
   }
 
   .cute-clock-card {
-    width: 115px;
-    padding: 4px 6px;
+    max-width: 130px;
+    padding: 3px 6px;
   }
 
   .clock-digits {
-    font-size: 0.95rem;
-  }
-
-  .music-pill {
-    padding: 4px 8px;
-    font-size: 0.65rem;
-  }
-
-  .login-title {
-    font-size: 1.15rem;
-  }
-
-  .peeking-chiikawa,
-  .peeking-hachiware {
-    width: 48px;
-  }
-
-  .strobo-item {
-    width: 44px;
-    height: 44px;
-  }
-
-  .key-btn {
-    height: 42px;
-    font-size: 1rem;
-  }
-
-  .bday-main-photo-wrap {
-    width: 100px;
-    height: 100px;
-  }
-
-  .bday-title {
-    font-size: 1.15rem;
-  }
-
-  .bday-subtitle {
-    font-size: 0.75rem;
-  }
-
-  .dash-tab-btn {
-    padding: 5px 8px;
-    font-size: 0.65rem;
-  }
-
-  .tab-label {
-    display: none;
-  }
-
-  .tab-icon {
-    font-size: 1rem;
-  }
-
-  .memory-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-  }
-
-  .polaroid-img-wrap {
-    height: 90px;
-  }
-
-  .section-title h3 {
-    font-size: 0.88rem;
-  }
-
-  .envelope-card {
-    height: 170px;
-  }
-
-  .letter-title {
-    font-size: 1rem;
-  }
-
-  .letter-paragraphs p {
-    font-size: 0.75rem;
-  }
-
-  .game-select-card {
-    padding: 10px;
-  }
-
-  .modal-card {
-    max-width: 96vw;
-    margin: 6px;
-    padding: 12px 8px;
-  }
-
-  .others-subtab-btn {
-    padding: 6px 8px;
-  }
-
-  .subtab-icon-wrap {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
     font-size: 0.9rem;
   }
 
+  .music-pill {
+    padding: 4px 6px;
+    font-size: 0.68rem;
+  }
+
+  .login-title {
+    font-size: 1.2rem;
+  }
+
+  .key-btn {
+    height: 44px;
+    font-size: 1.1rem;
+  }
+
+  .bday-main-photo-wrap {
+    width: 105px;
+    height: 105px;
+  }
+
+  .bday-title {
+    font-size: 1.2rem;
+  }
+
+  .dash-tab-btn {
+    padding: 6px 9px;
+    font-size: 0.7rem;
+  }
+
+  .memory-grid {
+    gap: 6px !important;
+  }
+
+  .polaroid-img-wrap {
+    height: 105px;
+  }
+
+  .others-subtab-btn {
+    padding: 8px 6px;
+  }
+
+  .subtab-icon-wrap {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 1rem;
+  }
+
   .subtab-title {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 }
 
-
 /* ==========================================================================
-   4. LANDSCAPE ORIENTATION ON MOBILE
-   ========================================================================== */
-@media (max-height: 500px) and (orientation: landscape) {
-  .app-container {
-    padding: 8px;
-    align-items: flex-start;
-  }
-
-  .floating-top-widgets {
-    flex-direction: row;
-    top: 6px;
-    right: 6px;
-    gap: 6px;
-  }
-
-  .cute-clock-card {
-    width: 140px;
-  }
-
-  .bg-glow {
-    display: none;
-  }
-
-  .mountain-far,
-  .mountain-mid {
-    display: none;
-  }
-
-  .game-canvas-container {
-    max-height: 280px;
-  }
-
-  #flappyCanvas,
-  #catchCanvas,
-  #snakeCanvas,
-  #popCanvas {
-    max-height: 280px !important;
-  }
-}
-
-
-/* ==========================================================================
-   5. SAFE AREA / NOTCH SUPPORT (for modern phones)
+   4. SAFE AREA & PWA STANDALONE MODE
    ========================================================================== */
 @supports (padding: env(safe-area-inset-top)) {
   .floating-top-widgets {
     top: calc(8px + env(safe-area-inset-top));
-    right: calc(8px + env(safe-area-inset-right));
   }
 
   .app-container {
-    padding-top: calc(12px + env(safe-area-inset-top));
-    padding-bottom: calc(16px + env(safe-area-inset-bottom));
-    padding-left: calc(6px + env(safe-area-inset-left));
-    padding-right: calc(6px + env(safe-area-inset-right));
-  }
-
-  .chiikawa-footer-party {
-    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+    padding-top: calc(50px + env(safe-area-inset-top));
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
   }
 }
 
-
-/* ==========================================================================
-   6. PERFORMANCE OPTIMIZATIONS FOR MOBILE
-   ========================================================================== */
-@media (max-width: 480px) {
-  /* Reduce heavy animations on mobile for performance */
-  .cloud {
-    animation-duration: 60s;
-    filter: blur(2px);
-  }
-
-  .cloud-2,
-  .cloud-3 {
-    display: none;
-  }
-
-  /* Optimize backdrop filters */
-  .glass-card {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-
-  /* Reduce shadow complexity */
-  .dashboard-card {
-    box-shadow: 0 10px 25px -8px rgba(15, 118, 110, 0.2);
-  }
-
-  /* Disable parallax-like hover effects */
-  * {
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  /* Smoother scrolling */
-  .dash-tab-content,
-  .others-subcontent,
-  .music-options-list {
-    scroll-behavior: smooth;
-  }
-
-  /* Better text rendering */
+@media (display-mode: standalone), (display-mode: fullscreen) {
   body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+    -webkit-user-select: none;
   }
 }
-
-
-/* ==========================================================================
-   7. TABLET BREAKPOINT: 481px - 768px
-   ========================================================================== */
-@media (min-width: 481px) and (max-width: 768px) {
-
-  .app-container {
-    padding: 20px 12px;
-  }
-
-  .surprise-screen {
-    max-width: 100%;
-  }
-
-  .dashboard-card {
-    padding: 18px 14px 24px 14px;
-  }
-
-  .dash-top-bar {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .dash-actions {
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .dash-tabs-nav {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    gap: 6px;
-    justify-content: flex-start;
-    scrollbar-width: none;
-  }
-
-  .dash-tabs-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .dash-tab-btn {
-    flex-shrink: 0;
-    font-size: 0.82rem;
-  }
-
-  .memory-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-
-  .game-selector-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .kanban-board-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .period-details-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .savings-dual-actions-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .notes-grid-wall {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .royal-food-card {
-    flex-direction: column;
-  }
-
-  .food-photo-frame {
-    width: 100%;
-    height: 220px;
-  }
-
-  .jira-form-row {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .form-field {
-    min-width: 45%;
-  }
-}
-
-
-/* ==========================================================================
-   8. PWA / STANDALONE APP MODE ADJUSTMENTS
-   ========================================================================== */
-@media (display-mode: standalone),
-       (display-mode: fullscreen) {
-  /* Extra padding when running as installed app */
-  body {
-    padding-top: env(safe-area-inset-top, 0);
-  }
-
-  .floating-top-widgets {
-    top: calc(12px + env(safe-area-inset-top, 0px));
-  }
-
-  .app-container {
-    padding-top: calc(16px + env(safe-area-inset-top, 0px));
-  }
-}
-
-
-/* ==========================================================================
-   9. DARK/LOW-LIGHT PREFERENCE (optional enhancement)
-   ========================================================================== */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .strobo-track {
-    animation: none;
-  }
-
-  .cloud {
-    animation: none;
-  }
-}
-

@@ -1649,12 +1649,18 @@ function setupCatchGame() {
   const btnLeft = document.getElementById('btnMoveLeft');
   const btnRight = document.getElementById('btnMoveRight');
   if (btnLeft && btnRight) {
-    btnLeft.onclick = () => {
+    const moveLeft = (e) => {
+      if (e && e.type === 'touchstart') e.preventDefault();
       catchState.player.x = Math.max(30, catchState.player.x - 30);
     };
-    btnRight.onclick = () => {
+    const moveRight = (e) => {
+      if (e && e.type === 'touchstart') e.preventDefault();
       catchState.player.x = Math.min(330, catchState.player.x + 30);
     };
+    btnLeft.onclick = moveLeft;
+    btnLeft.ontouchstart = moveLeft;
+    btnRight.onclick = moveRight;
+    btnRight.ontouchstart = moveRight;
   }
 }
 
@@ -1942,10 +1948,20 @@ function setupSnakeGame() {
   const left = document.getElementById('dpadLeft');
   const right = document.getElementById('dpadRight');
 
-  if (up) up.onclick = () => handleSnakeInput('ArrowUp');
-  if (down) down.onclick = () => handleSnakeInput('ArrowDown');
-  if (left) left.onclick = () => handleSnakeInput('ArrowLeft');
-  if (right) right.onclick = () => handleSnakeInput('ArrowRight');
+  function bindDpad(btn, code) {
+    if (!btn) return;
+    const trigger = (e) => {
+      if (e && e.type === 'touchstart') e.preventDefault();
+      handleSnakeInput(code);
+    };
+    btn.onclick = trigger;
+    btn.ontouchstart = trigger;
+  }
+
+  bindDpad(up, 'ArrowUp');
+  bindDpad(down, 'ArrowDown');
+  bindDpad(left, 'ArrowLeft');
+  bindDpad(right, 'ArrowRight');
 }
 
 function handleSnakeInput(code) {
@@ -2142,7 +2158,12 @@ function setupWhackGame() {
     mole.setAttribute('data-hole', i);
     mole.textContent = '🐰';
 
-    mole.onclick = () => whackMole(mole, i);
+    const triggerWhack = (e) => {
+      if (e && e.type === 'touchstart') e.preventDefault();
+      whackMole(mole, i);
+    };
+    mole.onclick = triggerWhack;
+    mole.ontouchstart = triggerWhack;
 
     hole.appendChild(mole);
     container.appendChild(hole);
@@ -2279,15 +2300,26 @@ function setupPopGame() {
   resetPopGame();
   drawPopScene(ctx);
 
-  canvas.onclick = (e) => {
+  function handlePop(clientX, clientY) {
     if (!popState.isRunning || activeGame !== 'pop') return;
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-    const clickX = (e.clientX - rect.left) * scaleX;
-    const clickY = (e.clientY - rect.top) * scaleY;
+    const clickX = (clientX - rect.left) * scaleX;
+    const clickY = (clientY - rect.top) * scaleY;
 
     popBalloonAt(clickX, clickY);
+  }
+
+  canvas.onclick = (e) => {
+    handlePop(e.clientX, e.clientY);
+  };
+
+  canvas.ontouchstart = (e) => {
+    if (e.touches && e.touches[0]) {
+      e.preventDefault();
+      handlePop(e.touches[0].clientX, e.touches[0].clientY);
+    }
   };
 }
 
