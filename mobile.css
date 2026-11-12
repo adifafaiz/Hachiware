@@ -1,0 +1,2305 @@
+/* ==========================================================================
+   MOBILE-FIRST RESPONSIVE DESIGN
+   Hachiware Birthday App - Optimized for Smartphone (320px - 480px)
+   Semua fitur tetap ada, tampilan disesuaikan untuk layar HP
+   ========================================================================== */
+
+/* ==========================================================================
+   1. GLOBAL MOBILE ADJUSTMENTS
+   ========================================================================== */
+
+/* Force mobile viewport behavior */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  touch-action: manipulation;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
+}
+
+/* Improve touch targets - minimum 44px */
+button, a, input, select, textarea, [role="button"] {
+  min-height: 44px;
+}
+
+/* Remove hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .key-btn:hover,
+  .strobo-item:hover,
+  .polaroid-card:hover,
+  .game-select-card:hover,
+  .theme-option-card:hover,
+  .music-option-card:hover,
+  .dash-tab-btn:hover,
+  .wheels-menu-banner-btn:hover,
+  .cute-clock-card:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   2. MOBILE BREAKPOINT: <= 480px (Primary Mobile)
+   ========================================================================== */
+@media (max-width: 480px) {
+
+  /* -- APP CONTAINER -- */
+  .app-container {
+    padding: 12px 6px;
+    min-height: 100vh;
+    align-items: flex-start;
+  }
+
+  /* -- BACKGROUND SCENERY -- */
+  .bg-glow {
+    width: 320px;
+    height: 320px;
+    top: 8%;
+  }
+
+  .pine-trees {
+    width: 80px;
+    opacity: 0.4;
+  }
+
+  .birds-group {
+    display: none;
+  }
+
+  .mountain-far { height: 35vh; }
+  .mountain-mid { height: 28vh; }
+  .mountain-near { height: 20vh; }
+
+  /* -- FLOATING TOP WIDGETS (Music & Clock) -- */
+  .floating-top-widgets {
+    top: 8px;
+    right: 8px;
+    gap: 4px;
+  }
+
+  .music-pill {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+    gap: 4px;
+    border-radius: 40px;
+  }
+
+  .music-icon {
+    font-size: 0.85rem;
+  }
+
+  .music-label {
+    font-size: 0.68rem;
+  }
+
+  .music-wave {
+    height: 10px;
+  }
+
+  .music-wave span {
+    width: 2px;
+    height: 3px;
+  }
+
+  .cute-clock-card {
+    width: 130px;
+    padding: 6px 8px;
+    border-radius: 14px;
+    gap: 3px;
+  }
+
+  .clock-digits {
+    font-size: 1.1rem;
+  }
+
+  .clock-seconds {
+    font-size: 0.65rem;
+  }
+
+  .clock-sec-badge {
+    padding: 2px 4px;
+    border-radius: 6px;
+    min-width: 28px;
+  }
+
+  .clock-day-date {
+    font-size: 0.58rem;
+  }
+
+  .clock-date-icon {
+    font-size: 0.7rem;
+  }
+
+  .clock-greeting {
+    font-size: 0.58rem;
+  }
+
+  .clock-timezone {
+    font-size: 0.5rem;
+  }
+
+  .clock-heart-pulse {
+    font-size: 0.6rem;
+  }
+
+  .clock-bubble-toast {
+    top: 110px;
+    right: 8px;
+    max-width: 190px;
+    font-size: 0.68rem;
+    padding: 6px 10px;
+    border-radius: 12px;
+  }
+
+  /* -- CARD SCREENS (Login, Theme, Music Picker) -- */
+  .card-screen {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .glass-card {
+    padding: 16px 12px 20px 12px;
+    border-radius: 22px;
+  }
+
+  .glass-card::before {
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+  }
+
+  /* -- LOGIN SCREEN -- */
+  .login-card-inner {
+    padding: 14px 10px 18px 10px;
+  }
+
+  .login-title {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+  }
+
+  .login-subtitle {
+    font-size: 0.78rem;
+  }
+
+  .peeking-chiikawa {
+    top: -32px;
+    left: 5px;
+    width: 58px;
+  }
+
+  .peeking-hachiware {
+    top: -30px;
+    right: 5px;
+    width: 58px;
+  }
+
+  .mascot-usagi {
+    right: -8px;
+    bottom: -15px;
+    width: 55px;
+  }
+
+  .bubble-speech {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    left: 45px;
+    top: -12px;
+  }
+
+  /* Strobo Photos */
+  .strobo-header-container {
+    margin-bottom: 12px;
+  }
+
+  .strobo-badge {
+    margin-bottom: 6px;
+  }
+
+  .strobo-title {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+  }
+
+  .strobo-sparkle {
+    font-size: 0.75rem;
+  }
+
+  .strobo-marquee-wrapper {
+    padding: 6px 3px;
+    border-radius: 14px;
+  }
+
+  .strobo-item {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    border-width: 2px;
+  }
+
+  .strobo-track {
+    gap: 8px;
+  }
+
+  /* PIN & Keypad */
+  .pin-display-wrapper {
+    margin-bottom: 14px;
+  }
+
+  .pin-dots {
+    gap: 12px;
+  }
+
+  .pin-dot {
+    width: 16px;
+    height: 16px;
+  }
+
+  .pin-status-msg {
+    font-size: 0.75rem;
+  }
+
+  .keypad-container {
+    max-width: 280px;
+    margin-bottom: 14px;
+  }
+
+  .keypad-grid {
+    gap: 8px;
+  }
+
+  .key-btn {
+    height: 46px;
+    font-size: 1.15rem;
+    border-radius: 16px;
+  }
+
+  .login-submit-btn {
+    max-width: 280px;
+    padding: 11px 16px;
+    font-size: 0.9rem;
+    border-radius: 14px;
+    margin-bottom: 10px;
+  }
+
+  .hint-trigger {
+    font-size: 0.78rem;
+  }
+
+  /* -- THEME PICKER -- */
+  .theme-picker-card {
+    padding: 14px 10px 18px 10px;
+  }
+
+  .theme-picker-title {
+    font-size: 1.2rem;
+  }
+
+  .theme-picker-subtitle {
+    font-size: 0.78rem;
+  }
+
+  .theme-header-mascot .chiikawa-mini-svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .theme-options-grid {
+    gap: 10px;
+  }
+
+  .theme-option-card {
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .theme-preview {
+    height: 55px;
+    border-radius: 12px;
+  }
+
+  .theme-name {
+    font-size: 0.85rem;
+  }
+
+  .theme-desc {
+    font-size: 0.68rem;
+  }
+
+  .theme-color-dots .color-dot {
+    width: 14px;
+    height: 14px;
+  }
+
+  .theme-confirm-btn {
+    padding: 11px 18px;
+    font-size: 0.88rem;
+    border-radius: 14px;
+  }
+
+  .theme-hint-text {
+    font-size: 0.72rem;
+  }
+
+  /* -- MUSIC PICKER -- */
+  .music-picker-card {
+    padding: 14px 10px 18px 10px;
+  }
+
+  .music-picker-title {
+    font-size: 1.15rem;
+  }
+
+  .music-picker-subtitle {
+    font-size: 0.76rem;
+  }
+
+  .music-mascot-emoji {
+    font-size: 2rem;
+  }
+
+  .music-options-list {
+    max-height: 260px;
+    gap: 8px;
+  }
+
+  .music-option-card {
+    padding: 10px 12px;
+    border-radius: 14px;
+    gap: 10px;
+  }
+
+  .music-option-icon-box {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 10px;
+  }
+
+  .music-opt-icon {
+    font-size: 1.2rem;
+  }
+
+  .music-option-title {
+    font-size: 0.82rem;
+  }
+
+  .music-default-badge {
+    font-size: 0.58rem;
+    padding: 1px 5px;
+  }
+
+  .music-confirm-btn {
+    padding: 11px 18px;
+    font-size: 0.88rem;
+    border-radius: 14px;
+  }
+
+  .music-hint-text {
+    font-size: 0.68rem;
+  }
+
+  /* =================================================================
+     DASHBOARD MAIN SCREEN
+     ================================================================= */
+  .surprise-screen {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .dashboard-card {
+    padding: 12px 8px 20px 8px;
+    border-radius: 20px;
+  }
+
+  /* -- Dashboard Top Bar -- */
+  .dash-top-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+
+  .dash-user-badge {
+    gap: 8px;
+  }
+
+  .user-avatar-mini {
+    width: 36px;
+    height: 36px;
+  }
+
+  .user-status-dot {
+    width: 9px;
+    height: 9px;
+  }
+
+  .greeting-tiny {
+    font-size: 0.62rem;
+  }
+
+  .princess-name {
+    font-size: 0.85rem;
+  }
+
+  .dash-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+
+  .lock-back-btn,
+  .confetti-retrigger-btn {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    border-radius: 16px;
+  }
+
+  .theme-switch-btn,
+  .music-switch-btn {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    border-radius: 16px;
+  }
+
+  .auto-save-pill {
+    padding: 4px 8px;
+    font-size: 0.65rem;
+    border-radius: 12px;
+  }
+
+  .save-icon {
+    font-size: 0.7rem;
+  }
+
+  /* -- Dashboard Tabs Nav -- */
+  .dash-tabs-nav {
+    gap: 4px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .dash-tabs-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dash-tab-btn {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    gap: 4px;
+  }
+
+  .tab-icon {
+    font-size: 0.85rem;
+  }
+
+  .tab-label {
+    font-size: 0.68rem;
+  }
+
+  /* =================================================================
+     TAB 1: CELEBRATION & CAKE
+     ================================================================= */
+  .hero-bday-section {
+    margin-bottom: 18px;
+  }
+
+  .photo-frame-crown {
+    margin-bottom: 10px;
+  }
+
+  .crown-icon {
+    font-size: 1.6rem;
+    top: -18px;
+  }
+
+  .bday-main-photo-wrap {
+    width: 120px;
+    height: 120px;
+    padding: 3px;
+  }
+
+  .sparkle-tag {
+    font-size: 0.72rem;
+    padding: 3px 12px;
+  }
+
+  .bday-title {
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+  }
+
+  .bday-subtitle {
+    font-size: 0.82rem;
+  }
+
+  /* Timeline Button */
+  .timeline-btn-wrapper {
+    margin-bottom: 14px;
+  }
+
+  .timeline-open-btn {
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    border-radius: 14px;
+  }
+
+  .tl-btn-icon {
+    font-size: 1rem;
+  }
+
+  .tl-btn-badge {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+
+  /* -- Wheels Menu Accordion -- */
+  .wheels-menu-banner-btn {
+    padding: 10px 12px;
+    border-radius: 16px;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .menu-banner-left {
+    gap: 10px;
+  }
+
+  .menu-banner-icon-wrap {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 12px;
+  }
+
+  .menu-banner-icon {
+    font-size: 1.3rem;
+  }
+
+  .menu-banner-tag {
+    font-size: 0.55rem;
+  }
+
+  .menu-banner-title {
+    font-size: 0.92rem;
+  }
+
+  .menu-banner-sub {
+    font-size: 0.68rem;
+  }
+
+  .menu-toggle-pill {
+    padding: 6px 10px;
+    font-size: 0.7rem;
+    align-self: flex-end;
+  }
+
+  .menu-banner-right {
+    align-self: flex-end;
+  }
+
+  /* Royal Scroll / Food Menu */
+  .scroll-rod {
+    height: 16px;
+    padding: 0 10px;
+  }
+
+  .rod-finial {
+    font-size: 0.8rem;
+  }
+
+  .rod-title {
+    font-size: 0.55rem;
+    letter-spacing: 0.5px;
+  }
+
+  .parchment-body {
+    padding: 14px 10px;
+  }
+
+  .decree-title {
+    font-size: 1rem;
+  }
+
+  .decree-subtitle {
+    font-size: 0.72rem;
+  }
+
+  .decree-ornament-line {
+    font-size: 0.65rem;
+  }
+
+  .decree-proclamation {
+    font-size: 0.75rem;
+  }
+
+  .royal-food-card {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .food-photo-col {
+    width: 100%;
+  }
+
+  .food-photo-frame {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+  }
+
+  .food-img {
+    border-radius: 10px;
+  }
+
+  .food-badge-ribbon {
+    font-size: 0.62rem;
+    padding: 3px 8px;
+  }
+
+  .food-info-col {
+    width: 100%;
+  }
+
+  .food-tagline {
+    font-size: 0.68rem;
+  }
+
+  .food-title {
+    font-size: 1.3rem;
+  }
+
+  .food-aka {
+    font-size: 0.72rem;
+  }
+
+  .food-desc {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .food-meta-pills {
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .food-pill {
+    font-size: 0.62rem;
+    padding: 3px 7px;
+  }
+
+  .food-romantic-note {
+    font-size: 0.72rem;
+  }
+
+  .royal-decree-footer {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .royal-wax-seal {
+    width: 60px;
+    height: 60px;
+  }
+
+  .sign-label {
+    font-size: 0.7rem;
+  }
+
+  .sign-name {
+    font-size: 0.82rem;
+  }
+
+  .sign-date {
+    font-size: 0.65rem;
+  }
+
+  .scroll-fold-btn {
+    font-size: 0.78rem;
+    padding: 8px 14px;
+  }
+
+  /* Interactive Cake */
+  .cake-container {
+    margin-bottom: 18px;
+  }
+
+  .cake-box {
+    transform: scale(0.85);
+  }
+
+  .blow-candle-btn {
+    font-size: 0.82rem;
+    padding: 10px 16px;
+    border-radius: 14px;
+  }
+
+  /* Wishes Section */
+  .wishes-section {
+    padding: 14px 10px;
+    border-radius: 16px;
+  }
+
+  .section-title h3 {
+    font-size: 1rem;
+  }
+
+  .title-star {
+    font-size: 0.9rem;
+  }
+
+  .wishes-lead {
+    font-size: 0.78rem;
+  }
+
+  .wish-input-box textarea {
+    font-size: 0.82rem;
+  }
+
+  .send-wish-btn {
+    font-size: 0.82rem;
+    padding: 10px 14px;
+  }
+
+  .board-heading {
+    font-size: 0.82rem;
+  }
+
+  .wish-card-item {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .wish-item-text {
+    font-size: 0.78rem;
+  }
+
+  /* Chiikawa Affirmation Card */
+  .chiikawa-affirmation-card {
+    padding: 12px 10px;
+    border-radius: 16px;
+  }
+
+  .affirmation-mascot .chiikawa-mini-svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .affirmation-bubble {
+    font-size: 0.82rem;
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .roll-affirmation-btn {
+    font-size: 0.78rem;
+    padding: 8px 12px;
+  }
+
+  /* =================================================================
+     TAB 2: LOVE LETTER (ENVELOPE)
+     ================================================================= */
+  .envelope-outer-wrap {
+    padding: 8px;
+  }
+
+  .envelope-card {
+    max-width: 100%;
+    height: 200px;
+    border-radius: 16px;
+  }
+
+  .wax-seal {
+    width: 52px;
+    height: 52px;
+  }
+
+  .wax-seal span {
+    font-size: 0.75rem;
+  }
+
+  .wax-seal small {
+    font-size: 0.55rem;
+  }
+
+  .envelope-hint-txt {
+    font-size: 0.68rem;
+  }
+
+  .love-letter-parchment {
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+
+  .parchment-stamp {
+    font-size: 0.68rem;
+    padding: 3px 10px;
+  }
+
+  .letter-edit-notice {
+    font-size: 0.65rem;
+    padding: 5px 8px;
+  }
+
+  .letter-title {
+    font-size: 1.15rem;
+  }
+
+  .letter-paragraphs p {
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+
+  .sig-date {
+    font-size: 0.75rem;
+  }
+
+  .sig-name {
+    font-size: 0.82rem;
+  }
+
+  /* =================================================================
+     TAB 3: PHOTO GALLERY
+     ================================================================= */
+  .gallery-header-row {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .add-memory-btn {
+    padding: 8px 14px;
+    font-size: 0.78rem;
+  }
+
+  .gallery-lead {
+    font-size: 0.75rem;
+  }
+
+  .memory-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  #userPhotosContainer {
+    display: contents;
+  }
+
+  @supports not (display: contents) {
+    #userPhotosContainer {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+  }
+
+  .polaroid-card {
+    padding: 5px 5px 8px 5px;
+    border-radius: 12px;
+  }
+
+  .polaroid-img-wrap {
+    height: 110px;
+    border-radius: 8px;
+  }
+
+  .polaroid-caption {
+    font-size: 0.62rem;
+    padding: 4px 0 2px 0;
+  }
+
+  .heart-react-btn {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+
+  .heart-count {
+    font-size: 0.58rem;
+  }
+
+  /* Memory Caption Modal */
+  .memory-caption-box {
+    padding: 16px 12px;
+    border-radius: 16px;
+    width: 92%;
+    max-width: 320px;
+  }
+
+  .memory-caption-box h4 {
+    font-size: 1rem;
+  }
+
+  .caption-modal-hint {
+    font-size: 0.75rem;
+  }
+
+  #memoryCaptionInput {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+
+  /* =================================================================
+     TAB 4: ARCADE GAMES
+     ================================================================= */
+  .games-lead {
+    font-size: 0.78rem;
+    margin-bottom: 14px;
+  }
+
+  .game-selector-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .game-select-card {
+    padding: 14px 12px;
+    border-radius: 16px;
+    flex-direction: row;
+    text-align: left;
+    gap: 12px;
+  }
+
+  .game-card-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  .game-card-title {
+    font-size: 0.92rem;
+  }
+
+  .game-card-desc {
+    font-size: 0.72rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .game-badge-tag {
+    font-size: 0.55rem;
+    padding: 2px 6px;
+    top: 6px;
+    right: 6px;
+  }
+
+  .play-game-btn {
+    padding: 7px 12px;
+    font-size: 0.75rem;
+    border-radius: 12px;
+  }
+
+  /* Game Arena */
+  .game-arena-header {
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .back-to-games-btn {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+
+  .game-arena-title {
+    font-size: 1rem;
+  }
+
+  .game-arena-score-badge {
+    font-size: 0.75rem;
+  }
+
+  .game-canvas-container {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  #flappyCanvas,
+  #catchCanvas,
+  #snakeCanvas,
+  #popCanvas {
+    width: 100% !important;
+    max-width: 360px;
+    height: auto !important;
+    max-height: 400px;
+  }
+
+  /* XOX Game */
+  .xox-container {
+    padding: 8px;
+  }
+
+  .xox-mode-btn {
+    font-size: 0.75rem;
+    padding: 8px 12px;
+  }
+
+  .xox-board {
+    gap: 6px;
+    max-width: 260px;
+  }
+
+  .xox-cell {
+    font-size: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .xox-score-tracker {
+    font-size: 0.75rem;
+    gap: 8px;
+  }
+
+  /* Memory Board */
+  .memory-board {
+    gap: 6px;
+  }
+
+  /* Whack Board */
+  .whack-board {
+    gap: 8px;
+  }
+
+  /* Game Over Overlay */
+  .game-over-box {
+    padding: 16px 14px;
+    border-radius: 16px;
+    max-width: 280px;
+  }
+
+  .game-over-emoji {
+    font-size: 2rem;
+  }
+
+  .game-over-box h3 {
+    font-size: 1.1rem;
+  }
+
+  .restart-game-btn {
+    font-size: 0.82rem;
+    padding: 8px 14px;
+  }
+
+  /* Mobile Game Controls */
+  .game-mobile-controls {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .ctrl-btn {
+    font-size: 0.78rem;
+    padding: 10px 14px;
+    flex: 1;
+  }
+
+  .snake-dpad-container {
+    padding: 8px;
+  }
+
+  .dpad-btn {
+    width: 52px;
+    height: 52px;
+    font-size: 1.2rem;
+  }
+
+  /* =================================================================
+     TAB 5: OTHERS (Period, Jira, Notes, Savings)
+     ================================================================= */
+  .others-container {
+    width: 100%;
+  }
+
+  .others-header {
+    margin-bottom: 14px;
+  }
+
+  .others-lead {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  /* Sub-Menu Nav (horizontal scroll) */
+  .others-submenu-nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 6px;
+    padding-bottom: 6px;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .others-submenu-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .others-subtab-btn {
+    flex-shrink: 0;
+    padding: 8px 10px;
+    border-radius: 12px;
+    gap: 6px;
+    min-width: auto;
+  }
+
+  .subtab-icon-wrap {
+    font-size: 1.1rem;
+    min-width: 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .subtab-title {
+    font-size: 0.68rem;
+    white-space: nowrap;
+  }
+
+  .subtab-desc {
+    font-size: 0.55rem;
+    display: none;
+  }
+
+  /* -- Period Tracker -- */
+  .others-card-box {
+    padding: 12px 8px;
+    border-radius: 16px;
+  }
+
+  .card-box-header {
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .box-icon-bubble {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+  }
+
+  .box-title {
+    font-size: 0.92rem;
+  }
+
+  .box-subtitle {
+    font-size: 0.68rem;
+  }
+
+  .period-hereditary-badge {
+    padding: 10px;
+    border-radius: 12px;
+    gap: 8px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hereditary-icon {
+    font-size: 1.2rem;
+  }
+
+  .hereditary-info strong {
+    font-size: 0.82rem;
+  }
+
+  .hereditary-info p {
+    font-size: 0.72rem;
+  }
+
+  .period-preset-wrapper {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .preset-label {
+    font-size: 0.72rem;
+  }
+
+  .preset-chips {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .preset-chip {
+    font-size: 0.72rem;
+    padding: 8px 10px;
+  }
+
+  .period-setup-grid {
+    gap: 8px;
+  }
+
+  .period-input-group label {
+    font-size: 0.75rem;
+  }
+
+  .period-input {
+    font-size: 0.82rem;
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+
+  .input-suffix {
+    font-size: 0.65rem;
+  }
+
+  .period-btn-group {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .period-calc-btn,
+  .period-sync-note-btn {
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .period-status-banner {
+    padding: 12px 10px;
+    border-radius: 14px;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .status-badge-circle {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    font-size: 1.5rem;
+  }
+
+  .status-super-tag {
+    font-size: 0.72rem;
+  }
+
+  .status-highlight-date {
+    font-size: 0.92rem;
+  }
+
+  .status-countdown-text {
+    font-size: 0.75rem;
+  }
+
+  .period-details-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .phase-card {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .phase-icon {
+    font-size: 1.1rem;
+  }
+
+  .phase-card strong {
+    font-size: 0.78rem;
+  }
+
+  .phase-val {
+    font-size: 0.92rem;
+  }
+
+  .phase-desc {
+    font-size: 0.65rem;
+  }
+
+  .period-forecast-box {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .forecast-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .symptom-chips {
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .symptom-chip {
+    font-size: 0.72rem;
+    padding: 6px 10px;
+    border-radius: 10px;
+  }
+
+  .symptom-solution-box {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .period-care-box {
+    padding: 10px;
+    border-radius: 12px;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .care-box-text p {
+    font-size: 0.78rem;
+  }
+
+  /* -- Jira Timeline -- */
+  .jira-header-top {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .jira-badge-tag {
+    font-size: 0.6rem;
+  }
+
+  .jira-alert-banner {
+    padding: 8px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+  }
+
+  .jira-add-form-wrap {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .jira-form-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-field {
+    min-width: 100% !important;
+  }
+
+  .form-field.flex-2,
+  .form-field.flex-1 {
+    flex: 1;
+    min-width: 100% !important;
+  }
+
+  .jira-input {
+    font-size: 0.82rem;
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+
+  .jira-submit-btn {
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    width: 100%;
+  }
+
+  .jira-view-switcher {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .switcher-pills {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .jira-switch-btn {
+    font-size: 0.75rem;
+    padding: 8px 12px;
+  }
+
+  .jira-task-counter {
+    font-size: 0.72rem;
+  }
+
+  /* Kanban Board */
+  .kanban-board-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .kanban-col {
+    border-radius: 12px;
+    padding: 8px;
+  }
+
+  .kanban-col-header {
+    padding: 6px 8px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+  }
+
+  .kanban-card {
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+
+  .kanban-card-title {
+    font-size: 0.82rem;
+  }
+
+  .kanban-card-meta {
+    font-size: 0.65rem;
+  }
+
+  /* -- Notes Cantik -- */
+  .notes-period-shortcut-btn {
+    font-size: 0.72rem;
+    padding: 6px 10px;
+    border-radius: 10px;
+  }
+
+  .notes-composer-box {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .note-composer-title {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+
+  .note-composer-body {
+    font-size: 0.82rem;
+    padding: 8px 10px;
+  }
+
+  .note-composer-toolbar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .color-picker-label {
+    font-size: 0.72rem;
+  }
+
+  .add-note-btn {
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    width: 100%;
+  }
+
+  .notes-grid-wall {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  /* -- Savings / Celengan -- */
+  .savings-header-top {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .savings-badge-tag {
+    font-size: 0.6rem;
+  }
+
+  .savings-add-item-btn {
+    font-size: 0.75rem;
+    padding: 8px 12px;
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .savings-form-card {
+    padding: 12px 10px;
+    border-radius: 14px;
+  }
+
+  .savings-form-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .savings-plan-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .savings-photo-picker-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .savings-photo-preview {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+  }
+
+  .savings-photo-inputs {
+    min-width: 100%;
+  }
+
+  .savings-emoji-presets {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .savings-submit-btn,
+  .savings-cancel-btn {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+  }
+
+  .savings-items-tabs-wrap {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tabs-label {
+    font-size: 0.72rem;
+  }
+
+  .savings-items-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .savings-items-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .savings-item-tab-pill {
+    font-size: 0.72rem;
+    padding: 6px 10px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Showcase */
+  .savings-showcase-card {
+    padding: 12px 10px;
+    border-radius: 14px;
+  }
+
+  .showcase-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .showcase-photo-wrap {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+  }
+
+  .showcase-info {
+    text-align: center;
+  }
+
+  .showcase-title {
+    font-size: 1.05rem;
+  }
+
+  .showcase-status-badge {
+    font-size: 0.62rem;
+  }
+
+  .price-val {
+    font-size: 1.1rem;
+  }
+
+  .showcase-plan-row {
+    font-size: 0.72rem;
+    justify-content: center;
+  }
+
+  .showcase-actions {
+    margin-left: 0;
+    justify-content: center;
+    margin-top: 6px;
+  }
+
+  .btn-goal-edit,
+  .btn-goal-del {
+    font-size: 0.72rem;
+    padding: 5px 10px;
+  }
+
+  /* Progress Bar */
+  .progress-labels-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .val-saved,
+  .val-remain {
+    font-size: 0.82rem;
+  }
+
+  .val-percent {
+    font-size: 1.3rem;
+  }
+
+  .savings-progress-bar-track {
+    height: 24px;
+    border-radius: 12px;
+  }
+
+  /* Forecast Banner */
+  .savings-forecast-banner {
+    padding: 10px;
+    border-radius: 12px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .forecast-days-bold {
+    font-size: 1rem;
+  }
+
+  .forecast-approx {
+    font-size: 0.72rem;
+  }
+
+  .forecast-desc {
+    font-size: 0.78rem;
+  }
+
+  /* Dual Actions */
+  .savings-dual-actions-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .savings-action-box {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .action-box-header h5 {
+    font-size: 0.88rem;
+  }
+
+  .box-mini-sub {
+    font-size: 0.65rem;
+  }
+
+  .quick-amount-presets {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .preset-btn {
+    font-size: 0.72rem;
+    padding: 6px 8px;
+  }
+
+  .deposit-input-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .deposit-input-wrap {
+    min-width: 100%;
+  }
+
+  .deposit-submit-btn {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+  }
+
+  /* History */
+  .savings-history-toggle-btn {
+    font-size: 0.75rem;
+    padding: 8px 12px;
+  }
+
+  .savings-history-item {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    border-radius: 10px;
+  }
+
+  /* Empty State */
+  .savings-empty-state {
+    padding: 20px 12px;
+  }
+
+  .empty-icon-pig {
+    font-size: 2rem;
+  }
+
+  .savings-empty-state h4 {
+    font-size: 1rem;
+  }
+
+  .savings-empty-state p {
+    font-size: 0.78rem;
+  }
+
+  .btn-create-first-goal {
+    font-size: 0.82rem;
+    padding: 10px 16px;
+  }
+
+  /* =================================================================
+     MODALS
+     ================================================================= */
+  .modal-card {
+    max-width: 92vw;
+    padding: 16px 12px;
+    border-radius: 18px;
+    margin: 10px;
+  }
+
+  .modal-close-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+    top: 8px;
+    right: 8px;
+  }
+
+  .modal-icon {
+    font-size: 1.6rem;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+  }
+
+  .modal-body p {
+    font-size: 0.82rem;
+  }
+
+  .default-pin-box {
+    padding: 8px 12px;
+    border-radius: 10px;
+  }
+
+  .default-pin-box code {
+    font-size: 1.5rem;
+  }
+
+  .custom-pin-control {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .custom-pin-control input {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+
+  .custom-pin-control button {
+    font-size: 0.82rem;
+    padding: 8px 14px;
+  }
+
+  /* Photo Lightbox */
+  .photo-modal-card {
+    max-width: 95vw;
+    padding: 10px;
+  }
+
+  .lightbox-img-wrap {
+    max-height: 350px;
+    border-radius: 12px;
+  }
+
+  .lightbox-img-wrap img {
+    max-height: 350px;
+  }
+
+  .lightbox-caption {
+    font-size: 0.82rem;
+  }
+
+  /* Timeline Modal */
+  .timeline-modal .modal-card {
+    max-width: 92vw;
+    padding: 14px 10px;
+  }
+
+  .tl-modal-header .tl-header-icon {
+    font-size: 1.8rem;
+  }
+
+  .tl-modal-title {
+    font-size: 1.1rem;
+  }
+
+  .tl-modal-name {
+    font-size: 0.85rem;
+  }
+
+  .tl-progress-text {
+    font-size: 0.72rem;
+  }
+
+  .tl-item {
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .tl-item-emoji {
+    font-size: 1rem;
+  }
+
+  .tl-item-text strong {
+    font-size: 0.82rem;
+  }
+
+  .tl-item-text small {
+    font-size: 0.65rem;
+  }
+
+  .tl-check-icon {
+    font-size: 0.82rem;
+  }
+
+  /* Rating Modal */
+  .rating-modal .modal-card {
+    max-width: 92vw;
+    padding: 16px 12px;
+  }
+
+  .rating-header-emoji {
+    font-size: 2rem;
+  }
+
+  .rating-title {
+    font-size: 1.1rem;
+  }
+
+  .rating-subtitle {
+    font-size: 0.78rem;
+  }
+
+  .rating-stars-row {
+    gap: 6px;
+  }
+
+  .rating-star {
+    width: 44px;
+    height: 44px;
+  }
+
+  .star-emoji {
+    font-size: 1.3rem;
+  }
+
+  .rating-response-text {
+    font-size: 0.85rem;
+  }
+
+  /* =================================================================
+     FOOTER
+     ================================================================= */
+  .chiikawa-footer-party {
+    padding: 14px 8px;
+    gap: 8px;
+  }
+
+  .footer-mascot .chiikawa-mini-svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .footer-mascot span {
+    font-size: 0.6rem;
+  }
+
+  .footer-heart {
+    font-size: 0.72rem;
+  }
+
+} /* End 480px */
+
+
+/* ==========================================================================
+   3. MOBILE BREAKPOINT: <= 360px (Small Phones)
+   ========================================================================== */
+@media (max-width: 360px) {
+
+  .app-container {
+    padding: 8px 4px;
+  }
+
+  .glass-card {
+    padding: 12px 8px 16px 8px;
+    border-radius: 18px;
+  }
+
+  .dashboard-card {
+    padding: 10px 6px 16px 6px;
+  }
+
+  .floating-top-widgets {
+    top: 6px;
+    right: 6px;
+  }
+
+  .cute-clock-card {
+    width: 115px;
+    padding: 4px 6px;
+  }
+
+  .clock-digits {
+    font-size: 0.95rem;
+  }
+
+  .music-pill {
+    padding: 4px 8px;
+    font-size: 0.65rem;
+  }
+
+  .login-title {
+    font-size: 1.15rem;
+  }
+
+  .peeking-chiikawa,
+  .peeking-hachiware {
+    width: 48px;
+  }
+
+  .strobo-item {
+    width: 44px;
+    height: 44px;
+  }
+
+  .key-btn {
+    height: 42px;
+    font-size: 1rem;
+  }
+
+  .bday-main-photo-wrap {
+    width: 100px;
+    height: 100px;
+  }
+
+  .bday-title {
+    font-size: 1.15rem;
+  }
+
+  .bday-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .dash-tab-btn {
+    padding: 5px 8px;
+    font-size: 0.65rem;
+  }
+
+  .tab-label {
+    display: none;
+  }
+
+  .tab-icon {
+    font-size: 1rem;
+  }
+
+  .memory-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .polaroid-img-wrap {
+    height: 90px;
+  }
+
+  .section-title h3 {
+    font-size: 0.88rem;
+  }
+
+  .envelope-card {
+    height: 170px;
+  }
+
+  .letter-title {
+    font-size: 1rem;
+  }
+
+  .letter-paragraphs p {
+    font-size: 0.75rem;
+  }
+
+  .game-select-card {
+    padding: 10px;
+  }
+
+  .modal-card {
+    max-width: 96vw;
+    margin: 6px;
+    padding: 12px 8px;
+  }
+
+  .others-subtab-btn {
+    padding: 6px 8px;
+  }
+
+  .subtab-icon-wrap {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    font-size: 0.9rem;
+  }
+
+  .subtab-title {
+    font-size: 0.6rem;
+  }
+}
+
+
+/* ==========================================================================
+   4. LANDSCAPE ORIENTATION ON MOBILE
+   ========================================================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .app-container {
+    padding: 8px;
+    align-items: flex-start;
+  }
+
+  .floating-top-widgets {
+    flex-direction: row;
+    top: 6px;
+    right: 6px;
+    gap: 6px;
+  }
+
+  .cute-clock-card {
+    width: 140px;
+  }
+
+  .bg-glow {
+    display: none;
+  }
+
+  .mountain-far,
+  .mountain-mid {
+    display: none;
+  }
+
+  .game-canvas-container {
+    max-height: 280px;
+  }
+
+  #flappyCanvas,
+  #catchCanvas,
+  #snakeCanvas,
+  #popCanvas {
+    max-height: 280px !important;
+  }
+}
+
+
+/* ==========================================================================
+   5. SAFE AREA / NOTCH SUPPORT (for modern phones)
+   ========================================================================== */
+@supports (padding: env(safe-area-inset-top)) {
+  .floating-top-widgets {
+    top: calc(8px + env(safe-area-inset-top));
+    right: calc(8px + env(safe-area-inset-right));
+  }
+
+  .app-container {
+    padding-top: calc(12px + env(safe-area-inset-top));
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+    padding-left: calc(6px + env(safe-area-inset-left));
+    padding-right: calc(6px + env(safe-area-inset-right));
+  }
+
+  .chiikawa-footer-party {
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+  }
+}
+
+
+/* ==========================================================================
+   6. PERFORMANCE OPTIMIZATIONS FOR MOBILE
+   ========================================================================== */
+@media (max-width: 480px) {
+  /* Reduce heavy animations on mobile for performance */
+  .cloud {
+    animation-duration: 60s;
+    filter: blur(2px);
+  }
+
+  .cloud-2,
+  .cloud-3 {
+    display: none;
+  }
+
+  /* Optimize backdrop filters */
+  .glass-card {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Reduce shadow complexity */
+  .dashboard-card {
+    box-shadow: 0 10px 25px -8px rgba(15, 118, 110, 0.2);
+  }
+
+  /* Disable parallax-like hover effects */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Smoother scrolling */
+  .dash-tab-content,
+  .others-subcontent,
+  .music-options-list {
+    scroll-behavior: smooth;
+  }
+
+  /* Better text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+
+/* ==========================================================================
+   7. TABLET BREAKPOINT: 481px - 768px
+   ========================================================================== */
+@media (min-width: 481px) and (max-width: 768px) {
+
+  .app-container {
+    padding: 20px 12px;
+  }
+
+  .surprise-screen {
+    max-width: 100%;
+  }
+
+  .dashboard-card {
+    padding: 18px 14px 24px 14px;
+  }
+
+  .dash-top-bar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .dash-actions {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .dash-tabs-nav {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 6px;
+    justify-content: flex-start;
+    scrollbar-width: none;
+  }
+
+  .dash-tabs-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dash-tab-btn {
+    flex-shrink: 0;
+    font-size: 0.82rem;
+  }
+
+  .memory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .game-selector-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .kanban-board-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .period-details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .savings-dual-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .notes-grid-wall {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .royal-food-card {
+    flex-direction: column;
+  }
+
+  .food-photo-frame {
+    width: 100%;
+    height: 220px;
+  }
+
+  .jira-form-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .form-field {
+    min-width: 45%;
+  }
+}
+
+
+/* ==========================================================================
+   8. PWA / STANDALONE APP MODE ADJUSTMENTS
+   ========================================================================== */
+@media (display-mode: standalone),
+       (display-mode: fullscreen) {
+  /* Extra padding when running as installed app */
+  body {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
+  .floating-top-widgets {
+    top: calc(12px + env(safe-area-inset-top, 0px));
+  }
+
+  .app-container {
+    padding-top: calc(16px + env(safe-area-inset-top, 0px));
+  }
+}
+
+
+/* ==========================================================================
+   9. DARK/LOW-LIGHT PREFERENCE (optional enhancement)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .strobo-track {
+    animation: none;
+  }
+
+  .cloud {
+    animation: none;
+  }
+}
+
