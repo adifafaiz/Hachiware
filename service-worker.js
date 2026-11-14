@@ -1,4 +1,3 @@
-
 const CACHE_NAME = "hachiware-v1";
 
 self.addEventListener("install", (event) => {
