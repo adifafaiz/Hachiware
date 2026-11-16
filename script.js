@@ -1099,7 +1099,45 @@ function initArcadeGames() {
       stopAllGames();
       gameArenaWrapper.style.display = 'none';
       gameSelectorGrid.style.display = 'grid';
+
+      // Exit fullscreen if active
+      if (gameArenaWrapper.classList.contains('fullscreen-active')) {
+        toggleFullscreen(false);
+      }
+
+      const gamesSection = document.querySelector('.games-section');
+      if (gamesSection) gamesSection.classList.remove('game-active-mode');
+
+      setTimeout(() => {
+        gameSelectorGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+
       playKeySound(500);
+    });
+  }
+
+  // Fullscreen button
+  const gameFullscreenBtn = document.getElementById('gameFullscreenBtn');
+  const fullscreenBtnText = document.getElementById('fullscreenBtnText');
+
+  function toggleFullscreen(forceState) {
+    const isNowFullscreen = forceState !== undefined 
+      ? forceState 
+      : !gameArenaWrapper.classList.contains('fullscreen-active');
+
+    if (isNowFullscreen) {
+      gameArenaWrapper.classList.add('fullscreen-active');
+      if (fullscreenBtnText) fullscreenBtnText.textContent = '🗗 Perkecil';
+    } else {
+      gameArenaWrapper.classList.remove('fullscreen-active');
+      if (fullscreenBtnText) fullscreenBtnText.textContent = '⛶ Layar Penuh';
+    }
+  }
+
+  if (gameFullscreenBtn) {
+    gameFullscreenBtn.addEventListener('click', () => {
+      toggleFullscreen();
+      playKeySound(650);
     });
   }
 
@@ -1151,6 +1189,15 @@ function initArcadeGames() {
     gameSelectorGrid.style.display = 'none';
     gameArenaWrapper.style.display = 'flex';
     gameOverOverlay.style.display = 'none';
+
+    // Aktifkan mode full size untuk arena game
+    const gamesSection = document.querySelector('.games-section');
+    if (gamesSection) gamesSection.classList.add('game-active-mode');
+
+    // Langsung scroll halus ke arena game agar tampil full size di layar HP
+    setTimeout(() => {
+      gameArenaWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
 
     // Hide all canvas/containers
     flappyCanvas.style.display = 'none';

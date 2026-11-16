@@ -1105,107 +1105,222 @@ textarea,
 
   .game-selector-grid {
     grid-template-columns: 1fr !important;
-    gap: 10px !important;
+    gap: 12px !important;
+    width: 100% !important;
   }
 
   .game-select-card {
-    padding: 12px !important;
-    border-radius: 16px !important;
-    flex-direction: row !important;
+    display: flex !important;
+    flex-direction: column !important;
     align-items: center !important;
-    text-align: left !important;
-    gap: 12px !important;
+    text-align: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 18px 14px 16px 14px !important;
+    border-radius: 20px !important;
+    position: relative !important;
+    gap: 4px !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.12) !important;
   }
 
   .game-card-icon {
-    font-size: 1.8rem !important;
+    font-size: 2.4rem !important;
+    margin-bottom: 4px !important;
     flex-shrink: 0 !important;
   }
 
   .game-card-title {
-    font-size: 0.95rem !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
     margin-bottom: 2px !important;
+    width: 100% !important;
+    color: var(--tosca-950) !important;
   }
 
   .game-card-desc {
-    font-size: 0.72rem !important;
-    line-height: 1.35 !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 12px !important;
+    width: 100% !important;
+    color: #475569 !important;
+    display: block !important;
+    overflow: visible !important;
+    -webkit-line-clamp: unset !important;
   }
 
   .game-badge-tag {
-    font-size: 0.58rem !important;
-    padding: 2px 6px !important;
-    top: 6px !important;
-    right: 8px !important;
+    font-size: 0.62rem !important;
+    padding: 3px 8px !important;
+    top: 10px !important;
+    right: 12px !important;
+    border-radius: 10px !important;
   }
 
   .play-game-btn {
-    padding: 6px 12px !important;
-    font-size: 0.74rem !important;
-    border-radius: 12px !important;
-    flex-shrink: 0 !important;
+    width: 100% !important;
+    padding: 10px 16px !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.22) !important;
+  }
+
+  /* Saat game dimainkan: sembunyikan intro header agar layar HP 100% fokus ke arena game */
+  .games-section.game-active-mode .section-title,
+  .games-section.game-active-mode .games-lead {
+    display: none !important;
+  }
+
+  /* Game Arena Wrapper Full Size di HP */
+  .game-arena-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 8px 4px 14px 4px !important;
+    border-radius: 20px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    background: rgba(255, 255, 255, 0.85) !important;
   }
 
   .game-arena-header {
-    flex-direction: column !important;
-    align-items: stretch !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
     gap: 6px !important;
-    padding: 8px 10px !important;
+    padding: 4px 4px 10px 4px !important;
+    box-sizing: border-box !important;
   }
 
   .back-to-games-btn {
-    font-size: 0.78rem !important;
-    padding: 6px 12px !important;
-    align-self: flex-start !important;
+    font-size: 0.76rem !important;
+    padding: 6px 10px !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
   }
 
   .game-arena-title {
-    font-size: 1.05rem !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
     text-align: center !important;
+    flex: 1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin: 0 4px !important;
   }
 
   .game-arena-score-badge {
-    font-size: 0.78rem !important;
-    justify-content: center !important;
+    font-size: 0.72rem !important;
+    padding: 4px 8px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
   }
 
-  /* Responsive Canvas: Menjaga rasio 18:23 */
+  .game-fullscreen-btn {
+    background: #ffffff !important;
+    border: 1px solid var(--tosca-200) !important;
+    border-radius: 12px !important;
+    padding: 6px 10px !important;
+    font-size: 0.74rem !important;
+    font-weight: 700 !important;
+    color: var(--tosca-800) !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 3px !important;
+  }
+
+  /* Full-Size Responsive Canvas: 100% Lebar Layar, Rasio 18:23 */
   .game-canvas-container {
     width: 100% !important;
-    max-width: 360px !important;
+    max-width: 100% !important;
     height: auto !important;
     aspect-ratio: 18 / 23 !important;
-    border-radius: 16px !important;
+    max-height: calc(100vh - 170px) !important;
+    border-radius: 18px !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    margin: 0 auto !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 8px 24px rgba(13, 148, 136, 0.2) !important;
   }
 
   .game-canvas-container canvas {
     width: 100% !important;
     height: 100% !important;
     display: block !important;
-    object-fit: contain !important;
+    object-fit: fill !important;
+  }
+
+  /* Memory, Whack, dan XOX Boards: Full Size Mengisi Seluruh Container Tanpa Terpotong */
+  .memory-board,
+  .whack-board,
+  .xox-container {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Immersive Fullscreen Mode saat Layar Penuh diaktifkan */
+  .game-arena-wrapper.fullscreen-active {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    z-index: 99999 !important;
+    background: rgba(4, 47, 46, 0.96) !important;
+    padding: max(12px, env(safe-area-inset-top)) 10px max(14px, env(safe-area-inset-bottom)) 10px !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .game-arena-wrapper.fullscreen-active .game-canvas-container {
+    max-height: calc(100vh - 120px) !important;
+    width: auto !important;
+    height: calc(100vh - 120px) !important;
+    max-width: calc((100vh - 120px) * (18 / 23)) !important;
   }
 
   .game-mobile-controls {
     display: flex !important;
-    gap: 10px !important;
+    gap: 8px !important;
     margin-top: 10px !important;
     width: 100% !important;
-    max-width: 360px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .ctrl-btn {
     flex: 1 !important;
-    padding: 11px 12px !important;
-    font-size: 0.85rem !important;
+    padding: 12px 10px !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
     border-radius: 14px !important;
   }
 
   .snake-dpad-container {
-    margin-top: 10px !important;
+    margin-top: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
     gap: 4px !important;
   }
 

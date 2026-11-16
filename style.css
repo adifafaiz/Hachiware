@@ -2931,6 +2931,28 @@ body.theme-seventeen .clock-bubble-toast {
   transform: translateX(-2px);
 }
 
+.game-fullscreen-btn {
+  background: #ffffff;
+  border: 1px solid var(--tosca-200);
+  border-radius: 14px;
+  padding: 6px 14px;
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--tosca-900);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.game-fullscreen-btn:hover {
+  background: var(--tosca-50);
+  border-color: var(--tosca-400);
+  transform: scale(1.03);
+}
+
 .game-arena-title {
   font-family: var(--font-display);
   font-size: 1.15rem;
