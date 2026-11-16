@@ -1093,17 +1093,13 @@ function initArcadeGames() {
     });
   });
 
-  // Back button
+  // Back button (Keluar Game & kembali ke Menu)
   if (backToGamesBtn) {
     backToGamesBtn.addEventListener('click', () => {
       stopAllGames();
-      gameArenaWrapper.style.display = 'none';
-      gameSelectorGrid.style.display = 'grid';
-
-      // Exit fullscreen if active
-      if (gameArenaWrapper.classList.contains('fullscreen-active')) {
-        toggleFullscreen(false);
-      }
+      gameArenaWrapper.classList.remove('fullscreen-active', 'has-controls');
+      gameArenaWrapper.style.setProperty('display', 'none', 'important');
+      gameSelectorGrid.style.setProperty('display', 'grid', 'important');
 
       const gamesSection = document.querySelector('.games-section');
       if (gamesSection) gamesSection.classList.remove('game-active-mode');
@@ -1116,35 +1112,10 @@ function initArcadeGames() {
     });
   }
 
-  // Fullscreen button
-  const gameFullscreenBtn = document.getElementById('gameFullscreenBtn');
-  const fullscreenBtnText = document.getElementById('fullscreenBtnText');
-
-  function toggleFullscreen(forceState) {
-    const isNowFullscreen = forceState !== undefined 
-      ? forceState 
-      : !gameArenaWrapper.classList.contains('fullscreen-active');
-
-    if (isNowFullscreen) {
-      gameArenaWrapper.classList.add('fullscreen-active');
-      if (fullscreenBtnText) fullscreenBtnText.textContent = '🗗 Perkecil';
-    } else {
-      gameArenaWrapper.classList.remove('fullscreen-active');
-      if (fullscreenBtnText) fullscreenBtnText.textContent = '⛶ Layar Penuh';
-    }
-  }
-
-  if (gameFullscreenBtn) {
-    gameFullscreenBtn.addEventListener('click', () => {
-      toggleFullscreen();
-      playKeySound(650);
-    });
-  }
-
   // Start button in overlay
   if (startActiveGameBtn) {
     startActiveGameBtn.addEventListener('click', () => {
-      gameStartOverlay.style.display = 'none';
+      gameStartOverlay.style.setProperty('display', 'none', 'important');
       if (activeGame === 'flappy') {
         startFlappyLoop();
       } else if (activeGame === 'catch') {
@@ -1162,7 +1133,7 @@ function initArcadeGames() {
   // Restart button
   if (restartGameBtn) {
     restartGameBtn.addEventListener('click', () => {
-      gameOverOverlay.style.display = 'none';
+      gameOverOverlay.style.setProperty('display', 'none', 'important');
       if (activeGame === 'flappy') {
         resetFlappyGame();
         startFlappyLoop();
@@ -1186,24 +1157,27 @@ function initArcadeGames() {
 
   function launchGame(gameType) {
     activeGame = gameType;
-    gameSelectorGrid.style.display = 'none';
-    gameArenaWrapper.style.display = 'flex';
-    gameOverOverlay.style.display = 'none';
+    gameSelectorGrid.style.setProperty('display', 'none', 'important');
+    gameArenaWrapper.style.setProperty('display', 'flex', 'important');
+    gameOverOverlay.style.setProperty('display', 'none', 'important');
 
-    // Aktifkan mode full size untuk arena game
+    // KETIKA GAMENYA DI KLIK LANGSUNG FULL SIZE SAJA
+    gameArenaWrapper.classList.add('fullscreen-active');
     const gamesSection = document.querySelector('.games-section');
     if (gamesSection) gamesSection.classList.add('game-active-mode');
 
-    // Langsung scroll halus ke arena game agar tampil full size di layar HP
-    setTimeout(() => {
-      gameArenaWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 60);
+    // Deteksi kontrol bawah untuk catch dan snake
+    if (gameType === 'catch' || gameType === 'snake') {
+      gameArenaWrapper.classList.add('has-controls');
+    } else {
+      gameArenaWrapper.classList.remove('has-controls');
+    }
 
     // Hide all canvas/containers
-    flappyCanvas.style.display = 'none';
-    catchCanvas.style.display = 'none';
-    memoryGameContainer.style.display = 'none';
-    catchMobileControls.style.display = 'none';
+    flappyCanvas.style.setProperty('display', 'none', 'important');
+    catchCanvas.style.setProperty('display', 'none', 'important');
+    memoryGameContainer.style.setProperty('display', 'none', 'important');
+    catchMobileControls.style.setProperty('display', 'none', 'important');
 
     playKeySound(700);
 
@@ -1212,90 +1186,90 @@ function initArcadeGames() {
     const whackGameContainer = document.getElementById('whackGameContainer');
     const snakeMobileControls = document.getElementById('snakeMobileControls');
 
-    if (snakeCanvas) snakeCanvas.style.display = 'none';
-    if (popCanvas) popCanvas.style.display = 'none';
-    if (whackGameContainer) whackGameContainer.style.display = 'none';
-    if (snakeMobileControls) snakeMobileControls.style.display = 'none';
+    if (snakeCanvas) snakeCanvas.style.setProperty('display', 'none', 'important');
+    if (popCanvas) popCanvas.style.setProperty('display', 'none', 'important');
+    if (whackGameContainer) whackGameContainer.style.setProperty('display', 'none', 'important');
+    if (snakeMobileControls) snakeMobileControls.style.setProperty('display', 'none', 'important');
     const xoxContainer = document.getElementById('xoxGameContainer');
-    if (xoxContainer) xoxContainer.style.display = 'none';
+    if (xoxContainer) xoxContainer.style.setProperty('display', 'none', 'important');
 
     if (gameType === 'flappy') {
       gameArenaTitle.textContent = 'Flappy Birthday 🐣🎂';
-      flappyCanvas.style.display = 'block';
+      flappyCanvas.style.setProperty('display', 'block', 'important');
       const best = localStorage.getItem('flappy_best') || 0;
       highScoreDisplay.textContent = best;
       currentScoreDisplay.textContent = '0';
       
       document.getElementById('startOverlayTitle').textContent = 'Flappy Birthday';
       document.getElementById('startOverlayDesc').textContent = 'Klik layar / tekan Spasi untuk kepakkan sayap Chiikawa dan lewati lilin kue!';
-      gameStartOverlay.style.display = 'flex';
+      gameStartOverlay.style.setProperty('display', 'flex', 'important');
       setupFlappyGame();
 
     } else if (gameType === 'catch') {
       gameArenaTitle.textContent = 'Tangkap Kado Ultah 🧺🍓';
-      catchCanvas.style.display = 'block';
-      catchMobileControls.style.display = 'flex';
+      catchCanvas.style.setProperty('display', 'block', 'important');
+      catchMobileControls.style.setProperty('display', 'flex', 'important');
       const best = localStorage.getItem('catch_best') || 0;
       highScoreDisplay.textContent = best;
       currentScoreDisplay.textContent = '0';
 
       document.getElementById('startOverlayTitle').textContent = 'Tangkap Kado Ultah';
       document.getElementById('startOverlayDesc').textContent = 'Geser Chiikawa untuk menangkap kado, kue, dan stroberi. Hindari awan hujan!';
-      gameStartOverlay.style.display = 'flex';
+      gameStartOverlay.style.setProperty('display', 'flex', 'important');
       setupCatchGame();
 
     } else if (gameType === 'memory') {
       gameArenaTitle.textContent = 'Tebak Kartu Pasangan 🃏✨';
-      memoryGameContainer.style.display = 'grid';
-      gameStartOverlay.style.display = 'none';
+      memoryGameContainer.style.setProperty('display', 'grid', 'important');
+      gameStartOverlay.style.setProperty('display', 'none', 'important');
       highScoreDisplay.textContent = '-';
       currentScoreDisplay.textContent = '0 Langkah';
       startMemoryGame();
 
     } else if (gameType === 'snake') {
       gameArenaTitle.textContent = 'Ular Manis Chiikawa 🐍🍰';
-      if (snakeCanvas) snakeCanvas.style.display = 'block';
-      if (snakeMobileControls) snakeMobileControls.style.display = 'flex';
+      if (snakeCanvas) snakeCanvas.style.setProperty('display', 'block', 'important');
+      if (snakeMobileControls) snakeMobileControls.style.setProperty('display', 'flex', 'important');
       const best = localStorage.getItem('snake_best') || 0;
       highScoreDisplay.textContent = best;
       currentScoreDisplay.textContent = '0';
 
       document.getElementById('startOverlayTitle').textContent = 'Ular Manis Chiikawa';
       document.getElementById('startOverlayDesc').textContent = 'Gunakan tombol panah atau D-pad untuk makan kue dan stroberi tanpa menabrak dinding!';
-      gameStartOverlay.style.display = 'flex';
+      gameStartOverlay.style.setProperty('display', 'flex', 'important');
       setupSnakeGame();
 
     } else if (gameType === 'whack') {
       gameArenaTitle.textContent = 'Pukul Usagi Ceria 🔨🐰';
-      if (whackGameContainer) whackGameContainer.style.display = 'grid';
+      if (whackGameContainer) whackGameContainer.style.setProperty('display', 'grid', 'important');
       const best = localStorage.getItem('whack_best') || 0;
       highScoreDisplay.textContent = best;
       currentScoreDisplay.textContent = '0';
 
       document.getElementById('startOverlayTitle').textContent = 'Pukul Usagi Ceria';
       document.getElementById('startOverlayDesc').textContent = 'Ketuk Usagi secepat mungkin saat muncul dari semak tosca dalam waktu 30 detik!';
-      gameStartOverlay.style.display = 'flex';
+      gameStartOverlay.style.setProperty('display', 'flex', 'important');
       setupWhackGame();
 
     } else if (gameType === 'pop') {
       gameArenaTitle.textContent = 'Pecahkan Balon Cinta 🎈✨';
-      if (popCanvas) popCanvas.style.display = 'block';
+      if (popCanvas) popCanvas.style.setProperty('display', 'block', 'important');
       const best = localStorage.getItem('pop_best') || 0;
       highScoreDisplay.textContent = best;
       currentScoreDisplay.textContent = '0';
 
       document.getElementById('startOverlayTitle').textContent = 'Pecahkan Balon Cinta';
       document.getElementById('startOverlayDesc').textContent = 'Letuskan balon-balon ulang tahun tosca & emas yang terbang sebelum waktu 35 detik habis!';
-      gameStartOverlay.style.display = 'flex';
+      gameStartOverlay.style.setProperty('display', 'flex', 'important');
       setupPopGame();
 
     } else if (gameType === 'xox') {
       gameArenaTitle.textContent = 'Tic-Tac-Toe Cinta (XOX) ❌⭕';
       const xoxContainer = document.getElementById('xoxGameContainer');
-      if (xoxContainer) xoxContainer.style.display = 'flex';
+      if (xoxContainer) xoxContainer.style.setProperty('display', 'flex', 'important');
       highScoreDisplay.textContent = '-';
       currentScoreDisplay.textContent = 'Main XOX';
-      gameStartOverlay.style.display = 'none';
+      gameStartOverlay.style.setProperty('display', 'none', 'important');
       setupXoxGame();
     }
   }

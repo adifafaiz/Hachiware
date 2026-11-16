@@ -2931,26 +2931,53 @@ body.theme-seventeen .clock-bubble-toast {
   transform: translateX(-2px);
 }
 
-.game-fullscreen-btn {
-  background: #ffffff;
-  border: 1px solid var(--tosca-200);
-  border-radius: 14px;
-  padding: 6px 14px;
-  font-family: var(--font-main);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--tosca-900);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: all 0.2s;
+/* Full Size Immersive Game Arena */
+.game-arena-wrapper.fullscreen-active {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  background: rgba(4, 47, 46, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 16px 12px !important;
+  box-sizing: border-box !important;
+  overflow-y: auto !important;
 }
 
-.game-fullscreen-btn:hover {
-  background: var(--tosca-50);
-  border-color: var(--tosca-400);
-  transform: scale(1.03);
+.game-arena-wrapper.fullscreen-active .game-arena-header {
+  width: 100% !important;
+  max-width: 440px !important;
+  margin-bottom: 8px !important;
+  flex-shrink: 0 !important;
+}
+
+.game-arena-wrapper.fullscreen-active .game-canvas-container {
+  width: min(calc(100vw - 20px), calc((100vh - 140px) * (18 / 23))) !important;
+  height: auto !important;
+  max-height: calc(100vh - 140px) !important;
+  aspect-ratio: 18 / 23 !important;
+  max-width: 100% !important;
+  flex-shrink: 1 !important;
+  margin: 0 auto !important;
+}
+
+.game-arena-wrapper.fullscreen-active.has-controls .game-canvas-container {
+  width: min(calc(100vw - 20px), calc((100vh - 210px) * (18 / 23))) !important;
+  max-height: calc(100vh - 210px) !important;
+}
+
+.game-arena-wrapper.fullscreen-active .game-mobile-controls,
+.game-arena-wrapper.fullscreen-active .snake-dpad-container {
+  width: 100% !important;
+  max-width: min(calc(100vw - 20px), 360px) !important;
+  flex-shrink: 0 !important;
+  margin-top: 6px !important;
 }
 
 .game-arena-title {

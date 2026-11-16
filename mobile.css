@@ -1224,22 +1224,6 @@ textarea,
     flex-shrink: 0 !important;
   }
 
-  .game-fullscreen-btn {
-    background: #ffffff !important;
-    border: 1px solid var(--tosca-200) !important;
-    border-radius: 12px !important;
-    padding: 6px 10px !important;
-    font-size: 0.74rem !important;
-    font-weight: 700 !important;
-    color: var(--tosca-800) !important;
-    cursor: pointer !important;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 3px !important;
-  }
-
   /* Full-Size Responsive Canvas: 100% Lebar Layar, Rasio 18:23 */
   .game-canvas-container {
     width: 100% !important;
@@ -1259,8 +1243,13 @@ textarea,
   .game-canvas-container canvas {
     width: 100% !important;
     height: 100% !important;
-    display: block !important;
     object-fit: fill !important;
+  }
+
+  /* Cegah kanvas / container yang tidak aktif saling menumpuk */
+  .game-canvas-container canvas[style*="display: none"],
+  .game-canvas-container div[style*="display: none"] {
+    display: none !important;
   }
 
   /* Memory, Whack, dan XOX Boards: Full Size Mengisi Seluruh Container Tanpa Terpotong */
@@ -1274,7 +1263,7 @@ textarea,
     box-sizing: border-box !important;
   }
 
-  /* Immersive Fullscreen Mode saat Layar Penuh diaktifkan */
+  /* Immersive Full Size Mode: Otomatis Aktif Penuh saat Game Diklik */
   .game-arena-wrapper.fullscreen-active {
     position: fixed !important;
     inset: 0 !important;
@@ -1284,19 +1273,51 @@ textarea,
     max-height: 100vh !important;
     z-index: 99999 !important;
     background: rgba(4, 47, 46, 0.96) !important;
-    padding: max(12px, env(safe-area-inset-top)) 10px max(14px, env(safe-area-inset-bottom)) 10px !important;
+    padding: max(10px, env(safe-area-inset-top)) 10px max(12px, env(safe-area-inset-bottom)) 10px !important;
     border-radius: 0 !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important;
+    justify-content: space-between !important;
     align-items: center !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .game-arena-wrapper.fullscreen-active .game-arena-header {
+    width: 100% !important;
+    max-width: 440px !important;
+    flex-shrink: 0 !important;
+    padding: 2px 4px 6px 4px !important;
   }
 
   .game-arena-wrapper.fullscreen-active .game-canvas-container {
-    max-height: calc(100vh - 120px) !important;
-    width: auto !important;
-    height: calc(100vh - 120px) !important;
-    max-width: calc((100vh - 120px) * (18 / 23)) !important;
+    width: min(calc(100vw - 20px), calc((100vh - 140px) * (18 / 23))) !important;
+    height: auto !important;
+    max-height: calc(100vh - 140px) !important;
+    aspect-ratio: 18 / 23 !important;
+    max-width: 100% !important;
+    flex-shrink: 1 !important;
+    margin: 0 auto !important;
+  }
+
+  .game-arena-wrapper.fullscreen-active.has-controls .game-canvas-container {
+    width: min(calc(100vw - 20px), calc((100vh - 210px) * (18 / 23))) !important;
+    max-height: calc(100vh - 210px) !important;
+  }
+
+  .game-arena-wrapper.fullscreen-active .game-mobile-controls {
+    width: 100% !important;
+    max-width: min(calc(100vw - 20px), 360px) !important;
+    margin-top: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .game-arena-wrapper.fullscreen-active .snake-dpad-container {
+    width: 100% !important;
+    max-width: min(calc(100vw - 20px), 360px) !important;
+    margin-top: 4px !important;
+    flex-shrink: 0 !important;
   }
 
   .game-mobile-controls {
