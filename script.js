@@ -417,6 +417,11 @@ function initDashboardTabs() {
         targetContent.classList.add("active");
       }
 
+      if (targetId !== 'tab-games' && typeof activeGame !== 'undefined' && activeGame) {
+        const backBtn = document.getElementById('backToGamesBtn');
+        if (backBtn) backBtn.click();
+      }
+
       playKeySound(640);
     });
   });
@@ -1084,6 +1089,12 @@ function initArcadeGames() {
   const restartGameBtn = document.getElementById('restartGameBtn');
   const catchMobileControls = document.getElementById('catchMobileControls');
 
+  // Pastikan gameArenaWrapper berada langsung di bawah document.body
+  // agar fullscreen bebas dari containing block clipping (backdrop-filter & transform)
+  if (gameArenaWrapper && gameArenaWrapper.parentElement !== document.body) {
+    document.body.appendChild(gameArenaWrapper);
+  }
+
   // Select game card click
   const gameCards = document.querySelectorAll('.game-select-card');
   gameCards.forEach(card => {
@@ -1097,20 +1108,20 @@ function initArcadeGames() {
   if (backToGamesBtn) {
     backToGamesBtn.addEventListener('click', () => {
       stopAllGames();
+      document.body.classList.remove('game-fullscreen-open');
       gameArenaWrapper.classList.remove('fullscreen-active', 'has-controls');
       gameArenaWrapper.style.setProperty('display', 'none', 'important');
-      gameSelectorGrid.style.setProperty('display', 'grid', 'important');
-
-      const gamesSection = document.querySelector('.games-section');
-      if (gamesSection) gamesSection.classList.remove('game-active-mode');
-
-      setTimeout(() => {
-        gameSelectorGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 50);
 
       playKeySound(500);
     });
   }
+
+  // Escape key to exit fullscreen game
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && activeGame) {
+      if (backToGamesBtn) backToGamesBtn.click();
+    }
+  });
 
   // Start button in overlay
   if (startActiveGameBtn) {
@@ -1157,14 +1168,10 @@ function initArcadeGames() {
 
   function launchGame(gameType) {
     activeGame = gameType;
-    gameSelectorGrid.style.setProperty('display', 'none', 'important');
+    document.body.classList.add('game-fullscreen-open');
+    gameArenaWrapper.classList.add('fullscreen-active');
     gameArenaWrapper.style.setProperty('display', 'flex', 'important');
     gameOverOverlay.style.setProperty('display', 'none', 'important');
-
-    // KETIKA GAMENYA DI KLIK LANGSUNG FULL SIZE SAJA
-    gameArenaWrapper.classList.add('fullscreen-active');
-    const gamesSection = document.querySelector('.games-section');
-    if (gamesSection) gamesSection.classList.add('game-active-mode');
 
     // Deteksi kontrol bawah untuk catch dan snake
     if (gameType === 'catch' || gameType === 'snake') {
@@ -1312,10 +1319,10 @@ function setupFlappyGame() {
     if (activeGame !== 'flappy') return;
 
     if (!flappyState.isRunning) {
-      if (e && e.type === 'click') {
+      if (e && (e.type === 'click' || e.type === 'touchstart')) {
         const startOverlay = document.getElementById('gameStartOverlay');
         if (startOverlay && startOverlay.style.display !== 'none') {
-          startOverlay.style.display = 'none';
+          startOverlay.style.setProperty('display', 'none', 'important');
           startFlappyLoop();
         }
       }
@@ -1652,8 +1659,14 @@ function setupCatchGame() {
   canvas.onmousemove = (e) => {
     if (catchState.isRunning) updatePlayerPos(e.clientX);
   };
+  canvas.ontouchstart = (e) => {
+    if (catchState.isRunning && e.touches && e.touches[0]) {
+      e.preventDefault();
+      updatePlayerPos(e.touches[0].clientX);
+    }
+  };
   canvas.ontouchmove = (e) => {
-    if (catchState.isRunning && e.touches[0]) {
+    if (catchState.isRunning && e.touches && e.touches[0]) {
       e.preventDefault();
       updatePlayerPos(e.touches[0].clientX);
     }
@@ -1932,7 +1945,7 @@ function showGameOver(gameName, score, best) {
     msg.textContent = 'Gapapa sayang, kamu udah berusaha hebat banget! Yuk coba lagi yuk~ 🐾';
   }
 
-  overlay.style.display = 'flex';
+  overlay.style.setProperty('display', 'flex', 'important');
 }
 
 
@@ -1964,6 +1977,35 @@ function setupSnakeGame() {
       handleSnakeInput(e.code);
     }
   });
+
+  // Swipe listener on canvas for mobile
+  let snakeTouchStartX = 0;
+  let snakeTouchStartY = 0;
+  canvas.ontouchstart = (e) => {
+    if (e.touches && e.touches[0]) {
+      snakeTouchStartX = e.touches[0].clientX;
+      snakeTouchStartY = e.touches[0].clientY;
+      if (snakeState.isRunning) e.preventDefault();
+    }
+  };
+  canvas.ontouchmove = (e) => {
+    if (snakeState.isRunning) e.preventDefault();
+  };
+  canvas.ontouchend = (e) => {
+    if (!snakeState.isRunning) return;
+    if (e.changedTouches && e.changedTouches[0]) {
+      const dx = e.changedTouches[0].clientX - snakeTouchStartX;
+      const dy = e.changedTouches[0].clientY - snakeTouchStartY;
+      if (Math.abs(dx) > 18 || Math.abs(dy) > 18) {
+        e.preventDefault();
+        if (Math.abs(dx) > Math.abs(dy)) {
+          handleSnakeInput(dx > 0 ? 'ArrowRight' : 'ArrowLeft');
+        } else {
+          handleSnakeInput(dy > 0 ? 'ArrowDown' : 'ArrowUp');
+        }
+      }
+    }
+  };
 
   // Mobile D-pad
   const up = document.getElementById('dpadUp');
