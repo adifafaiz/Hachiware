@@ -1031,6 +1031,110 @@
 
             </div>
 
+            <!-- Active Game Arena Container Placeholder -->
+            <div id="arenaPlaceholder">
+              <div class="game-arena-wrapper" id="gameArenaWrapper" style="display: none;">
+                <div class="game-arena-header">
+                  <button class="back-to-games-btn" id="backToGamesBtn" title="Keluar dan Kembali ke Pilihan Game">
+                    <span>⬅️ Keluar Game</span>
+                  </button>
+                  <div class="game-arena-title" id="gameArenaTitle">Flappy Birthday</div>
+                  <div class="game-arena-score-badge">
+                    <span>Skor: <b id="currentScoreDisplay">0</b></span>
+                    <span class="high-score-tag">Rekor: <b id="highScoreDisplay">0</b></span>
+                  </div>
+                  <!-- Tombol Full Size -->
+                  <button class="game-fullscreen-btn" id="gameFullscreenBtn" title="Mode Full Size / Layar Penuh">
+                    <span id="fullscreenBtnIcon">⛶</span>
+                    <span id="fullscreenBtnText">Full Size</span>
+                  </button>
+                </div>
+
+                <!-- Canvas / Game Container -->
+                <div class="game-canvas-container" id="gameCanvasContainer">
+                  <canvas id="flappyCanvas" width="360" height="460"></canvas>
+                  <canvas id="catchCanvas" width="360" height="460" style="display: none;"></canvas>
+                  <canvas id="snakeCanvas" width="360" height="460" style="display: none;"></canvas>
+                  <canvas id="popCanvas" width="360" height="460" style="display: none;"></canvas>
+                  
+                  <!-- Memory Cards Board -->
+                  <div id="memoryGameContainer" class="memory-board" style="display: none;"></div>
+                  
+                  <!-- Whack A Mole Board -->
+                  <div id="whackGameContainer" class="whack-board" style="display: none;"></div>
+                  
+                  <!-- Tic-Tac-Toe (XOX) Container -->
+                  <div id="xoxGameContainer" class="xox-container" style="display: none;">
+                    <div class="xox-mode-select">
+                      <button class="xox-mode-btn active" id="xoxModeAi">🤖 Lawan AI Chiikawa</button>
+                      <button class="xox-mode-btn" id="xoxMode2P">👩‍❤️‍👨 Main Berdua</button>
+                    </div>
+                    <div class="xox-turn-indicator" id="xoxTurnText">Giliran: 💖 Tuan Putri (X)</div>
+                    <div class="xox-board" id="xoxBoard">
+                      <div class="xox-cell" data-cell="0"></div>
+                      <div class="xox-cell" data-cell="1"></div>
+                      <div class="xox-cell" data-cell="2"></div>
+                      <div class="xox-cell" data-cell="3"></div>
+                      <div class="xox-cell" data-cell="4"></div>
+                      <div class="xox-cell" data-cell="5"></div>
+                      <div class="xox-cell" data-cell="6"></div>
+                      <div class="xox-cell" data-cell="7"></div>
+                      <div class="xox-cell" data-cell="8"></div>
+                    </div>
+                    <div class="xox-score-tracker">
+                      <span>💖 Putri: <b id="xoxScoreX">0</b></span>
+                      <span>🤝 Seri: <b id="xoxScoreDraw">0</b></span>
+                      <span>🌸 Lawan: <b id="xoxScoreO">0</b></span>
+                    </div>
+                    <button class="xox-reset-btn" id="xoxResetBtn">Ronde Baru 🔄</button>
+                  </div>
+
+                  <!-- Game Over Overlay -->
+                  <div class="game-over-overlay" id="gameOverOverlay">
+                    <div class="game-over-box">
+                      <div class="game-over-emoji" id="gameOverEmoji">🎉</div>
+                      <h3 id="gameOverTitle">Permainan Selesai!</h3>
+                      <p id="gameOverMsg">Keren banget sayang!</p>
+                      <div class="final-score-box">
+                        <span>Skor Akhir: <b id="finalScoreVal">0</b></span>
+                      </div>
+                      <button class="restart-game-btn" id="restartGameBtn">Main Lagi 🔄</button>
+                    </div>
+                  </div>
+
+                  <!-- Flappy Start Instructions Overlay -->
+                  <div class="game-start-overlay" id="gameStartOverlay">
+                    <div class="start-instruction-box">
+                      <div class="instruction-icon">👆</div>
+                      <h3 id="startOverlayTitle">Klik Layar / Tekan Spasi</h3>
+                      <p id="startOverlayDesc">Kepakkan sayap Chiikawa dan lewati lilin kue ulang tahun!</p>
+                      <button class="start-btn-primary" id="startActiveGameBtn">Mulai Sekarang! 🚀</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Mobile On-Screen Controls for Catch Game -->
+                <div class="game-mobile-controls" id="catchMobileControls" style="display: none;">
+                  <button class="ctrl-btn" id="btnMoveLeft">⬅️ Geser Kiri</button>
+                  <button class="ctrl-btn" id="btnMoveRight">Geser Kanan ➡️</button>
+                </div>
+
+                <!-- D-Pad for Snake Game -->
+                <div class="snake-dpad-container" id="snakeMobileControls" style="display: none;">
+                  <div class="dpad-row">
+                    <button class="dpad-btn" id="dpadUp">⬆️</button>
+                  </div>
+                  <div class="dpad-row">
+                    <button class="dpad-btn" id="dpadLeft">⬅️</button>
+                    <button class="dpad-btn" id="dpadDown">⬇️</button>
+                    <button class="dpad-btn" id="dpadRight">➡️</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -1994,103 +2098,6 @@
 
       <button class="rating-close-btn" id="ratingCloseBtn">Tutup 🎀</button>
     </div>
-  </div>
-
-  <!-- ==================== ARCADE GAME FULLSCREEN ARENA (STANDALONE VIEWPORT) ==================== -->
-  <div class="game-arena-wrapper" id="gameArenaWrapper" style="display: none;">
-    <div class="game-arena-header">
-      <button class="back-to-games-btn" id="backToGamesBtn" title="Keluar dan Kembali ke Pilihan Game">
-        <span>⬅️ Keluar Game</span>
-      </button>
-      <div class="game-arena-title" id="gameArenaTitle">Flappy Birthday</div>
-      <div class="game-arena-score-badge">
-        <span>Skor: <b id="currentScoreDisplay">0</b></span>
-        <span class="high-score-tag">Rekor: <b id="highScoreDisplay">0</b></span>
-      </div>
-    </div>
-
-    <!-- Canvas / Game Container -->
-    <div class="game-canvas-container" id="gameCanvasContainer">
-      <canvas id="flappyCanvas" width="360" height="460"></canvas>
-      <canvas id="catchCanvas" width="360" height="460" style="display: none;"></canvas>
-      <canvas id="snakeCanvas" width="360" height="460" style="display: none;"></canvas>
-      <canvas id="popCanvas" width="360" height="460" style="display: none;"></canvas>
-      
-      <!-- Memory Cards Board -->
-      <div id="memoryGameContainer" class="memory-board" style="display: none;"></div>
-      
-      <!-- Whack A Mole Board -->
-      <div id="whackGameContainer" class="whack-board" style="display: none;"></div>
-      
-      <!-- Tic-Tac-Toe (XOX) Container -->
-      <div id="xoxGameContainer" class="xox-container" style="display: none;">
-        <div class="xox-mode-select">
-          <button class="xox-mode-btn active" id="xoxModeAi">🤖 Lawan AI Chiikawa</button>
-          <button class="xox-mode-btn" id="xoxMode2P">👩‍❤️‍👨 Main Berdua</button>
-        </div>
-        <div class="xox-turn-indicator" id="xoxTurnText">Giliran: 💖 Tuan Putri (X)</div>
-        <div class="xox-board" id="xoxBoard">
-          <div class="xox-cell" data-cell="0"></div>
-          <div class="xox-cell" data-cell="1"></div>
-          <div class="xox-cell" data-cell="2"></div>
-          <div class="xox-cell" data-cell="3"></div>
-          <div class="xox-cell" data-cell="4"></div>
-          <div class="xox-cell" data-cell="5"></div>
-          <div class="xox-cell" data-cell="6"></div>
-          <div class="xox-cell" data-cell="7"></div>
-          <div class="xox-cell" data-cell="8"></div>
-        </div>
-        <div class="xox-score-tracker">
-          <span>💖 Putri: <b id="xoxScoreX">0</b></span>
-          <span>🤝 Seri: <b id="xoxScoreDraw">0</b></span>
-          <span>🌸 Lawan: <b id="xoxScoreO">0</b></span>
-        </div>
-        <button class="xox-reset-btn" id="xoxResetBtn">Ronde Baru 🔄</button>
-      </div>
-
-      <!-- Game Over Overlay -->
-      <div class="game-over-overlay" id="gameOverOverlay">
-        <div class="game-over-box">
-          <div class="game-over-emoji" id="gameOverEmoji">🎉</div>
-          <h3 id="gameOverTitle">Permainan Selesai!</h3>
-          <p id="gameOverMsg">Keren banget sayang!</p>
-          <div class="final-score-box">
-            <span>Skor Akhir: <b id="finalScoreVal">0</b></span>
-          </div>
-          <button class="restart-game-btn" id="restartGameBtn">Main Lagi 🔄</button>
-        </div>
-      </div>
-
-      <!-- Flappy Start Instructions Overlay -->
-      <div class="game-start-overlay" id="gameStartOverlay">
-        <div class="start-instruction-box">
-          <div class="instruction-icon">👆</div>
-          <h3 id="startOverlayTitle">Klik Layar / Tekan Spasi</h3>
-          <p id="startOverlayDesc">Kepakkan sayap Chiikawa dan lewati lilin kue ulang tahun!</p>
-          <button class="start-btn-primary" id="startActiveGameBtn">Mulai Sekarang! 🚀</button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Mobile On-Screen Controls for Catch Game -->
-    <div class="game-mobile-controls" id="catchMobileControls" style="display: none;">
-      <button class="ctrl-btn" id="btnMoveLeft">⬅️ Geser Kiri</button>
-      <button class="ctrl-btn" id="btnMoveRight">Geser Kanan ➡️</button>
-    </div>
-
-    <!-- D-Pad for Snake Game -->
-    <div class="snake-dpad-container" id="snakeMobileControls" style="display: none;">
-      <div class="dpad-row">
-        <button class="dpad-btn" id="dpadUp">⬆️</button>
-      </div>
-      <div class="dpad-row">
-        <button class="dpad-btn" id="dpadLeft">⬅️</button>
-        <button class="dpad-btn" id="dpadDown">⬇️</button>
-        <button class="dpad-btn" id="dpadRight">➡️</button>
-      </div>
-    </div>
-
   </div>
 
 </body>

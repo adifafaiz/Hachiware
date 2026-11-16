@@ -1175,8 +1175,24 @@ textarea,
     display: none !important;
   }
 
-  /* Game Arena Standalone Fullscreen Viewport Overlay di HP */
+  /* Game Arena Wrapper di HP (Normal Mode di Dalam Tab) */
   .game-arena-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px 6px 14px 6px !important;
+    border-radius: 20px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    box-shadow: 0 4px 18px rgba(13, 148, 136, 0.14) !important;
+    position: relative !important;
+    display: none;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Game Arena saat Mode Full Size Aktif (via Tombol Full Size) */
+  .game-arena-wrapper.fullscreen-active {
     position: fixed !important;
     inset: 0 !important;
     width: 100vw !important;
@@ -1191,7 +1207,8 @@ textarea,
     -webkit-backdrop-filter: blur(12px) !important;
     padding: max(10px, env(safe-area-inset-top)) 10px max(12px, env(safe-area-inset-bottom)) 10px !important;
     border-radius: 0 !important;
-    display: none;
+    border: none !important;
+    display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -1212,49 +1229,80 @@ textarea,
     justify-content: space-between !important;
     width: 100% !important;
     max-width: 440px !important;
-    gap: 6px !important;
-    padding: 2px 4px 6px 4px !important;
+    gap: 5px !important;
+    padding: 2px 2px 8px 2px !important;
     box-sizing: border-box !important;
     flex-shrink: 0 !important;
+    flex-wrap: nowrap !important;
   }
 
   .back-to-games-btn {
-    font-size: 0.78rem !important;
+    font-size: 0.74rem !important;
     font-weight: 800 !important;
-    padding: 7px 12px !important;
+    padding: 6px 10px !important;
     border-radius: 12px !important;
     background: #ffffff !important;
     color: var(--tosca-900) !important;
     border: 1.5px solid var(--tosca-300) !important;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
   }
 
   .game-arena-title {
-    font-size: 0.98rem !important;
+    font-size: 0.88rem !important;
     font-weight: 700 !important;
-    color: #ffffff !important;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+    color: var(--tosca-950) !important;
     text-align: center !important;
     flex: 1 !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    margin: 0 4px !important;
+    margin: 0 2px !important;
+    transition: color 0.2s ease !important;
+  }
+
+  .game-arena-wrapper.fullscreen-active .game-arena-title {
+    color: #ffffff !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
   }
 
   .game-arena-score-badge {
-    font-size: 0.74rem !important;
+    font-size: 0.7rem !important;
     font-weight: 700 !important;
-    padding: 5px 10px !important;
-    border-radius: 12px !important;
+    padding: 4px 8px !important;
+    border-radius: 10px !important;
     background: #ffffff !important;
     color: var(--tosca-900) !important;
     border: 1px solid var(--tosca-200) !important;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Tombol Full Size di Layar HP */
+  .game-fullscreen-btn {
+    font-size: 0.74rem !important;
+    font-weight: 800 !important;
+    padding: 6px 10px !important;
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, var(--tosca-500), var(--tosca-700)) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25) !important;
+    cursor: pointer !important;
+  }
+
+  .game-arena-wrapper.fullscreen-active .game-fullscreen-btn {
+    background: #ffffff !important;
+    color: var(--tosca-900) !important;
+    border: 1.5px solid var(--tosca-300) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
   }
 
   /* Full-Size Responsive Canvas: 100% Responsif Layar HP, Rasio 18:23 */

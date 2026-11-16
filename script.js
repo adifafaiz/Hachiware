@@ -1088,11 +1088,53 @@ function initArcadeGames() {
   const startActiveGameBtn = document.getElementById('startActiveGameBtn');
   const restartGameBtn = document.getElementById('restartGameBtn');
   const catchMobileControls = document.getElementById('catchMobileControls');
+  const gameFullscreenBtn = document.getElementById('gameFullscreenBtn');
+  const fullscreenBtnIcon = document.getElementById('fullscreenBtnIcon');
+  const fullscreenBtnText = document.getElementById('fullscreenBtnText');
+  const arenaPlaceholder = document.getElementById('arenaPlaceholder');
 
-  // Pastikan gameArenaWrapper berada langsung di bawah document.body
-  // agar fullscreen bebas dari containing block clipping (backdrop-filter & transform)
-  if (gameArenaWrapper && gameArenaWrapper.parentElement !== document.body) {
-    document.body.appendChild(gameArenaWrapper);
+  // Toggle Full Size (Layar Penuh) Mode
+  function toggleFullscreen(forceState) {
+    const isNowFullscreen = (forceState !== undefined)
+      ? forceState
+      : !gameArenaWrapper.classList.contains('fullscreen-active');
+
+    if (isNowFullscreen) {
+      // Pindahkan ke document.body agar fixed fullscreen bebas dari containing-block clipping (backdrop-filter)
+      if (gameArenaWrapper.parentElement !== document.body) {
+        document.body.appendChild(gameArenaWrapper);
+      }
+      gameArenaWrapper.classList.add('fullscreen-active');
+      document.body.classList.add('game-fullscreen-open');
+      if (fullscreenBtnIcon) fullscreenBtnIcon.textContent = '🗗';
+      if (fullscreenBtnText) fullscreenBtnText.textContent = 'Perkecil';
+      if (gameFullscreenBtn) {
+        gameFullscreenBtn.classList.add('active');
+        gameFullscreenBtn.setAttribute('title', 'Perkecil ke Ukuran Normal');
+      }
+    } else {
+      gameArenaWrapper.classList.remove('fullscreen-active');
+      document.body.classList.remove('game-fullscreen-open');
+      // Kembalikan ke dalam arenaPlaceholder di Tab Games
+      const targetParent = arenaPlaceholder || document.querySelector('.games-section');
+      if (targetParent && gameArenaWrapper.parentElement !== targetParent) {
+        targetParent.appendChild(gameArenaWrapper);
+      }
+      if (fullscreenBtnIcon) fullscreenBtnIcon.textContent = '⛶';
+      if (fullscreenBtnText) fullscreenBtnText.textContent = 'Full Size';
+      if (gameFullscreenBtn) {
+        gameFullscreenBtn.classList.remove('active');
+        gameFullscreenBtn.setAttribute('title', 'Mode Full Size / Layar Penuh');
+      }
+    }
+  }
+
+  // Tombol Full Size click listener
+  if (gameFullscreenBtn) {
+    gameFullscreenBtn.addEventListener('click', () => {
+      toggleFullscreen();
+      playKeySound(650);
+    });
   }
 
   // Select game card click
@@ -1108,18 +1150,27 @@ function initArcadeGames() {
   if (backToGamesBtn) {
     backToGamesBtn.addEventListener('click', () => {
       stopAllGames();
-      document.body.classList.remove('game-fullscreen-open');
-      gameArenaWrapper.classList.remove('fullscreen-active', 'has-controls');
+      toggleFullscreen(false);
+      gameArenaWrapper.classList.remove('has-controls');
       gameArenaWrapper.style.setProperty('display', 'none', 'important');
+      gameSelectorGrid.style.setProperty('display', 'grid', 'important');
+
+      setTimeout(() => {
+        gameSelectorGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
 
       playKeySound(500);
     });
   }
 
-  // Escape key to exit fullscreen game
+  // Escape key to exit fullscreen or exit game
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && activeGame) {
-      if (backToGamesBtn) backToGamesBtn.click();
+      if (gameArenaWrapper.classList.contains('fullscreen-active')) {
+        toggleFullscreen(false);
+      } else if (backToGamesBtn) {
+        backToGamesBtn.click();
+      }
     }
   });
 
@@ -1168,8 +1219,11 @@ function initArcadeGames() {
 
   function launchGame(gameType) {
     activeGame = gameType;
-    document.body.classList.add('game-fullscreen-open');
-    gameArenaWrapper.classList.add('fullscreen-active');
+    // Sembunyikan grid kartu pilihan game
+    gameSelectorGrid.style.setProperty('display', 'none', 'important');
+
+    // Mulai dari mode normal di dalam Tab
+    toggleFullscreen(false);
     gameArenaWrapper.style.setProperty('display', 'flex', 'important');
     gameOverOverlay.style.setProperty('display', 'none', 'important');
 
@@ -1179,6 +1233,11 @@ function initArcadeGames() {
     } else {
       gameArenaWrapper.classList.remove('has-controls');
     }
+
+    // Scroll halus ke arena game
+    setTimeout(() => {
+      gameArenaWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 60);
 
     // Hide all canvas/containers
     flappyCanvas.style.setProperty('display', 'none', 'important');

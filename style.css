@@ -2892,9 +2892,26 @@ body.theme-seventeen .clock-bubble-toast {
   background: linear-gradient(135deg, var(--tosca-400), var(--tosca-600));
 }
 
-/* Active Game Arena (Standalone Fullscreen Viewport) */
+/* ==========================================================================
+   ACTIVE GAME ARENA (Normal Mode & Full Size Mode)
+   ========================================================================== */
 .game-arena-wrapper {
-  display: none;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 16px 12px;
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+/* Full Size Immersive Viewport Mode (Aktif via Tombol Full Size) */
+.game-arena-wrapper.fullscreen-active {
   position: fixed !important;
   inset: 0 !important;
   width: 100vw !important;
@@ -2907,7 +2924,9 @@ body.theme-seventeen .clock-bubble-toast {
   background: rgba(4, 47, 46, 0.96) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
-  display: flex;
+  border-radius: 0 !important;
+  border: none !important;
+  display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -2922,78 +2941,136 @@ body.game-fullscreen-open {
 }
 
 .game-arena-header {
-  width: 100% !important;
-  max-width: 480px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 8px !important;
-  margin-bottom: 6px !important;
-  flex-shrink: 0 !important;
-  box-sizing: border-box !important;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .back-to-games-btn {
-  background: #ffffff !important;
-  border: 1.5px solid var(--tosca-300) !important;
-  border-radius: 14px !important;
-  padding: 8px 14px !important;
-  font-size: 0.82rem !important;
-  font-weight: 800 !important;
-  color: var(--tosca-900) !important;
-  cursor: pointer !important;
-  transition: all 0.2s !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
-  flex-shrink: 0 !important;
+  background: #ffffff;
+  border: 1.5px solid var(--tosca-200);
+  border-radius: 14px;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--tosca-900);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.12);
+  flex-shrink: 0;
 }
 
 .back-to-games-btn:hover,
 .back-to-games-btn:active {
-  background: var(--tosca-50) !important;
-  transform: scale(0.97) !important;
+  background: var(--tosca-50);
+  transform: scale(0.97);
 }
 
 .game-arena-title {
-  font-family: var(--font-display) !important;
-  font-size: 1.1rem !important;
-  font-weight: 700 !important;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--tosca-950);
+  text-align: center;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 4px;
+  transition: color 0.2s ease;
+}
+
+.game-arena-wrapper.fullscreen-active .game-arena-title {
   color: #ffffff !important;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
-  text-align: center !important;
-  flex: 1 !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  margin: 0 6px !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
 }
 
 .game-arena-score-badge {
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  background: #ffffff !important;
-  border: 1px solid var(--tosca-200) !important;
-  border-radius: 14px !important;
-  padding: 6px 12px !important;
-  font-size: 0.8rem !important;
-  font-weight: 700 !important;
-  color: var(--tosca-900) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-  flex-shrink: 0 !important;
-  white-space: nowrap !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid var(--tosca-200);
+  border-radius: 14px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--tosca-900);
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.1);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .high-score-tag {
-  color: #b45309 !important;
-  border-left: 1px solid #e2e8f0 !important;
-  padding-left: 6px !important;
+  color: #b45309;
+  border-left: 1px solid #e2e8f0;
+  padding-left: 6px;
 }
 
-/* Sizing for Canvas Container in Game Arena */
-.game-arena-wrapper .game-canvas-container {
+/* Tombol Full Size (Layar Penuh) */
+.game-fullscreen-btn {
+  background: linear-gradient(135deg, var(--tosca-500), var(--tosca-700));
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 14px;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 3px 10px rgba(13, 148, 136, 0.25);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.game-fullscreen-btn:hover {
+  transform: scale(1.04);
+  background: linear-gradient(135deg, var(--tosca-400), var(--tosca-600));
+}
+
+.game-fullscreen-btn:active {
+  transform: scale(0.96);
+}
+
+.game-arena-wrapper.fullscreen-active .game-fullscreen-btn {
+  background: #ffffff !important;
+  color: var(--tosca-900) !important;
+  border: 1.5px solid var(--tosca-300) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Game Canvas Container (Normal Mode) */
+.game-canvas-container {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 18 / 23;
+  height: auto;
+  position: relative;
+  background: #0f172a;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px solid #ffffff;
+  box-shadow: 0 10px 25px rgba(13, 148, 136, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* Sizing for Canvas Container in Full Size Mode */
+.game-arena-wrapper.fullscreen-active .game-canvas-container {
   width: min(calc(100vw - 20px), calc((100vh - 100px) * 0.7826), 420px) !important;
   width: min(calc(100vw - 20px), calc((100dvh - 100px) * 0.7826), 420px) !important;
   max-height: calc(100vh - 100px) !important;
@@ -3013,7 +3090,7 @@ body.game-fullscreen-open {
   justify-content: center !important;
 }
 
-.game-arena-wrapper.has-controls .game-canvas-container {
+.game-arena-wrapper.fullscreen-active.has-controls .game-canvas-container {
   width: min(calc(100vw - 20px), calc((100vh - 180px) * 0.7826), 380px) !important;
   width: min(calc(100vw - 20px), calc((100dvh - 180px) * 0.7826), 380px) !important;
   max-height: calc(100vh - 180px) !important;
@@ -3021,25 +3098,25 @@ body.game-fullscreen-open {
 }
 
 .game-arena-wrapper .game-mobile-controls {
-  width: 100% !important;
-  max-width: 380px !important;
-  display: flex !important;
-  gap: 12px !important;
-  margin: 6px auto 0 auto !important;
-  flex-shrink: 0 !important;
-  box-sizing: border-box !important;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  gap: 12px;
+  margin: 10px auto 0 auto;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .game-arena-wrapper .snake-dpad-container {
-  width: 100% !important;
-  max-width: 320px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 4px !important;
-  margin: 4px auto 0 auto !important;
-  flex-shrink: 0 !important;
-  box-sizing: border-box !important;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 6px auto 0 auto;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 /* Game Canvas Container */
