@@ -1289,16 +1289,18 @@ function setupFlappyGame() {
 
   function triggerJump(e) {
     if (activeGame !== 'flappy') return;
-    if (e && e.type !== 'keydown') e.preventDefault();
 
     if (!flappyState.isRunning) {
-      const startOverlay = document.getElementById('gameStartOverlay');
-      if (startOverlay.style.display !== 'none') {
-        startOverlay.style.display = 'none';
-        startFlappyLoop();
+      if (e && e.type === 'click') {
+        const startOverlay = document.getElementById('gameStartOverlay');
+        if (startOverlay && startOverlay.style.display !== 'none') {
+          startOverlay.style.display = 'none';
+          startFlappyLoop();
+        }
       }
       return;
     }
+    if (e && e.type !== 'keydown') e.preventDefault();
     flappyState.bird.vy = flappyState.bird.jump;
     playKeySound(780);
   }
@@ -2316,7 +2318,7 @@ function setupPopGame() {
   };
 
   canvas.ontouchstart = (e) => {
-    if (e.touches && e.touches[0]) {
+    if (popState.isRunning && e.touches && e.touches[0]) {
       e.preventDefault();
       handlePop(e.touches[0].clientX, e.touches[0].clientY);
     }
